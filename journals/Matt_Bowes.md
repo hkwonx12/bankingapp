@@ -5,3 +5,9 @@
 
 3-21-23
 - We made the wireframe for our bank along with some potential stretch goals.
+
+3-22-23
+- We started the API portion of our project.
+
+3-23-23
+- We finished to work on the API.
