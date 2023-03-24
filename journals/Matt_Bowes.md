@@ -10,4 +10,4 @@
 - We started the API portion of our project.
 
 3-23-23
-- We finished to work on the API.
+- We continued to work on the API and had a discussion about databases.
