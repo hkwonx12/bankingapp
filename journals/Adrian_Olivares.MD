@@ -6,4 +6,12 @@
 
 03/22/2023 >
 
-    -
+    -Today we started modeling the APIs and started attatching them to our wireframe. We also started writing out our APIs in the docs section.
+
+03/23/2023 >
+
+    - Today as a group we implemented the use of LiveShare to help us with our API map out. 
+
+0/23/2023 >
+
+    - Today we
