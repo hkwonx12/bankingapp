@@ -5,12 +5,12 @@ volumes:
 services:
   fastapi:
     build:
-      context: project_gamma
+      context: api
       dockerfile: Dockerfile.dev
     ports:
       - 8000:8000
     volumes:
-      - ./project_gamma:/app
+      - ./api:/app
 
   ghi:
     image: node:lts-bullseye
