@@ -11,3 +11,6 @@
 
 3-23-23
 - We continued to work on the API and had a discussion about databases.
+
+3-24-23
+- We decided that SQL would be the best database to handle our finance application.
