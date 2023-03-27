@@ -1,14 +1,17 @@
-# volumes:
+volumes:
+  jwtdown-db-data:
+    external: true
+
 services:
   fastapi:
     build:
-      context: sample_service
+      context: api
       dockerfile: Dockerfile.dev
     ports:
       - 8000:8000
     volumes:
-      - ./sample_service:/app
-      
+      - ./api:/app
+
   ghi:
     image: node:lts-bullseye
     command: /bin/bash run.sh
@@ -23,4 +26,13 @@ services:
       HOST: "0.0.0.0"
       PUBLIC_URL: http://localhost:3000
       REACT_APP_SAMPLE_SERVICE_API_HOST: http://localhost:8000
-            
+
+  db:
+    image: postgres:14.2-bullseye
+    volumes:
+      - jwtdown-db-data:/var/lib/postgresql/data
+      - ./db:/docker-entrypoint-initdb.d
+    env_file:
+      - ./.env
+    ports:
+      - 15432:5432
