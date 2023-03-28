@@ -1,4 +1,4 @@
 fastapi[all]==0.78.0
 uvicorn[standard]==0.17.6
 psycopg2==2.9.3
-databases[postgresql]==0.4.2
+databases[postgresql]==0.4.
