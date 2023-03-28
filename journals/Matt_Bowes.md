@@ -14,3 +14,9 @@
 
 3-24-23
 - We decided that SQL would be the best database to handle our finance application.
+
+3-27-23
+- We collectively worked on the docker-compose.yaml file and added to our requirements.txt
+
+3-28-23
+-
