@@ -22,4 +22,4 @@
 
 03/28/2023 >
 
-    -
+    - We tried to set a goal today in terms of user creation but realized the task was harder than we expected. We have decided to instead move our goal of finsihing authentication towards the end of the week.
