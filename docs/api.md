@@ -145,6 +145,101 @@
 * Endpoint path: /checking/
 * Endpoint method: GET
 
+* Response: Checking Account information
+* Response shape (JSON):
+    ```json
+    {
+        "checking": {
+            amount: int,
+            company: varchar,
+            date: date,
+            checking_account_number: int,
+        }
+    }
+    ```
+
+
+## View Savings Account
+
+* Endpoint path: /checking/
+* Endpoint method: GET
+
+* Response: Savings account information
+* Response shape (JSON):
+    ```json
+    {
+        "savings": {
+            amount: int,
+            company: varchar,
+            date: date,
+            savings_account_number: int,
+        }
+    }
+    ```
+
+
+## Deposit Money
+
+* Endpoint path: /deposit/
+* Endpoint method: POST
+
+* Request shape (form):
+    * routing_number: int,
+    * account_number: int,
+    * institution: varchar,
+    * check_number: int,
+    * amount: int,
+
+* Response: Deposit information
+* Response shape (JSON):
+    ```json
+    {
+        "deposit": {
+            routing_number: int,
+            account_number: int,
+            institution: varchar,
+            check_number: int,
+            amount: int,
+        }
+    }
+    ```
+
+
+## Transfer Funds
+
+* Endpoint path: /transfer/
+* Endpoint method: PUT
+
+* Request shape (form):
+    * savings_account_number: int, | OPTIONAL**
+    * checkings_account_number: int, | OPTIONAL**
+    * amount: int,
+    * date: int,
+
+* Response: Transfer information
+* Response shape (JSON):
+    ```json
+    {
+        "transfer": {
+            amount: int,
+            (FROM)account: int,
+            (TO)account: int,
+            date: date,
+
+
+        }
+    }
+
+    ```
+
+
+## Investment Account
+
+* Endpoint path: /investment/
+* Endpoint method: POST
+
+* Request shape (form):
+
 * Response:
 * Response shape (JSON):
     ```json

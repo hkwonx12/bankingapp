@@ -20,3 +20,7 @@
 
 3-28-23
 -
+- We finished to work on the API.
+
+3-27-23
+- We all worked on the api, requirements.txt, and docker-compose.yaml
