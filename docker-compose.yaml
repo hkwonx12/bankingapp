@@ -32,3 +32,13 @@ services:
       HOST: "0.0.0.0"
       PUBLIC_URL: http://localhost:3000
       REACT_APP_SAMPLE_SERVICE_API_HOST: http://localhost:8000
+
+  db:
+    image: postgres:14.2-bullseye
+    volumes:
+      - jwtdown-db-data:/var/lib/postgresql/data
+      - ./db:/docker-entrypoint-initdb.d
+    env_file:
+      - ./.env
+    ports:
+      - 15432:5432
