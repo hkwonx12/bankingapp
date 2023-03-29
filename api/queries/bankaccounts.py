@@ -3,7 +3,7 @@ from models import UserIn, UserOut
 from queries.pool import pool
 
 class UserRepository:
-    def create(self, user: UserIn, hashed_password: str) -> UserOut:
+    def create(self, user: UserIn, hashed_password: str) -> Users:
         # connect the DB
         with pool.connection() as conn:
             with conn.cursor() as db:
@@ -22,7 +22,6 @@ class UserRepository:
                     user.email
                     ]
                 )
-                print(result.fetchone())
                 id = result.fetchone()[0]
                 old_data=user.dict()
                 return UserOut(id=id, **old_data)

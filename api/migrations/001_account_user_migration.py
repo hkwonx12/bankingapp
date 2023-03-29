@@ -2,21 +2,21 @@ steps = [
     [
         ## Create the table
         """
-        CREATE TABLE accounts (
+        CREATE TABLE users (
             id SERIAL PRIMARY KEY NOT NULL,
             username VARCHAR(250) NOT NULL,
-            password VARCHAR(250) NOT NULL,
+            hashed_password VARCHAR(250) NOT NULL,
             email VARCHAR(250) NOT NULL,
         );
         """,
 
         ## Drop the table
         """
-        DROP TABLE accounts;
+        DROP TABLE users;
         """,
 
         """
-        CREATE TABLE users (
+        CREATE TABLE bank accounts (
             id SERIAL PRIMARY KEY NOT NULL,
             username VARCHAR(250) NOT NULL,
             password VARCHAR(250) NOT NULL,
@@ -31,9 +31,8 @@ steps = [
         """,
 
         """
-        DROP TABLE users;
+        DROP TABLE bank accounts;
         """
 
     ]
 ]
-  
