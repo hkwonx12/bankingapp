@@ -10,7 +10,20 @@
 - We started the API portion of our project.
 
 3-23-23
+- We continued to work on the API and had a discussion about databases.
+
+3-24-23
+- We decided that SQL would be the best database to handle our finance application.
+
+3-27-23
+- We collectively worked on the docker-compose.yaml file and added to our requirements.txt
+
+3-28-23
+-
 - We finished to work on the API.
 
 3-27-23
 - We all worked on the api, requirements.txt, and docker-compose.yaml
+
+3-28-23
+- We started authentication and resolved to finish it by the end of the week.
