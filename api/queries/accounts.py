@@ -1,12 +1,14 @@
 from pydantic import BaseModel
 from models import AccountIn, AccountOut, AccountOutWithPassword
 
+class Queries(BaseModel):
+    pass
 
 class DuplicateAccountError(ValueError):
     pass
 
 
-class Repositories(Queries):
+class AccountRepo(Queries):
     def get(self, username:str ) -> AccountOutWithPassword:
         pass
 
