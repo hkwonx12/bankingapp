@@ -28,3 +28,7 @@ We have tried to complete our docker-compose.yaml file, requirements.txt, and be
 
 # March 28, 2023
 We began our authentication today. We tried to set a goal to finish majority of authentication today but realized that it is a bigger portion of the project that we need to spend time on. We have set an 'end-of-the-week' goal to finish authentication.
+
+
+# March 29, 2023
+We wrote our code for creating authentication account today. We also fixed our Database Url login. Everytime we change the docker-compose.yml, we have to delete our volume and rebuild. We got rid of the external db and wrote in the yml to create every time we compose up. 
