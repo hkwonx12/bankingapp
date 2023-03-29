@@ -24,3 +24,6 @@
 
 3-27-23
 - We all worked on the api, requirements.txt, and docker-compose.yaml
+
+3-28-23
+- We started authentication and resolved to finish it by the end of the week.
