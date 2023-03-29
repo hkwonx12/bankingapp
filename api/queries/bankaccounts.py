@@ -3,7 +3,7 @@ from models import UserIn, UserOut
 from queries.pool import pool
 
 class UserRepository:
-    def create(self, user: UserIn, hashed_password: str) -> Users:
+    def create(self, user: UserIn, hashed_password: str) -> UserOut:
         # connect the DB
         with pool.connection() as conn:
             with conn.cursor() as db:
