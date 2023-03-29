@@ -1,9 +1,8 @@
-from pydantic import BaseModel
 from models import UserIn, UserOut
 from queries.pool import pool
 
 class UserRepository:
-    def create(self, user: UserIn, hashed_password: str) -> UserOut:
+    def create(self, user):
         # connect the DB
         with pool.connection() as conn:
             with conn.cursor() as db:
@@ -11,14 +10,14 @@ class UserRepository:
                 result = db.execute(
                     """
                     INSERT INTO users
-                        (username, hashed_password, email)
+                        (username, password, email)
                     VALUES
-                    (%s,%s,%s)
+                        (%s, %s, %s)
                     RETURNING id;
                     """,
                     [
                     user.username,
-                    user.hashed_password,
+                    user.password,
                     user.email
                     ]
                 )
