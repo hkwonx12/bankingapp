@@ -19,11 +19,7 @@
 - We collectively worked on the docker-compose.yaml file and added to our requirements.txt
 
 3-28-23
--
-- We finished to work on the API.
+- We finished to work on the API
 
-3-27-23
-- We all worked on the api, requirements.txt, and docker-compose.yaml
-
-3-28-23
-- We started authentication and resolved to finish it by the end of the week.
+3-29-23
+- We renamed a few of our models for the sake of naming convention and worked on our queries and routers
