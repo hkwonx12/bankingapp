@@ -1,5 +1,6 @@
 from pydantic import BaseModel
 from models import  UserIn, UserOutWithPassword
+from .users import UserRepository
 
 class Queries(BaseModel):
     pass
@@ -8,7 +9,7 @@ class DuplicateAccountError(ValueError):
     pass
 
 
-class AccountsRepo(Queries):
+class UserRepository(Queries):
     def get(self, username:str ) -> UserOutWithPassword:
         pass
 
