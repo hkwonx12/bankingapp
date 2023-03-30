@@ -6,7 +6,7 @@ steps = [
             id SERIAL PRIMARY KEY NOT NULL,
             username VARCHAR(250) NOT NULL,
             hashed_password VARCHAR(250) NOT NULL,
-            email VARCHAR(250) NOT NULL,
+            email VARCHAR(250) NOT NULL
         );
         """,
 
@@ -16,7 +16,7 @@ steps = [
         """,
 
         """
-        CREATE TABLE bank accounts (
+        CREATE TABLE bank_accounts (
             id SERIAL PRIMARY KEY NOT NULL,
             username VARCHAR(250) NOT NULL,
             password VARCHAR(250) NOT NULL,
@@ -31,7 +31,7 @@ steps = [
         """,
 
         """
-        DROP TABLE bank accounts;
+        DROP TABLE bank_accounts;
         """
 
     ]
