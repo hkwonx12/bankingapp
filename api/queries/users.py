@@ -25,5 +25,25 @@ class UserRepository:
                 old_data=user.dict()
                 return UserOut(id=id, **old_data)
 
-    def get(self, user:UserIn ) -> UserOutWithPassword:
-        pass
+    def get(self, username: str) -> UserOutWithPassword:
+    #connect the DB
+        with pool.connection() as conn:
+            with conn.cursor() as db:
+                #Run our SELECT
+                result = db.execute(
+                    """
+                    SELECT id, username, hashed_password, email
+                    FROM users
+                    WHERE username = %s
+                    """,
+                    [username]
+                )
+                record = result.fetchone()
+                if record is None:
+                    return None
+                return UserOutWithPassword(
+                    id=record[0],
+                    username=record[1],
+                    hashed_password=record[2],
+                    email=record[3]
+                    )
