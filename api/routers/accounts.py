@@ -6,7 +6,7 @@ from authenticator import authenticator
 
 router = APIRouter()
 
-@router.post('/api/users')
+@router.post('/api/users', response_model=AccountToken)
 async def create_user(
     info: UserIn,
     request: Request,
@@ -22,5 +22,7 @@ async def create_user(
             detail="Cannot create an account with those credentials",
         )
     form = AccountForm(username=info.username, password=info.password)
+    print(form)
     token = await authenticator.login(response, request, form, repo)
+    print(token)
     return AccountToken(user=user, **token.dict())
