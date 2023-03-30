@@ -1,18 +1,40 @@
 from pydantic import BaseModel
+from fastapi import FastAPI
+from datetime import date
+from jwtdown_fastapi.authentication import Token
 
-class AccountIn(BaseModel):
+app = FastAPI()
+class UserIn(BaseModel):
     email: str
     username: str
     password: str
 
+class AccountForm(BaseModel):
+    username: str
+    password: str
 
-class AccountOut(BaseModel):
+
+class UserOut(BaseModel):
     id: int
     username: str
 
 
-class AccountOutWithPassword(AccountOut):
+class AccountToken(Token):
+    user: UserOut
+
+
+class UserOutWithPassword(UserOut):
     hashed_password: str
 
 
-
+class BankAccount(BaseModel):
+    id: int
+    username: str
+    password: str
+    email: str
+    address: str
+    phone: str
+    dob: date
+    checking: bool
+    savings: bool
+    investment: bool
