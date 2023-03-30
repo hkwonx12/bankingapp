@@ -6,7 +6,7 @@ from authenticator import authenticator
 
 router = APIRouter()
 
-@router.post('/api/users')
+@router.post('/api/users', response_model=AccountToken)
 async def create_user(
     info: UserIn,
     request: Request,
