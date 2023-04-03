@@ -23,3 +23,11 @@
 03/28/2023 >
 
     - We tried to set a goal today in terms of user creation but realized the task was harder than we expected. We have decided to instead move our goal of finsihing authentication towards the end of the week.
+
+03/29/2023 >
+
+    - We got to building up our UserRespository but we ended up with some errors saying we could not enter a certain amount of parameters. updated the rest of the project with user repo.
+
+03/29/2023 >
+
+    - Today we fixed up the UserRepository by adding a get method since the rest of the project needed this featue to function. Today I also learned more about how the routing works inside of the project. One big thing is Python is not stricly typed but pydantic adds a feature to make type hints more functional. 

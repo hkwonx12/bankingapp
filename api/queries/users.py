@@ -10,8 +10,8 @@ class UserRepository:
                 db.execute(
                     """
                     UPDATE users
-                    SET usernname = %s
-                      , password = %s
+                    SET username = %s
+                      , hashed_password = %s
                       , email = %s
                     WHERE id = %s
                     """,
@@ -22,8 +22,7 @@ class UserRepository:
                         user_id
                     ]
                 )
-                old_data = user.dict()
-                return UserOut(id=user_id, **old_data)
+                return self.user_in_to_out(user_id, user)
 
 
     def delete_user(self, user_id: int) -> bool:
@@ -104,3 +103,8 @@ class UserRepository:
                     )
                     result.append(user)
                 return result
+
+
+    def user_in_to_out(self, id: int, user: UserIn):
+        old_data = user.dict()
+        return UserOut(id=id, **old_data)
