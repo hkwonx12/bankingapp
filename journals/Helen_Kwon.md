@@ -39,4 +39,4 @@ I could not contribute to the progress today as I had to step out of bootcamp. T
 
 
 # April 3, 2023
-Today we continued to debugg the user authentication and git issues. We broke up the backend to different components and created issues on gitlab for them. 
+Today we continued to debugg the user authentication and git issues. We broke up the backend to different components and created issues on gitlab for them. After speaking with Candice, we changed our plan to have individual work to group work. We will have a leader each day to build his or her component while navigators assist the leader in creating the components. 
