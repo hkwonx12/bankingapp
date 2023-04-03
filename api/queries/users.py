@@ -10,8 +10,8 @@ class UserRepository:
                 db.execute(
                     """
                     UPDATE users
-                    SET usernname = %s
-                      , password = %s
+                    SET username = %s
+                      , hashed_password = %s
                       , email = %s
                     WHERE id = %s
                     """,
