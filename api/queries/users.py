@@ -1,8 +1,45 @@
 from models import UserIn, UserOut, UserOutWithPassword
 from queries.pool import pool
+from typing import List
+
 
 class UserRepository:
-    def create(self, user:UserIn, hashed_password):
+    def update_user(self, user_id: str, user: UserIn) -> UserOut:
+        with pool.connection() as conn:
+            with conn.cursor() as db:
+                db.execute(
+                    """
+                    UPDATE users
+                    SET usernname = %s
+                      , password = %s
+                      , email = %s
+                    WHERE id = %s
+                    """,
+                    [
+                        user.username,
+                        user.password,
+                        user.email,
+                        user_id
+                    ]
+                )
+                old_data = user.dict()
+                return UserOut(id=user_id, **old_data)
+
+
+    def delete_user(self, user_id: int) -> bool:
+        with pool.connection() as conn:
+            with conn.cursor() as db:
+                db.execute(
+                    """
+                    DELETE FROM users
+                    WHERE id=%s
+                    """,
+                    [user_id]
+                )
+                return True
+
+
+    def create_user(self, user:UserIn, hashed_password):
         # connect the DB
         with pool.connection() as conn:
             with conn.cursor() as db:
@@ -25,7 +62,8 @@ class UserRepository:
                 old_data=user.dict()
                 return UserOut(id=id, **old_data)
 
-    def get(self, username: str) -> UserOutWithPassword:
+
+    def get_one_user(self, username: str) -> UserOutWithPassword:
     #connect the DB
         with pool.connection() as conn:
             with conn.cursor() as db:
@@ -47,3 +85,22 @@ class UserRepository:
                     hashed_password=record[2],
                     email=record[3]
                     )
+
+
+    def get_all_users(self) -> List[UserOut]:
+        with pool.connection() as conn:
+            with conn.cursor() as db:
+                result = db.execute(
+                    """
+                    SELECT id, username
+                    FROM users;
+                    """
+                )
+                result = []
+                for record in db:
+                    user = UserOut(
+                        id=record[0],
+                        username=record[1]
+                    )
+                    result.append(user)
+                return result
