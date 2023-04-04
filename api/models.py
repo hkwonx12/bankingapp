@@ -24,16 +24,7 @@ class AccountForm(BaseModel):
 
 class UserOut(BaseModel):
     id: int
-    email: str
     username: str
-    address: str
-    phone: str
-    dob: date
-    checking: bool
-    savings: bool
-    investment: bool
-
-
 
 class AccountToken(Token):
     user: UserOut
