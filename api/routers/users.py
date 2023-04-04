@@ -30,6 +30,12 @@ async def create_user(
     return AccountToken(user=user, **token.dict())
 
 
+# @router.post('/api/logout/')
+# async def logout_user(
+
+# )
+
+
 @router.get('/api/users', response_model=List[UserOut])
 def get_all_users(
     repo: UserRepository = Depends(),
