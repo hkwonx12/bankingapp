@@ -13,12 +13,16 @@ class UserRepository:
                     SET username = %s
                       , hashed_password = %s
                       , email = %s
+                      , address = %s
+                      , phone = %s
                     WHERE id = %s
                     """,
                     [
                         user.username,
                         user.password,
                         user.email,
+                        user.address,
+                        user.phone,
                         user_id
                     ]
                 )
@@ -46,15 +50,21 @@ class UserRepository:
                 result = db.execute(
                     """
                     INSERT INTO users
-                        (username, hashed_password, email)
+                        (username, hashed_password, email, address, phone, dob, checking, savings, investment)
                     VALUES
-                        (%s, %s, %s)
+                        (%s, %s, %s, %s, %s, %s, %s, %s, %s)
                     RETURNING id;
                     """,
                     [
                     user.username,
                     hashed_password,
-                    user.email
+                    user.email,
+                    user.address,
+                    user.phone,
+                    user.dob,
+                    user.checking,
+                    user.savings,
+                    user.investment
                     ]
                 )
                 id = result.fetchone()[0]
@@ -69,7 +79,7 @@ class UserRepository:
                 #Run our SELECT
                 result = db.execute(
                     """
-                    SELECT id, username, hashed_password, email
+                    SELECT id, username, hashed_password, email, address, phone, dob, checking, savings, investment
                     FROM users
                     WHERE username = %s
                     """,
@@ -82,7 +92,13 @@ class UserRepository:
                     id=record[0],
                     username=record[1],
                     hashed_password=record[2],
-                    email=record[3]
+                    email=record[3],
+                    address=[4],
+                    phone=record[5],
+                    dob=record[6],
+                    checking=record[7],
+                    savings=record[8],
+                    investment=record[9]
                     )
 
 
