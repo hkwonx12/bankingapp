@@ -10,20 +10,23 @@ class UserRepository:
                 db.execute(
                     """
                     UPDATE users
-                    SET usernname = %s
-                      , password = %s
+                    SET username = %s
+                      , hashed_password = %s
                       , email = %s
+                      , address = %s
+                      , phone = %s
                     WHERE id = %s
                     """,
                     [
                         user.username,
                         user.password,
                         user.email,
+                        user.address,
+                        user.phone,
                         user_id
                     ]
                 )
-                old_data = user.dict()
-                return UserOut(id=user_id, **old_data)
+                return self.user_in_to_out(user_id, user)
 
 
     def delete_user(self, user_id: int) -> bool:
@@ -47,15 +50,21 @@ class UserRepository:
                 result = db.execute(
                     """
                     INSERT INTO users
-                        (username, hashed_password, email)
+                        (username, hashed_password, email, address, phone, dob, checking, savings, investment)
                     VALUES
-                        (%s, %s, %s)
+                        (%s, %s, %s, %s, %s, %s, %s, %s, %s)
                     RETURNING id;
                     """,
                     [
                     user.username,
                     hashed_password,
-                    user.email
+                    user.email,
+                    user.address,
+                    user.phone,
+                    user.dob,
+                    user.checking,
+                    user.savings,
+                    user.investment
                     ]
                 )
                 id = result.fetchone()[0]
@@ -70,7 +79,7 @@ class UserRepository:
                 #Run our SELECT
                 result = db.execute(
                     """
-                    SELECT id, username, hashed_password, email
+                    SELECT id, username, hashed_password, email, address, phone, dob, checking, savings, investment
                     FROM users
                     WHERE username = %s
                     """,
@@ -83,7 +92,13 @@ class UserRepository:
                     id=record[0],
                     username=record[1],
                     hashed_password=record[2],
-                    email=record[3]
+                    email=record[3],
+                    address=[4],
+                    phone=record[5],
+                    dob=record[6],
+                    checking=record[7],
+                    savings=record[8],
+                    investment=record[9]
                     )
 
 
@@ -104,3 +119,8 @@ class UserRepository:
                     )
                     result.append(user)
                 return result
+
+
+    def user_in_to_out(self, id: int, user: UserIn):
+        old_data = user.dict()
+        return UserOut(id=id, **old_data)
