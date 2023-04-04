@@ -8,6 +8,14 @@ class UserIn(BaseModel):
     email: str
     username: str
     password: str
+    address: str
+    phone: str
+    dob: date
+    checking: bool
+    savings: bool
+    investment: bool
+
+
 
 class AccountForm(BaseModel):
     username: str
@@ -16,7 +24,15 @@ class AccountForm(BaseModel):
 
 class UserOut(BaseModel):
     id: int
+    email: str
     username: str
+    address: str
+    phone: str
+    dob: date
+    checking: bool
+    savings: bool
+    investment: bool
+
 
 
 class AccountToken(Token):
@@ -25,16 +41,3 @@ class AccountToken(Token):
 
 class UserOutWithPassword(UserOut):
     hashed_password: str
-
-
-class BankAccount(BaseModel):
-    id: int
-    username: str
-    password: str
-    email: str
-    address: str
-    phone: str
-    dob: date
-    checking: bool
-    savings: bool
-    investment: bool
