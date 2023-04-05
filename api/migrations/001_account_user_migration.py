@@ -4,7 +4,7 @@ steps = [
         """
         CREATE TABLE users (
             id SERIAL PRIMARY KEY NOT NULL,
-            username VARCHAR(250) NOT NULL,
+            username VARCHAR(250) NOT NULL UNIQUE,
             hashed_password VARCHAR(250) NOT NULL,
             email VARCHAR(250) NOT NULL,
             address VARCHAR(250) NOT NULL,
