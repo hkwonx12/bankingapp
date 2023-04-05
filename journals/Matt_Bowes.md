@@ -34,4 +34,7 @@
 - Decided who was assigned to what microservices and will work on them together throughout the week, and we wrote up some issues in our git repo.
 
 4-4-23
--
+- Worked on the user routers portion and we've started the checking account routers.
+
+4-5-23
+- Worked on the checking account routers and 

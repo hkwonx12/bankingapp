@@ -35,16 +35,12 @@ class UserOutWithPassword(UserOut):
 
 
 class CheckingAccountIn(BaseModel):
-    date: date
-    deposit: int
     total_amount: int
     account_number: int
     routing_number: int
 
 class CheckingAccountOut(BaseModel):
     id: int
-    date: date
-    deposit: int
     total_amount: int
     account_number: int
     routing_number: int
@@ -63,6 +59,10 @@ class SavingsAccountOut(BaseModel):
     interest_rate: int
     account_number: int
     routing_number: int
+
+
+class CheckingForm(BaseModel):
+    account_number: int
 
 
 class SavingsForm(BaseModel):
