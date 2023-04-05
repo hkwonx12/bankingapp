@@ -31,4 +31,12 @@ We began our authentication today. We tried to set a goal to finish majority of 
 
 
 # March 29, 2023
-We wrote our code for creating authentication account today. We also fixed our Database Url login. Everytime we change the docker-compose.yml, we have to delete our volume and rebuild. We got rid of the external db and wrote in the yml to create every time we compose up. 
+We wrote our code for creating authentication account today. We also fixed our Database Url login. Everytime we change the docker-compose.yml, we have to delete our volume and rebuild. We got rid of the external db and wrote in the yml to create every time we compose up.
+
+
+# March 30, 2023
+I could not contribute to the progress today as I had to step out of bootcamp. The team figured out how to create and get a user using the authenticator. They created notes on the bugs and solutions to keep me updated. We will continue with deleting the token, updating a user, etc. on Monday.
+
+
+# April 3, 2023
+Today we continued to debugg the user authentication and git issues. We broke up the backend to different components and created issues on gitlab for them. After speaking with Candice, we changed our plan to have individual work to group work. We will have a leader each day to build his or her component while navigators assist the leader in creating the components. 
