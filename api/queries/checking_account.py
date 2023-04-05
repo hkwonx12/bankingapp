@@ -1,4 +1,4 @@
-from models import CheckingAccountIn, CheckingAccountOut, UserOutWithPassword, UserOut
+from models import CheckingAccountIn, CheckingAccountOut
 from queries.pool import pool
 from typing import List
 
@@ -9,16 +9,12 @@ class CheckingAccountRepository:
                 db.execute(
                     """
                     UPDATE checking_account
-                    SET date = %s
-                      , deposit = %s
-                      , total_amount = %s
+                    SET total_amount = %s
                       , account_number = %s
                       , routing_number = %s
                     WHERE id = %s
                     """,
                     [
-                        checking_account.date,
-                        checking_account.deposit,
                         checking_account.total_amount,
                         checking_account.account_number,
                         checking_account.routing_number,
@@ -49,15 +45,13 @@ class CheckingAccountRepository:
                 result = db.execute(
                     """
                     INSERT INTO checking_account
-                        (id, date, deposit, total_amount, account_number, routing_number)
+                        (id, total_amount, account_number, routing_number)
                     VALUES
-                        (%s, %s, %s, %s, %s, %s,)
+                        (%s, %s, %s, %s)
                     RETURNING id;
                     """,
                     [
                         checking_account.id,
-                        checking_account.date,
-                        checking_account.deposit,
                         checking_account.total_amount,
                         checking_account.account_number,
                         checking_account.routing_number
@@ -75,7 +69,7 @@ class CheckingAccountRepository:
                 #Run our SELECT
                 result = db.execute(
                     """
-                    SELECT id, date, deposit, total_amount, account_number, routing_number
+                    SELECT id, total_amount, account_number, routing_number
                     FROM checking_account
                     WHERE username = %s
                     """,
@@ -86,11 +80,9 @@ class CheckingAccountRepository:
                     return None
                 return CheckingAccountIn(
                     id=record[0],
-                    date=record[1],
-                    deposit=record[2],
-                    total_amount=record[3],
-                    account_number=record[4],
-                    routing_number=record[5]
+                    total_amount=record[1],
+                    account_number=record[2],
+                    routing_number=record[3]
                     )
 
 
