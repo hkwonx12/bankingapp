@@ -28,7 +28,7 @@ async def create_checking_account(
     print(form)
     token = await authenticator.login(response, request, form, repo)
     print(token)
-    return AccountToken(checking_account=checking_account)
+    return checking_account
 
 
 
@@ -69,6 +69,6 @@ def delete_checking_account(
 def update_checking_account(
     account_number: int,
     checking_account: CheckingAccountIn,
-    repo: UserRepository = Depends(),
+    repo: CheckingAccountRepository = Depends(),
 ) -> CheckingAccountOut:
     return repo.update_checking_account(account_number, checking_account)

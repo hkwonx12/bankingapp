@@ -51,7 +51,6 @@ class CheckingAccountRepository:
                     RETURNING id;
                     """,
                     [
-                        checking_account.id,
                         checking_account.total_amount,
                         checking_account.account_number,
                         checking_account.routing_number

@@ -38,7 +38,11 @@ steps = [
             date DATE NOT NULL,
             deposit MONEY NOT NULL,
             institution VARCHAR(250) NOT NULL
-        )
+        );
+        """,
+
         """
-    ],
+        DROP TABLE investment_account;
+        """
+    ]
 ]
