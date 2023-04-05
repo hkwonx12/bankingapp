@@ -16,6 +16,7 @@ steps = [
         """
 
     ],
+
     [
 
         """
@@ -30,15 +31,21 @@ steps = [
         """
         DROP TABLE investment_account;
         """
-    ]
+    ],
+
     [
         """
         CREATE TABLE deposit (
             id SERIAL PRIMARY KEY NOT NULL,
             date DATE NOT NULL,
             deposit MONEY NOT NULL,
-            institution VARCHAR(250) NOT NULL,
-        )
+            institution VARCHAR(250) NOT NULL
+        );
+        """,
+
         """
-    ],
+        DROP TABLE deposit;
+        """
+
+    ]
 ]
