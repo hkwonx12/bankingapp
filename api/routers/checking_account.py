@@ -12,9 +12,11 @@ router = APIRouter()
 @router.post('/api/checking_account', response_model=CheckingAccountOut)
 async def create_checking_account(
     info: CheckingAccountIn,
-    request: Request,
-    response: Response,
-    repo: CheckingAccountRepository = Depends(authenticator.get_current_account_data),
+    # request: Request,
+    # response: Response,
+    repo: CheckingAccountRepository = Depends(),
+    # checking_account: dict = Depends(authenticator.get_checking_account_data),
+
 
 ):
     try:
@@ -24,11 +26,10 @@ async def create_checking_account(
             status_code=status.HTTP_400_BAD_REQUEST,
             detail="Cannot create an account with those credentials",
         )
-    form = CheckingForm(checking_account=info.checking_account)
-    print(form)
-    token = await authenticator.login(response, request, form, repo)
-    print(token)
-    return AccountToken(checking_account=checking_account)
+    # form = CheckingForm(checking_account=info)
+    # print(form)
+    # token = await authenticator.login(response, request, repo)
+    return checking_account
 
 
 
