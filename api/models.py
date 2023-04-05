@@ -48,3 +48,36 @@ class CheckingAccountOut(BaseModel):
     total_amount: int
     account_number: int
     routing_number: int
+
+
+class SavingsAccountIn(BaseModel):
+    total_amount: int
+    interest_rate: int
+    account_number: int
+    routing_number: int
+
+
+class SavingsAccountOut(BaseModel):
+    id: int
+    total_amount: int
+    interest_rate: int
+    account_number: int
+    routing_number: int
+
+
+class SavingsForm(BaseModel):
+    account_number: int
+
+class InvestmentAccountIn(BaseModel):
+    date: date
+    total_amount: int
+    account_number: int
+    routing_number: int
+
+
+class InvestmentAccountOut(BaseModel):
+    id: int
+    date: date
+    total_money: int
+    investment_value: int
+    account_number: int
