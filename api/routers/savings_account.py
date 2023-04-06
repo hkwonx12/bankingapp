@@ -45,7 +45,7 @@ def get_one_savings_account(
     return savings_account
 
 
-@router.delete('/api/savingsaccount/{account_number}', response_model=SavingsAccountOut)
+@router.delete('/api/savingsaccount/{account_number}', response_model=bool)
 def delete_savings_account(
     account_number: int,
     repo: SavingsRepository = Depends(),
@@ -54,11 +54,11 @@ def delete_savings_account(
     return repo.delete_savings_account(account_number)
 
 
-@router.put('/api/savingsaccount/{account_number}', response_model=SavingsAccountOut)
+@router.put('/api/savingsaccount/{account_number}', response_model=SavingsAccountOutWithDetails)
 def update_savings_account(
     account_number: int,
     savings_account: SavingsAccountIn,
     repo: SavingsRepository = Depends(),
     account_data: dict = Depends(authenticator.get_current_account_data),
-) -> SavingsAccountOut:
+) -> SavingsAccountOutWithDetails:
     return repo.update_savings_account(account_number, savings_account)
