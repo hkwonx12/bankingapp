@@ -1,9 +1,9 @@
-from models import CheckingAccountIn, CheckingAccountOut
+from models import CheckingAccountIn, CheckingAccountOut, CheckingAccountOutWithDetails
 from queries.pool import pool
 from typing import List
 
 class CheckingAccountRepository:
-    def update_checking_account(self, checking_account_id: int, checking_account: CheckingAccountIn) -> CheckingAccountOut:
+    def update_checking_account(self, account_number: int, checking_account: CheckingAccountIn) -> CheckingAccountOutWithDetails:
         with pool.connection() as conn:
             with conn.cursor() as db:
                 db.execute(
@@ -12,16 +12,16 @@ class CheckingAccountRepository:
                     SET total_amount = %s
                       , account_number = %s
                       , routing_number = %s
-                    WHERE id = %s
+                    WHERE account_number = %s
                     """,
                     [
-                        checking_account.total_amount,
-                        checking_account.account_number,
-                        checking_account.routing_number,
-                        checking_account_id
+                        account_number.total_amount,
+                        account_number.account_number,
+                        account_number.routing_number,
+                        account_number
                     ]
                 )
-                return self.checking_account_in_to_out(checking_account_id, checking_account)
+                return self.checking_account_in_to_out(account_number, checking_account)
 
 
     def delete_checking_account(self, checking_account_id: int) -> bool:
@@ -61,7 +61,7 @@ class CheckingAccountRepository:
                 return CheckingAccountOut(id=id, **old_data)
 
 
-    def get_one_checking_account(self, checking_account: str) -> CheckingAccountOut:
+    def get_one_checking_account(self, account_number: int) -> CheckingAccountOutWithDetails:
     #connect the DB
         with pool.connection() as conn:
             with conn.cursor() as db:
@@ -72,12 +72,12 @@ class CheckingAccountRepository:
                     FROM checking_account
                     WHERE account_number = %s
                     """,
-                    [checking_account]
+                    [account_number]
                 )
                 record = result.fetchone()
                 if record is None:
                     return None
-                return CheckingAccountIn(
+                return CheckingAccountOutWithDetails(
                     id=record[0],
                     total_amount=record[1],
                     account_number=record[2],
@@ -106,4 +106,4 @@ class CheckingAccountRepository:
 
     def checking_account_in_to_out(self, id: int, checking_account: CheckingAccountIn):
         old_data = checking_account.dict()
-        return CheckingAccountOut(id=id, **old_data)
+        return CheckingAccountOutWithDetails(id=id, **old_data)

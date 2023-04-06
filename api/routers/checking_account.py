@@ -1,7 +1,6 @@
-from fastapi import APIRouter, Request, Response, Depends, HTTPException, status
-from models import CheckingAccountIn, CheckingAccountOut, CheckingForm, AccountToken
+from fastapi import APIRouter, Response, Depends, HTTPException, status
+from models import CheckingAccountIn, CheckingAccountOut, CheckingAccountOutWithDetails
 from queries.accounts import DuplicateAccountError
-from queries.users import UserRepository
 from queries.checking_account import CheckingAccountRepository
 from authenticator import authenticator
 from typing import List
@@ -35,12 +34,14 @@ def get_all_checking_account(
     return repo.get_all_checking_accounts()
 
 
-@router.get('/api/checking_account/{account_number}', response_model=CheckingAccountOut)
+@router.get('/api/checking_account/{account_number}', response_model=CheckingAccountOutWithDetails)
 def get_one_checking_account(
     account_number: int,
+    # info:CheckingAccountOutWithDetails,
     response: Response,
     repo: CheckingAccountRepository = Depends(),
-) -> CheckingAccountOut:
+    account_data: dict = Depends(authenticator.get_current_account_data),
+) -> CheckingAccountOutWithDetails:
     checking_account = repo.get_one_checking_account(account_number)
     if checking_account is None:
         response.status_code = 404
@@ -51,14 +52,16 @@ def get_one_checking_account(
 def delete_checking_account(
     account_number: int,
     repo: CheckingAccountRepository = Depends(),
+    account_data: dict = Depends(authenticator.get_current_account_data),
 ) -> bool:
     return repo.delete_checking_account(account_number)
 
 
-@router.put('/api/checking_account/{account_number}', response_model=CheckingAccountOut)
+@router.put('/api/checking_account/{account_number}', response_model=CheckingAccountOutWithDetails)
 def update_checking_account(
     account_number: int,
     checking_account: CheckingAccountIn,
     repo: CheckingAccountRepository = Depends(),
-) -> CheckingAccountOut:
+    account_data: dict = Depends(authenticator.get_current_account_data),
+) -> CheckingAccountOutWithDetails:
     return repo.update_checking_account(account_number, checking_account)
