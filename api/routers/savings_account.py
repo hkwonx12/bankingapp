@@ -11,7 +11,8 @@ router = APIRouter()
 @router.post('/api/savingsaccount')
 def create_savings_account(
     info: SavingsAccountIn,
-    repo: SavingsRepository = Depends(authenticator.get_current_account_data),
+    repo: SavingsRepository = Depends(),
+    account_data: dict = Depends(authenticator.get_current_account_data),
 ):
     try:
         savings_account = repo.create_savings_account(info)
@@ -24,9 +25,10 @@ def create_savings_account(
     return savings_account
 
 
-@router.get('/api/savingsaccount', response_model=SavingsAccountOut)
+@router.get('/api/savingsaccount', response_model=List[SavingsAccountOut])
 def get_all_savings_account(
-    repo: SavingsRepository = Depends(authenticator.get_current_account_data),
+    repo: SavingsRepository = Depends(),
+    account_data: dict = Depends(authenticator.get_current_account_data),
 ):
     return repo.get_all_savings()
 
