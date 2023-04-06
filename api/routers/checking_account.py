@@ -10,13 +10,10 @@ from typing import List
 router = APIRouter()
 
 @router.post('/api/checking_account', response_model=CheckingAccountOut)
-async def create_checking_account(
+def create_checking_account(
     info: CheckingAccountIn,
-    # request: Request,
-    # response: Response,
     repo: CheckingAccountRepository = Depends(),
-    # checking_account: dict = Depends(authenticator.get_checking_account_data),
-
+    account_data: dict = Depends(authenticator.get_current_account_data),
 
 ):
     try:
@@ -26,17 +23,8 @@ async def create_checking_account(
             status_code=status.HTTP_400_BAD_REQUEST,
             detail="Cannot create an account with those credentials",
         )
-    # form = CheckingForm(checking_account=info)
-    # print(form)
-    # token = await authenticator.login(response, request, repo)
     return checking_account
 
-
-
-# @router.post('/api/logout/')
-# async def logout_user(
-
-# )
 
 
 @router.get('/api/checking_account', response_model=List[CheckingAccountOut])
@@ -70,6 +58,6 @@ def delete_checking_account(
 def update_checking_account(
     account_number: int,
     checking_account: CheckingAccountIn,
-    repo: UserRepository = Depends(),
+    repo: CheckingAccountRepository = Depends(),
 ) -> CheckingAccountOut:
     return repo.update_checking_account(account_number, checking_account)
