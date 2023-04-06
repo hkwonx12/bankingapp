@@ -42,7 +42,7 @@ steps = [
         """,
 
         """
-        DROP TABLE investment_account;
+        DROP TABLE deposit;
         """
     ]
 ]

@@ -45,9 +45,9 @@ class CheckingAccountRepository:
                 result = db.execute(
                     """
                     INSERT INTO checking_account
-                        (id, total_amount, account_number, routing_number)
+                        (total_amount, account_number, routing_number)
                     VALUES
-                        (%s, %s, %s, %s)
+                        (%s, %s, %s)
                     RETURNING id;
                     """,
                     [
@@ -70,7 +70,7 @@ class CheckingAccountRepository:
                     """
                     SELECT id, total_amount, account_number, routing_number
                     FROM checking_account
-                    WHERE username = %s
+                    WHERE account_number = %s
                     """,
                     [checking_account]
                 )
