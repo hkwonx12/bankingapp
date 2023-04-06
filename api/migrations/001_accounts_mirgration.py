@@ -1,29 +1,27 @@
 steps = [
     [
-
         """
-        CREATE TABLE users (
-            id SERIAL PRIMARY KEY NOT NULL,
-            full_name TEXT NOT NULL UNIQUE,
-            username VARCHAR(250) NOT NULL UNIQUE,
-            hashed_password VARCHAR(250) NOT NULL,
-            email VARCHAR(250) NOT NULL,
-            address VARCHAR(250) NOT NULL,
-            phone TEXT NOT NULL,
-            dob DATE NOT NULL,
-            checking BOOL NOT NULL,
-            savings BOOL NOT NULL,
-            investment BOOL NOT NULL
+            CREATE TABLE users (
+                id SERIAL PRIMARY KEY NOT NULL,
+                username VARCHAR(250) NOT NULL UNIQUE,
+                hashed_password VARCHAR(250) NOT NULL,
+                email VARCHAR(250) NOT NULL,
+                address VARCHAR(250) NOT NULL,
+                phone TEXT NOT NULL,
+                dob DATE NOT NULL,
+                checking BOOL NOT NULL,
+                savings BOOL NOT NULL,
+                investment BOOL NOT NULL
         );
         """,
 
         """
-        DROP TABLE users;
+        DROP TABLE users
         """
 
     ],
-    [
 
+    [
         """
         CREATE TABLE checking_account (
             id SERIAL PRIMARY KEY NOT NULL,
@@ -31,14 +29,15 @@ steps = [
             account_number BIGINT UNIQUE NOT NULL,
             routing_number BIGINT NOT NULL,
             owner_id INTEGER NOT NULL REFERENCES users("id") ON DELETE CASCADE
+
         );
         """,
 
         """
-        DROP TABLE checking_account;
+        DROP TABLE checking_account
         """
-
     ],
+
     [
         """
         CREATE TABLE savings_account (
@@ -48,6 +47,7 @@ steps = [
             account_number BIGINT UNIQUE NOT NULL,
             routing_number BIGINT NOT NULL,
             owner_id INTEGER NOT NULL REFERENCES users("id") ON DELETE CASCADE
+
         );
         """,
 
@@ -66,6 +66,7 @@ steps = [
             investment_value FLOAT4 NOT NULL,
             account_number BIGINT UNIQUE NOT NULL,
             owner_id INTEGER NOT NULL REFERENCES users("id") ON DELETE CASCADE
+
         );
         """,
 
@@ -76,7 +77,7 @@ steps = [
 
     [
         """
-         CREATE TABLE transactions (
+        CREATE TABLE transactions (
             id SERIAL PRIMARY KEY NOT NULL,
             date DATE NOT NULL,
             amount MONEY NOT NULL,
