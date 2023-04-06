@@ -15,9 +15,9 @@ class CheckingAccountRepository:
                     WHERE account_number = %s
                     """,
                     [
-                        account_number.total_amount,
-                        account_number.account_number,
-                        account_number.routing_number,
+                        checking_account.total_amount,
+                        checking_account.account_number,
+                        checking_account.routing_number,
                         account_number
                     ]
                 )
