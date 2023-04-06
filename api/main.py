@@ -35,4 +35,4 @@ def launch_details():
 app.include_router(users.router, tags=['Users'])
 app.include_router(authenticator.router, tags=['Users'])
 app.include_router(savings_account.router, tags=['Savings'])
-app.include_router(checking_account.router, tags=['CheckingAccount'])
+app.include_router(checking_account.router, tags=['Checking Account'])

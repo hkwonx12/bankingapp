@@ -30,4 +30,12 @@
 
 03/29/2023 >
 
-    - Today we fixed up the UserRepository by adding a get method since the rest of the project needed this featue to function. Today I also learned more about how the routing works inside of the project. One big thing is Python is not stricly typed but pydantic adds a feature to make type hints more functional. 
+    - Today we fixed up the UserRepository by adding a get method since the rest of the project needed this featue to function. Today I also learned more about how the routing works inside of the project. One big thing is Python is not stricly typed but pydantic adds a feature to make type hints more functional.
+
+03/30/2023 >
+
+    - Today we set up the routes for our existing repo. We had a few things to add to user repo but we ended up fixing them and made a few routes which we were able to test.
+
+04/03/2023 >
+
+    -  
