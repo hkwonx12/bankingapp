@@ -40,9 +40,9 @@ class CheckingAccountIn(BaseModel):
 
 class CheckingAccountOut(BaseModel):
     id: int
-    # total_amount: int
+    total_amount: int
     account_number: int
-    # routing_number: int
+    routing_number: int
 
 
 class SavingsAccountIn(BaseModel):
@@ -65,12 +65,10 @@ class CheckingForm(BaseModel):
 
 
 class SavingsForm(BaseModel):
-    account_number: int\
-
-class InvestmentForm:
     account_number: int
 
 class InvestmentAccountIn(BaseModel):
+    date: date
     total_amount: int
     account_number: int
     routing_number: int
@@ -78,6 +76,7 @@ class InvestmentAccountIn(BaseModel):
 
 class InvestmentAccountOut(BaseModel):
     id: int
+    date: date
     total_money: int
     investment_value: int
     account_number: int

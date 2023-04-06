@@ -26,11 +26,11 @@ def create_checking_account(
     return checking_account
 
 
+
 @router.get('/api/checking_account', response_model=List[CheckingAccountOut])
 def get_all_checking_account(
     repo: CheckingAccountRepository = Depends(),
-    account_data: dict = Depends(authenticator.get_current_account_data)
-
+    account_data: dict = Depends(authenticator.get_current_account_data),
 ):
     return repo.get_all_checking_accounts()
 
@@ -47,18 +47,18 @@ def get_one_checking_account(
     return checking_account
 
 
-@router.delete('/api/checking_account/{id}', response_model=bool)
+@router.delete('/api/checking_account/{account_number}', response_model=bool)
 def delete_checking_account(
-    id: int,
+    account_number: int,
     repo: CheckingAccountRepository = Depends(),
 ) -> bool:
-    return repo.delete_checking_account(id)
+    return repo.delete_checking_account(account_number)
 
 
-@router.put('/api/checking_account/{id}', response_model=CheckingAccountOut)
+@router.put('/api/checking_account/{account_number}', response_model=CheckingAccountOut)
 def update_checking_account(
-    id: int,
+    account_number: int,
     checking_account: CheckingAccountIn,
     repo: CheckingAccountRepository = Depends(),
 ) -> CheckingAccountOut:
-    return repo.update_checking_account(id, checking_account)
+    return repo.update_checking_account(account_number, checking_account)
