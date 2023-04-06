@@ -14,3 +14,6 @@ Created two tables as well as contiued to work on authorization. We succesfully 
 
 04-05-23
 Today the team created, what we hope, are the rest of the remaining endpoints for the backend.
+
+04-06-23
+Finished endpoints for checking account and will continue working on endpoints for investment and savings accounts
