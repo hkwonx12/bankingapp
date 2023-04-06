@@ -38,3 +38,6 @@
 
 4-5-23
 - Worked on the checking and savings account routers and migration tables.
+
+4-6-23
+- Rehauled migrations and checking/saving endpoints.
