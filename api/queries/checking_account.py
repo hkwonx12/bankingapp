@@ -70,7 +70,7 @@ class CheckingAccountRepository:
                     """
                     SELECT id, total_amount, account_number, routing_number
                     FROM checking_account
-                    WHERE username = %s
+                    WHERE account_number = %s
                     """,
                     [checking_account]
                 )

@@ -25,7 +25,6 @@ class UserOut(BaseModel):
     id: int
     username: str
 
-
 class AccountToken(Token):
     user: UserOut
 
