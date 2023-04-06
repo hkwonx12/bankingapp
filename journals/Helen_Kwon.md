@@ -39,4 +39,11 @@ I could not contribute to the progress today as I had to step out of bootcamp. T
 
 
 # April 3, 2023
-Today we continued to debugg the user authentication and git issues. We broke up the backend to different components and created issues on gitlab for them. After speaking with Candice, we changed our plan to have individual work to group work. We will have a leader each day to build his or her component while navigators assist the leader in creating the components. 
+Today we continued to debugg the user authentication and git issues. We broke up the backend to different components and created issues on gitlab for them. After speaking with Candice, we changed our plan to have individual work to group work. We will have a leader each day to build his or her component while navigators assist the leader in creating the components.
+
+
+# April 4, 2023
+We finished User endpoint and began the Checking Account database, endpoint, etc. We had a lot of git issues and needed to figure those out before we could move on. We decided to finish the endpoints for Checking Account tomorrow as we have been debugging today. Adrian and I stayed behind to begin the Savings Account and Investment database tables, models, and one endpoint.
+
+# April 5, 2023
+We debugged CRUD endpoints for Checking Account today. We worked on creating a Checking Account with a login requirement. We each took turns trying to debug as we looked up videos and resources online. With the POST working for Checking Account, we will now use that as a model to write our Savings and Investment Account.

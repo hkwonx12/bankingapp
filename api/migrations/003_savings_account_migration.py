@@ -45,12 +45,6 @@ steps = [
 
         """
         DROP TABLE deposit;
-            institution VARCHAR(250) NOT NULL
-        );
-        """,
-
-        """
-        DROP TABLE deposit;
         """
 
     ]

@@ -45,13 +45,12 @@ class CheckingAccountRepository:
                 result = db.execute(
                     """
                     INSERT INTO checking_account
-                        (id, total_amount, account_number, routing_number)
+                        (total_amount, account_number, routing_number)
                     VALUES
-                        (%s, %s, %s, %s)
+                        (%s, %s, %s)
                     RETURNING id;
                     """,
                     [
-                        checking_account.id,
                         checking_account.total_amount,
                         checking_account.account_number,
                         checking_account.routing_number

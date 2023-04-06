@@ -15,6 +15,7 @@ class MyAuthenticator(Authenticator):
         # username (which could be an email)
         return user.get_one_user(username)
 
+
     def get_account_getter(
         self,
         user: UserRepository = Depends(),

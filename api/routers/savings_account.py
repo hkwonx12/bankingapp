@@ -8,19 +8,20 @@ from typing import List
 
 router = APIRouter()
 
-@router.post('/api/savingsaccount', response_model=SavingsAccountOut)
+@router.post('/api/savingsaccount')
 def create_savings_account(
-    savings_account: SavingsAccountIn,
+    info: SavingsAccountIn,
     repo: SavingsRepository = Depends(authenticator.get_current_account_data),
 ):
     try:
-        savings_account = repo.create_savings_account(savings_account)
+        savings_account = repo.create_savings_account(info)
     except DuplicateAccountError:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
             detail="Cannot create an account with those credentials",
         )
-    return repo.create_savings_account(savings_account)
+
+    return savings_account
 
 
 @router.get('/api/savingsaccount', response_model=SavingsAccountOut)
