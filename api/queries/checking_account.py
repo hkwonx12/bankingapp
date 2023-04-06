@@ -1,9 +1,9 @@
-from models import CheckingAccountIn, CheckingAccountOut
+from models import CheckingAccountIn, CheckingAccountOut, CheckingAccountOutWithDetails
 from queries.pool import pool
 from typing import List
 
 class CheckingAccountRepository:
-    def update_checking_account(self, checking_account_id: int, checking_account: CheckingAccountIn) -> CheckingAccountOut:
+    def update_checking_account(self, id: int, checking_account: CheckingAccountIn) -> CheckingAccountOutWithDetails:
         with pool.connection() as conn:
             with conn.cursor() as db:
                 db.execute(
@@ -18,13 +18,13 @@ class CheckingAccountRepository:
                         checking_account.total_amount,
                         checking_account.account_number,
                         checking_account.routing_number,
-                        checking_account_id
+                        id
                     ]
                 )
-                return self.checking_account_in_to_out(checking_account_id, checking_account)
+                return self.checking_account_in_to_out(id, checking_account)
 
 
-    def delete_checking_account(self, checking_account_id: int) -> bool:
+    def delete_checking_account(self, id: int) -> bool:
         with pool.connection() as conn:
             with conn.cursor() as db:
                 db.execute(
@@ -32,7 +32,7 @@ class CheckingAccountRepository:
                     DELETE FROM checking_account
                     WHERE id=%s
                     """,
-                    [checking_account_id]
+                    [id]
                 )
                 return True
 
@@ -45,15 +45,16 @@ class CheckingAccountRepository:
                 result = db.execute(
                     """
                     INSERT INTO checking_account
-                        (total_amount, account_number, routing_number)
+                        (total_amount, account_number, routing_number, owner_id)
                     VALUES
-                        (%s, %s, %s)
+                        (%s, %s, %s, %s)
                     RETURNING id;
                     """,
                     [
                         checking_account.total_amount,
                         checking_account.account_number,
-                        checking_account.routing_number
+                        checking_account.routing_number,
+                        checking_account.owner_id
                     ]
                 )
                 id = result.fetchone()[0]
@@ -61,27 +62,28 @@ class CheckingAccountRepository:
                 return CheckingAccountOut(id=id, **old_data)
 
 
-    def get_one_checking_account(self, checking_account: str) -> CheckingAccountOut:
+    def get_one_checking_account(self, owner_id: int) -> CheckingAccountOutWithDetails:
     #connect the DB
         with pool.connection() as conn:
             with conn.cursor() as db:
                 #Run our SELECT
                 result = db.execute(
                     """
-                    SELECT id, total_amount, account_number, routing_number
+                    SELECT id, total_amount, account_number, routing_number, owner_id
                     FROM checking_account
-                    WHERE account_number = %s
+                    WHERE owner_id = %s
                     """,
-                    [checking_account]
+                    [owner_id]
                 )
                 record = result.fetchone()
                 if record is None:
                     return None
-                return CheckingAccountIn(
+                return CheckingAccountOutWithDetails(
                     id=record[0],
                     total_amount=record[1],
                     account_number=record[2],
-                    routing_number=record[3]
+                    routing_number=record[3],
+                    owner_id=record[4]
                     )
 
 
@@ -106,4 +108,4 @@ class CheckingAccountRepository:
 
     def checking_account_in_to_out(self, id: int, checking_account: CheckingAccountIn):
         old_data = checking_account.dict()
-        return CheckingAccountOut(id=id, **old_data)
+        return CheckingAccountOutWithDetails(id=id, **old_data)

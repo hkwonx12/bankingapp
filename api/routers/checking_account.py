@@ -1,7 +1,6 @@
-from fastapi import APIRouter, Request, Response, Depends, HTTPException, status
-from models import CheckingAccountIn, CheckingAccountOut, CheckingForm, AccountToken
+from fastapi import APIRouter, Response, Depends, HTTPException, status
+from models import CheckingAccountIn, CheckingAccountOut, CheckingAccountOutWithDetails
 from queries.accounts import DuplicateAccountError
-from queries.users import UserRepository
 from queries.checking_account import CheckingAccountRepository
 from authenticator import authenticator
 from typing import List
@@ -35,30 +34,33 @@ def get_all_checking_account(
     return repo.get_all_checking_accounts()
 
 
-@router.get('/api/checking_account/{account_number}', response_model=CheckingAccountOut)
+@router.get('/api/checking_account/{owner_id}', response_model=CheckingAccountOutWithDetails)
 def get_one_checking_account(
-    account_number: int,
+    owner_id: int,
     response: Response,
     repo: CheckingAccountRepository = Depends(),
-) -> CheckingAccountOut:
-    checking_account = repo.get_one_checking_account(account_number)
+    account_data: dict = Depends(authenticator.get_current_account_data),
+) -> CheckingAccountOutWithDetails:
+    checking_account = repo.get_one_checking_account(owner_id)
     if checking_account is None:
         response.status_code = 404
     return checking_account
 
 
-@router.delete('/api/checking_account/{account_number}', response_model=bool)
+@router.delete('/api/checking_account/{id}', response_model=bool)
 def delete_checking_account(
-    account_number: int,
+    id: int,
     repo: CheckingAccountRepository = Depends(),
+    account_data: dict = Depends(authenticator.get_current_account_data),
 ) -> bool:
-    return repo.delete_checking_account(account_number)
+    return repo.delete_checking_account(id)
 
 
-@router.put('/api/checking_account/{account_number}', response_model=CheckingAccountOut)
+@router.put('/api/checking_account/{id}', response_model=CheckingAccountOutWithDetails)
 def update_checking_account(
-    account_number: int,
+    id: int,
     checking_account: CheckingAccountIn,
     repo: CheckingAccountRepository = Depends(),
-) -> CheckingAccountOut:
-    return repo.update_checking_account(account_number, checking_account)
+    account_data: dict = Depends(authenticator.get_current_account_data),
+) -> CheckingAccountOutWithDetails:
+    return repo.update_checking_account(id, checking_account)
