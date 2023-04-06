@@ -47,7 +47,7 @@ class CheckingAccountRepository:
                     INSERT INTO checking_account
                         (total_amount, account_number, routing_number)
                     VALUES
-                        (%s, %s, %s, %s)
+                        (%s, %s, %s)
                     RETURNING id;
                     """,
                     [
@@ -61,7 +61,7 @@ class CheckingAccountRepository:
                 return CheckingAccountOut(id=id, **old_data)
 
 
-    def get_one_checking_account(self, account_number: str) -> CheckingAccountOut:
+    def get_one_checking_account(self, account_number: int) -> CheckingAccountOut:
     #connect the DB
         with pool.connection() as conn:
             with conn.cursor() as db:
@@ -77,7 +77,7 @@ class CheckingAccountRepository:
                 record = result.fetchone()
                 if record is None:
                     return None
-                return CheckingAccountIn(
+                return CheckingAccountOut(
                     id=record[0],
                     total_amount=record[1],
                     account_number=record[2],

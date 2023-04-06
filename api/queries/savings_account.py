@@ -4,7 +4,12 @@ from typing import List
 
 
 class SavingsRepository:
-    def create_savings_account(self, savings_account: SavingsAccountIn):
+    def savings_account_in_to_out(self, id: int, savings_account: SavingsAccountIn):
+        old_data = savings_account.dict()
+        return SavingsAccountIn(id=id, **old_data)
+
+
+    def create_savings_account(self, savings_account: SavingsAccountIn) -> SavingsAccountOut:
         # connect the DB
         with pool.connection() as conn:
             with conn.cursor() as db:
@@ -106,8 +111,3 @@ class SavingsRepository:
                     [account_number]
                 )
                 return True
-
-
-    def savings_account_in_to_out(self, id: int, savings_account: SavingsAccountIn):
-            old_data = savings_account.dict()
-            return SavingsAccountIn(id=id, **old_data)
