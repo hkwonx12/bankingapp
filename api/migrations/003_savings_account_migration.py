@@ -16,6 +16,7 @@ steps = [
         """
 
     ],
+
     [
 
         """
@@ -31,6 +32,7 @@ steps = [
         DROP TABLE investment_account;
         """
     ],
+
     [
         """
         CREATE TABLE deposit (
@@ -44,5 +46,6 @@ steps = [
         """
         DROP TABLE deposit;
         """
+
     ]
 ]

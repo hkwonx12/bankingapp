@@ -23,6 +23,7 @@ class MyAuthenticator(Authenticator):
     ):
         return checking_account.get_one_user(account_number)
 
+
     def get_account_getter(
         self,
         user: UserRepository = Depends(),

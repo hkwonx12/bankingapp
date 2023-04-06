@@ -10,13 +10,10 @@ from typing import List
 router = APIRouter()
 
 @router.post('/api/checking_account', response_model=CheckingAccountOut)
-async def create_checking_account(
+def create_checking_account(
     info: CheckingAccountIn,
-    # request: Request,
-    # response: Response,
     repo: CheckingAccountRepository = Depends(),
-    # checking_account: dict = Depends(authenticator.get_checking_account_data),
-
+    account_data: dict = Depends(authenticator.get_current_account_data),
 
 ):
     try:
@@ -26,33 +23,25 @@ async def create_checking_account(
             status_code=status.HTTP_400_BAD_REQUEST,
             detail="Cannot create an account with those credentials",
         )
-    # form = CheckingForm(checking_account=info)
-    # print(form)
-    # token = await authenticator.login(response, request, repo)
     return checking_account
 
-
-
-# @router.post('/api/logout/')
-# async def logout_user(
-
-# )
 
 
 @router.get('/api/checking_account', response_model=List[CheckingAccountOut])
 def get_all_checking_account(
     repo: CheckingAccountRepository = Depends(),
+    account_data: dict = Depends(authenticator.get_current_account_data),
 ):
     return repo.get_all_checking_accounts()
 
 
-@router.get('/api/checking_account/{checking_account}', response_model=CheckingAccountOut)
+@router.get('/api/checking_account/{account_number}', response_model=CheckingAccountOut)
 def get_one_checking_account(
-    checking_account: str,
+    account_number: int,
     response: Response,
     repo: CheckingAccountRepository = Depends(),
 ) -> CheckingAccountOut:
-    checking_account = repo.get_one_checking_account(checking_account)
+    checking_account = repo.get_one_checking_account(account_number)
     if checking_account is None:
         response.status_code = 404
     return checking_account
