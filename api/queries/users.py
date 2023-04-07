@@ -4,7 +4,7 @@ from typing import List
 
 
 class UserRepository:
-    def update_user(self, user_id: str, user: UserIn) -> UserOut:
+    def update_user(self, user_id: int, user: UserIn) -> UserOut:
         with pool.connection() as conn:
             with conn.cursor() as db:
                 db.execute(

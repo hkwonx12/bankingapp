@@ -68,6 +68,7 @@ class SavingsAccountOutWithDetails(SavingsAccountOut):
     total_amount: str
     interest_rate: int
     routing_number: int
+    owner_id: int
 
 
 class InvestmentAccountIn(BaseModel):
