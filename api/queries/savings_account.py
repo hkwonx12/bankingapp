@@ -6,7 +6,7 @@ from typing import List
 class SavingsRepository:
     def savings_account_in_to_out(self, id: int, savings_account: SavingsAccountIn):
         old_data = savings_account.dict()
-        return SavingsAccountIn(id=id, **old_data)
+        return SavingsAccountOutWithDetails(id=id, **old_data)
 
 
     def create_savings_account(self, savings_account: SavingsAccountIn):
@@ -17,7 +17,7 @@ class SavingsRepository:
                 result = db.execute(
                     """
                     INSERT INTO savings_account
-                        (total_amount, interest_rate, account_number, routing_number, owner_id)
+                        (total_amount, interest_rate, account_number, routing_number,)
                     VALUES
                         (%s, %s, %s, %s, %s)
                     RETURNING id;
@@ -26,8 +26,8 @@ class SavingsRepository:
                     savings_account.total_amount,
                     savings_account.interest_rate,
                     savings_account.account_number,
-                    savings_account.routing_number,
-                    savings_account.owner_id
+                    savings_account.routing_number
+
                     ]
                 )
                 id = result.fetchone()[0]
@@ -81,16 +81,17 @@ class SavingsRepository:
                 return result
 
 
-    def update_savings_account(self, id: str, savings_account: SavingsAccountIn) -> SavingsAccountOutWithDetails:
+    def update_savings_account(self, id: int, savings_account: SavingsAccountIn) -> SavingsAccountOutWithDetails:
         with pool.connection() as conn:
             with conn.cursor() as db:
                 db.execute(
                     """
                     UPDATE savings_account
-                    SET total_amount = %s
+                    SET   total_amount = %s
                         , interest_rate = %s
                         , account_number = %s
                         , routing_number = %s
+                        , owner_id = %s
                     WHERE id = %s
                     """,
                     [
@@ -98,6 +99,7 @@ class SavingsRepository:
                         savings_account.interest_rate,
                         savings_account.account_number,
                         savings_account.routing_number,
+                        savings_account.owner_id,
                         id
                     ]
                 )

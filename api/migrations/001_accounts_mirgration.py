@@ -63,7 +63,7 @@ steps = [
         CREATE TABLE investment_account (
             id SERIAL PRIMARY KEY NOT NULL,
             total_amount MONEY NOT NULL,
-            investment_value FLOAT4 NOT NULL,
+            investment_value INT NOT NULL,
             account_number BIGINT UNIQUE NOT NULL,
             owner_id INTEGER NOT NULL REFERENCES users("id") ON DELETE CASCADE
 
