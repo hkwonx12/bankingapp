@@ -107,6 +107,6 @@ class InvestmentAccountRepository:
                 )
                 return True
 
-    def investment_account_in_to_out(self, id: int, investment_account: InvestmentAccountIn):
+    def investment_account_in_to_out(self, id: int, investment_account: InvestmentAccountOutWithDetails):
             old_data = investment_account.dict()
-            return InvestmentAccountIn(id=id, **old_data)
+            return InvestmentAccountOutWithDetails(id=id, **old_data)
