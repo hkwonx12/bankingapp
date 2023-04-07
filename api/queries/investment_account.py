@@ -49,7 +49,7 @@ class InvestmentAccountRepository:
                     return InvestmentAccountOutWithDetails(
                         id=record[0],
                         total_amount=record[1],
-                        investment_value=[2],
+                        investment_value=record[2],
                         account_number=record[3],
                         owner_id=record[4]
                         )
@@ -74,22 +74,22 @@ class InvestmentAccountRepository:
                 return result
 
 
-    def update_investment_account(self, id: int, investment_account: InvestmentAccountIn) -> InvestmentAccountOutWithDetails:
+    def update_investment_account(self, owner_id: int, investment_account: InvestmentAccountIn) -> InvestmentAccountOutWithDetails:
         with pool.connection() as conn:
             with conn.cursor() as db:
                 db.execute(
                     """
-                    UPDATE users
+                    UPDATE investment_account
                     SET account_number = %s
                       , total_amount = %s
-                      , invesment_value = %s
-                    WHERE id = %s
+                      , investment_value = %s
+                    WHERE owner_id = %s
                     """,
                     [
                         investment_account.account_number,
                         investment_account.total_amount,
                         investment_account.investment_value,
-                        id
+                        owner_id
                     ]
                 )
                 return self.investment_account_in_to_out(id, investment_account)

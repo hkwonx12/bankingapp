@@ -71,7 +71,7 @@ class SavingsAccountOutWithDetails(SavingsAccountOut):
 
 
 class InvestmentAccountIn(BaseModel):
-    total_amount: int
+    total_amount: str
     account_number: int
     routing_number: int
     investment_value: int
@@ -85,6 +85,6 @@ class InvestmentAccountOut(BaseModel):
 
 
 class InvestmentAccountOutWithDetails(InvestmentAccountOut):
-    total_amount: int
+    total_amount: str
     investment_value: int
     owner_id: int
