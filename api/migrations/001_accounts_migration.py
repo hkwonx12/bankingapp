@@ -26,7 +26,7 @@ steps = [
         """
         CREATE TABLE checking_account (
             id SERIAL PRIMARY KEY NOT NULL,
-            total_amount FLOAT4LOAT4 DEFAULT 0 NOT NULL,
+            total_amount FLOAT4 DEFAULT 0 NOT NULL,
             account_number SERIAL UNIQUE NOT NULL,
             routing_number BIGINT DEFAULT 72933358430 NOT NULL,
             owner_id SERIAL NOT NULL REFERENCES users("id") ON DELETE CASCADE
@@ -43,7 +43,7 @@ steps = [
         """
         CREATE TABLE savings_account (
             id SERIAL PRIMARY KEY NOT NULL,
-            total_amount FLOAT4LOAT4 DEFAULT 0 NOT NULL,
+            total_amount FLOAT4 DEFAULT 0 NOT NULL,
             interest_rate FLOAT4 NOT NULL,
             account_number SERIAL UNIQUE NOT NULL,
             routing_number BIGINT DEFAULT 72933358430 NOT NULL,

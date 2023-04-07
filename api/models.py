@@ -6,6 +6,7 @@ from jwtdown_fastapi.authentication import Token
 app = FastAPI()
 class UserIn(BaseModel):
     email: str
+    full_name: str
     username: str
     password: str
     address: str
@@ -92,4 +93,22 @@ class InvestmentAccountOutWithDetails(InvestmentAccountOut):
 
 
 class TransactionsIn(BaseModel):
-    
+    date: date
+    amount: int
+    institution: str
+    checking_account_id: int
+    savings_account_id: int
+    investment_account_id: int
+
+
+class TransactionsOut(BaseModel):
+    id: int
+
+
+class TransactionsOutWithDetails(TransactionsOut):
+    date: date
+    amount: int
+    institution: str
+    checking_account_id: int
+    savings_account_id : int
+    investment_account_id: int
