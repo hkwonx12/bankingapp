@@ -74,16 +74,17 @@ class InvestmentAccountIn(BaseModel):
     total_amount: int
     account_number: int
     routing_number: int
+    investment_value: int
     owner_id: int
 
 
 class InvestmentAccountOut(BaseModel):
     id: int
     account_number: int
-    owner_id: int
+
 
 
 class InvestmentAccountOutWithDetails(InvestmentAccountOut):
-    date: date
-    total_money: int
+    total_amount: int
     investment_value: int
+    owner_id: int
