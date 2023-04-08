@@ -4,7 +4,7 @@ from typing import List
 
 
 class TransactionsRepository:
-    def transactions_in_to_out(self, id: int, transaction: TransactionsIn):
+    def transactions_in_to_out(self, id: int, transaction: TransactionsOutWithDetails):
         old_data = transaction.dict()
         return TransactionsOutWithDetails(id=id, **old_data)
 
@@ -41,8 +41,8 @@ class TransactionsRepository:
             with conn.cursor() as db:
                 result = db.execute(
                     """
-                    SELECT id, amount, institution, checking_account_id, savings_account_id, investment_account_id
-                    FROM transaction
+                    SELECT id, date, amount, institution, checking_account_id, savings_account_id, investment_account_id
+                    FROM transactions
                     WHERE id = %s
                     """,
                     [id]
@@ -52,21 +52,22 @@ class TransactionsRepository:
                     return None
                 return TransactionsOutWithDetails(
                     id=record[0],
-                    amount=record[1],
-                    institution=record[2],
-                    checking_account_id=record[3],
-                    savings_account_id=record[4],
-                    investment_account_id=record[5]
+                    date=record[1],
+                    amount=record[2],
+                    institution=record[3],
+                    checking_account_id=record[4],
+                    savings_account_id=record[5],
+                    investment_account_id=record[6]
                 )
 
 
-    def get_all_transactions(self): -> List[TransactionsOut]
+    def get_all_transactions(self) -> List[TransactionsOut]:
         with pool.connection() as conn:
             with conn.cursor() as db:
                 result = db.execute(
                     """
                     SELECT id
-                    FROM transaction;
+                    FROM transactions;
                     """
                 )
                 result = []
@@ -83,12 +84,27 @@ class TransactionsRepository:
             with conn.cursor() as db:
                 db.execute(
                     """
-                    UPDATE transaction
-                    SET amount = %s
+                    UPDATE transactions
+                    SET   date = %s
+                        , amount = %s
                         , institution = %s
-                    WHERE checking_account_id = %s or
-                    """
+                        , checking_account_id = %s
+                        , savings_account_id = %s
+                        , investment_account_id = %s
+                    WHERE id = %s
+                    """,
+                    [
+                        transaction.date,
+                        transaction.amount,
+                        transaction.institution,
+                        transaction.checking_account_id,
+                        transaction.savings_account_id,
+                        transaction.investment_account_id,
+                        id
+
+                    ]
                 )
+                return self.transactions_in_to_out(id, transaction)
 
 
     def delete_transaction(self, id: int) -> bool:
@@ -96,7 +112,7 @@ class TransactionsRepository:
             with conn.cursor() as db:
                 db.execute(
                     """
-                    DELETE FROM transaction
+                    DELETE FROM transactions
                     WHERE id=%s
                     """,
                     [id]

@@ -55,11 +55,11 @@ def delete_transaction(
     return repo.delete_transaction(id)
 
 
-@router.put('/api/savings_account/{id}', response_model=TransactionsOutWithDetails)
-def update_savings_account(
+@router.put('/api/transactions/{id}', response_model=TransactionsOutWithDetails)
+def update_transaction(
     id: int,
     transaction: TransactionsIn,
     repo: TransactionsRepository = Depends(),
     account_data: dict = Depends(authenticator.get_current_account_data),
 ) -> TransactionsOutWithDetails:
-    return repo.update_transaction_account(id, transaction)
+    return repo.update_transaction(id, transaction)

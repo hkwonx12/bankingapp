@@ -17,3 +17,6 @@ Today the team created, what we hope, are the rest of the remaining endpoints fo
 
 04-06-23
 Finished endpoints for checking account and will continue working on endpoints for investment and savings accounts
+
+04-07-23
+Completed transactions routes and queries and related databse tables
