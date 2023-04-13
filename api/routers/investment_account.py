@@ -57,7 +57,7 @@ def update_investment_account(
 
 
 
-@router.delete('/api/checking_account/{id}', response_model=bool)
+@router.delete('/api/investment_account/{id}', response_model=bool)
 def delete_investment_account(
     id: int,
     repo: InvestmentAccountRepository = Depends(),

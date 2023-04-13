@@ -112,3 +112,12 @@ class TransactionsOutWithDetails(TransactionsOut):
     checking_account_id: int
     savings_account_id : int
     investment_account_id: int
+
+
+class Stockout(BaseModel):
+    c: float
+    h: float
+    l: float
+    o: float
+    pc: float
+    t: int
