@@ -92,7 +92,7 @@ class InvestmentAccountRepository:
                         owner_id
                     ]
                 )
-                return self.investment_account_in_to_out(id, investment_account)
+                return self.investment_account_in_to_out(owner_id, investment_account)
 
 
     def delete_investment_account(self, investment_account_id: int) -> bool:

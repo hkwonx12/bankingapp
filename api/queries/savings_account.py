@@ -17,9 +17,9 @@ class SavingsRepository:
                 result = db.execute(
                     """
                     INSERT INTO savings_account
-                        (total_amount, interest_rate, account_number, routing_number,)
+                        (total_amount, interest_rate, account_number, routing_number)
                     VALUES
-                        (%s, %s, %s, %s, %s)
+                        (%s, %s, %s, %s)
                     RETURNING id;
                     """,
                     [

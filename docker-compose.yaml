@@ -12,6 +12,7 @@ services:
       - ./api:/app
     environment:
       SIGNING_KEY: ${SIGNING_KEY}
+      STOCK_API_KEY: ${STOCK_API_KEY}
       WAIT_HOSTS: db:5432
       WAIT_BEFORE: 5
       WAIT_TIMEOUT: 60

@@ -107,6 +107,6 @@ class CheckingAccountRepository:
                 return result
 
 
-git s    def checking_account_in_to_out(self, id: int, checking_account: CheckingAccountIn):
+    def checking_account_in_to_out(self, id: int, checking_account: CheckingAccountOutWithDetails):
         old_data = checking_account.dict()
         return CheckingAccountOutWithDetails(id=id, **old_data)
