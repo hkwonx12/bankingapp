@@ -92,7 +92,7 @@ class CheckingAccountRepository:
             with conn.cursor() as db:
                 result = db.execute(
                     """
-                    SELECT id, account_number
+                    SELECT id, account_number, owner_id
                     FROM checking_account;
                     """
                 )
@@ -100,12 +100,13 @@ class CheckingAccountRepository:
                 for record in db:
                     id = CheckingAccountOut(
                         id=record[0],
-                        account_number=record[1]
+                        account_number=record[1],
+                        owner_id=record[2]
                     )
                     result.append(id)
                 return result
 
 
-    def checking_account_in_to_out(self, id: int, checking_account: CheckingAccountIn):
+    def checking_account_in_to_out(self, id: int, checking_account: CheckingAccountOutWithDetails):
         old_data = checking_account.dict()
         return CheckingAccountOutWithDetails(id=id, **old_data)

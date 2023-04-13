@@ -4,13 +4,14 @@ from typing import List
 
 
 class UserRepository:
-    def update_user(self, user_id: str, user: UserIn) -> UserOut:
+    def update_user(self, user_id: int, user: UserIn) -> UserOut:
         with pool.connection() as conn:
             with conn.cursor() as db:
                 db.execute(
                     """
                     UPDATE users
-                    SET username = %s
+                    SET full_name = %s
+                      , username = %s
                       , hashed_password = %s
                       , email = %s
                       , address = %s
@@ -18,6 +19,7 @@ class UserRepository:
                     WHERE id = %s
                     """,
                     [
+                        user.full_name,
                         user.username,
                         user.password,
                         user.email,
@@ -50,12 +52,13 @@ class UserRepository:
                 result = db.execute(
                     """
                     INSERT INTO users
-                        (username, hashed_password, email, address, phone, dob, checking, savings, investment)
+                        (full_name, username, hashed_password, email, address, phone, dob, checking, savings, investment)
                     VALUES
-                        (%s, %s, %s, %s, %s, %s, %s, %s, %s)
+                        (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
                     RETURNING id;
                     """,
                     [
+                    user.full_name,
                     user.username,
                     hashed_password,
                     user.email,

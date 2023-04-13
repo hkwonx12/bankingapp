@@ -45,19 +45,19 @@ def get_one_investment_account(
         response.status_code = 404
     return investment_account
 
-@router.put('/api/investment_account/{id}', response_model=InvestmentAccountOutWithDetails)
+@router.put('/api/investment_account/{owner_id}', response_model=InvestmentAccountOutWithDetails)
 def update_investment_account(
-    id: int,
+    owner_id: int,
     investment_account: InvestmentAccountIn,
     repo: InvestmentAccountRepository = Depends(),
     account_data: dict = Depends(authenticator.get_current_account_data),
 ) -> InvestmentAccountOutWithDetails:
-    return repo.update_investment_account(id, investment_account)
+    return repo.update_investment_account(owner_id, investment_account)
 
 
 
 
-@router.delete('/api/checking_account/{id}', response_model=bool)
+@router.delete('/api/investment_account/{id}', response_model=bool)
 def delete_investment_account(
     id: int,
     repo: InvestmentAccountRepository = Depends(),

@@ -38,4 +38,16 @@
 
 04/03/2023 >
 
-    -  
+    -
+
+04/04/2023 >
+
+    - We have started our Checking account routes and queries and are hoping to have finished routhes for our backend by the end of this week.
+
+04/05/2023 >
+
+    - I have started doing investments queries and routes although we are still fixing the checking accounts queries and routes. We figured once we have that one rolling the rest of the tables should be pretty easy to finish.
+
+04/06/2023 >
+
+    - Today we realized we had to go back and fix up the migrations to show the relationships between the tables. I also learned that pscyopg2 is a very popular tool for working on SQL and Python. 
