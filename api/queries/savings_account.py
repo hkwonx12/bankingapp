@@ -6,7 +6,7 @@ from typing import List
 class SavingsRepository:
     def savings_account_in_to_out(self, id: int, savings_account: SavingsAccountIn):
         old_data = savings_account.dict()
-        return SavingsAccountIn(id=id, **old_data)
+        return SavingsAccountOutWithDetails(id=id, **old_data)
 
 
     def create_savings_account(self, savings_account: SavingsAccountIn):
@@ -81,7 +81,7 @@ class SavingsRepository:
                 return result
 
 
-    def update_savings_account(self, id: str, savings_account: SavingsAccountIn) -> SavingsAccountOutWithDetails:
+    def update_savings_account(self, id: int, savings_account: SavingsAccountIn) -> SavingsAccountOutWithDetails:
         with pool.connection() as conn:
             with conn.cursor() as db:
                 db.execute(
