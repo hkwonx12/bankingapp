@@ -37,4 +37,10 @@
 - Worked on the user routers portion and we've started the checking account routers.
 
 4-5-23
-- Worked on the checking account routers and 
+- Worked on the checking and savings account routers and migration tables.
+
+4-6-23
+- Rehauled migrations and checking/saving endpoints.
+
+4-7-23
+- 
