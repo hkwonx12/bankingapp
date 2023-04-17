@@ -47,3 +47,11 @@ We finished User endpoint and began the Checking Account database, endpoint, etc
 
 # April 5, 2023
 We debugged CRUD endpoints for Checking Account today. We worked on creating a Checking Account with a login requirement. We each took turns trying to debug as we looked up videos and resources online. With the POST working for Checking Account, we will now use that as a model to write our Savings and Investment Account.
+
+
+# April 6, 2023
+Reconfigured the models and tables in order to better fit our application.
+
+
+# April 7, 2023
+We completed all the routes for the backend. 
