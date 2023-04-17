@@ -64,3 +64,5 @@ def update_user(
     repo: UserRepository = Depends(),
 ) -> UserOut:
     return repo.update_user(user_id, user)
+
+
