@@ -6,7 +6,7 @@ const initialState ={
         password: '',
         passwordConfirmation: ''
     },
-    errorMessage: null
+    ErrorNotification: null
 }
 
 const signupSlice = createSlice({
@@ -23,7 +23,7 @@ const signupSlice = createSlice({
             state.fields.passwordConfirmation = action.payload
         },
         error: (state, action) =>{
-            state.errorMessage = action.paylaod
+            state.ErrorNotification = action.payload
         },
         reset: () => initialState
     }

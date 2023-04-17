@@ -2,12 +2,12 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { handlePasswordChange, handlePasswordConfirmationChange, handleUsernameChange, reset, error } from "./features/auth/signupSlice";
 import { useSignupMutation } from './services/users'
-import ErrorMessage from './ErrorNotification'
+import ErrorNotification from './ErrorNotification'
 
 const Signup = () => {
     const dispatch = useDispatch()
     const [signup] = useSignupMutation()
-    const { errorMessage, fields } = useSelector(state => state.signup)
+    const { errorNotification, fields } = useSelector(state => state.signup)
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -30,7 +30,7 @@ const Signup = () => {
                 <h5 className="card-title">Signup</h5>
                 <hr />
                 <form onSubmit={handleSubmit}>
-                    {errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}
+                    {errorNotification && <ErrorNotification>{errorNotification}</ErrorNotification>}
                     <div className="mb-3">
                         <label htmlFor="Signup__username" className='form-label'>
                             Username:

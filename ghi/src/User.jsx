@@ -1,16 +1,17 @@
 import React from "react";
-import { useGetUserQuery } from "./services/users"
+import { useGetUsersQuery } from "./services/users"
 import UserItem from "./UserItem"
 
-const Users = () => {
-    const { data, isLoading } = useGetUserQuery()
+const User = () => {
+    const { data, isLoading } = useGetUsersQuery([])
+    console.log(data)
     if (isLoading) return <div>Loading...</div>
-    if (data?.length === 0) return <div>No things :</div>
+    if (data?.length === 0) return <div>No user:</div>
     return (
         <ul>
-            {data.map(thing => <UserItem key={thing.id} {...thing} />)}
+            {data.map(user => {<UserItem key={user.user_id} {...user} />})}
         </ul>
     )
 }
 
-export default Users;
+export default User;

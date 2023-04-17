@@ -1,4 +1,4 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/dist/query";
+import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react"
 
 export const usersApi = createApi ({
     reducerPath: 'usersApi',
@@ -10,7 +10,7 @@ export const usersApi = createApi ({
     endpoints: (builder) => ({
         getUser: builder.query({
             query: () => '/token',
-            transformResponse: (response) => response?.account,
+            transformResponse: (response) => response?.user,
             provideTags: ['User']
         }),
     login: builder.mutation({
@@ -28,13 +28,10 @@ export const usersApi = createApi ({
     }),
     signup: builder.mutation({
         query: (body) => {
-            const formData = new FormData()
-            formData.append('username', body.username)
-            formData.append('password', body.password)
             return {
                 url: '/api/users',
                 method: 'POST',
-                body: formData,
+                body,
             }
         },
         invalidatesTags: ['User']
@@ -59,16 +56,16 @@ export const usersApi = createApi ({
             method: 'POST',
             body
         }),
-        invalidatesTag: [{type: 'Users', id: 'LIST'}]
+        invalidatesTag: [{type: 'Users', user_id: 'LIST'}]
     }),
     getUsers: builder.query({
         query: () => '/api/users',
         transformResponse: (response) => response.users,
         providesTags: (result) => {
-            const tags = [{type: 'Users', id: 'LIST'}]
+            const tags = [{type: 'Users', user_id: 'LIST'}]
             if (!result) return tags;
             return [
-                ...result.map(({id}) => ({type: 'Users', id})),
+                ...result.map(({user_id}) => ({type: 'Users', user_id})),
                 ...tags
             ]
         }
@@ -82,4 +79,5 @@ useSignupMutation,
 useLogoutMutation,
 useDeleteUserMutation,
 useCreateUserMutation,
+useGetUsersQuery
 } = usersApi;
