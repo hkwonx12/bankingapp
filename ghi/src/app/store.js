@@ -1,5 +1,11 @@
-import {configureStore} from '@reduxjs/toolkit'
+import {configureStore, getDefaultMiddleware} from '@reduxjs/toolkit'
+
+import loginReducer from '../features/counter/loginSlice'
+
 
 export const store = configureStore({
-reducer: {},
+reducer: {
+    login: loginReducer,
+},
+middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(Api.middleware)
 })
