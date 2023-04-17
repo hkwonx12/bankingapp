@@ -43,4 +43,7 @@
 - Rehauled migrations and checking/saving endpoints.
 
 4-7-23
+- Finished transactions related database tables and queries
+
+4-17-23
 - 
