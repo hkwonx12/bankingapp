@@ -9,9 +9,18 @@ export const authApi = createApi({
     }),
     endpoints: (builder) =>({
         getUser: builder.query({
-            query: () => '/token'
+            query: () => '/token',
+            transformResponse: (response) => response?.user,
+            providesTags: ['User']
         }),
+        logout: builder.mutation({
+            query: () => ({
+                url:'/token',
+                method: 'DELETE'
+            }),
+            invalidatesTags: ['User', { type: 'User', id: 'LIST' }]
+        })
     }),
 })
 
-export const { useGetUserQuery } = authApi;
+export const { useGetUserQuery, useLogoutMutation } = authApi;
