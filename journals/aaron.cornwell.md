@@ -20,3 +20,6 @@ Finished endpoints for checking account and will continue working on endpoints f
 
 04-07-23
 Completed transactions routes and queries and related databse tables
+
+04-17-23
+Today we started working on front end authentication. We've created Login and signup slice, as well as jsx files for user, signup, login, logout.
