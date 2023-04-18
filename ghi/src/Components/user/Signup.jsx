@@ -2,9 +2,9 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { handleFullNameChange, handlePasswordChange, handleUsernameChange, handleAddressChange,
     handleEmailChange, handlePhoneChange, handleDobChange, handleCheckingChange, handleSavingsChange,
-    handleInvestmentChange, reset } from "./features/auth/signupSlice";
-import { useSignupMutation } from './services/users'
-import ErrorNotification from './ErrorNotification'
+    handleInvestmentChange, reset } from "../features/auth/signupSlice";
+import { useSignupMutation } from '../services/users'
+import ErrorNotification from '../ErrorNotification'
 
 const Signup = () => {
     const dispatch = useDispatch()

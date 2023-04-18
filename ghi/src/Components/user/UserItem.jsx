@@ -1,5 +1,5 @@
 import React from "react";
-import { useDeleteUserMutation } from "./services/users";
+import { useDeleteUserMutation } from "../services/users";
 
 const UserItem = ({user_id, name}) => {
     const [deleteUser] = useDeleteUserMutation()

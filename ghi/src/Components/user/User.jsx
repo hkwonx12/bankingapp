@@ -1,5 +1,5 @@
 import React from "react";
-import { useGetUsersQuery } from "./services/users"
+import { useGetUsersQuery } from "../services/users"
 import UserItem from "./UserItem"
 
 const User = () => {
