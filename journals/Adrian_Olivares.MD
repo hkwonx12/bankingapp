@@ -59,3 +59,7 @@
 04/17/2023 >
 
     - Came back form break and did a standup to catch up on where we left off. Today we also started the front end and started the front end authentication. We have created different slices for our user and different jsx files.
+
+04/18/2023 >
+
+    - Today we started we started adding some styling to our website which which included importing things from tailwind. We ended up having our login pages display so we can login from the frontend and be authenticated.

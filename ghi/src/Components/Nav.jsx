@@ -1,8 +1,11 @@
 import { NavLink } from 'react-router-dom';
-
+import { useGetUserQuery } from './services/auth';
+import Logout from './user/Logout';
 
 
 function Nav() {
+    const{ data: user } = useGetUserQuery()
+
   return (
     <nav className="flex items-center justify-between flex-wrap bg-purple-500 p-6">
         <div className="flex items-center flex-shrink-0 text-white mr-6">
@@ -16,9 +19,6 @@ function Nav() {
         </div>
         <div className="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
             <div className="text-sm lg:flex-grow">
-                <NavLink href="#responsive-header" className="block mt-4 lg:inline-block lg:mt-0 text-purple-200 hover:text-white mr-4" to="/login">
-                    Login
-                </NavLink>
                 <a href="#responsive-header" className="block mt-4 lg:inline-block lg:mt-0 text-purple-200 hover:text-white mr-4">
                     Examples
                 </a>
@@ -27,11 +27,15 @@ function Nav() {
                 </a>
             </div>
             <div>
-                <a to="/login/" className="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0">Login</a>
+                <NavLink to="/login" className="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0">Login</NavLink>
             </div>
             <div>
-                <a href="#" className="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0">Sign Up</a>
+                <NavLink to="/signup" className="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0">Sign Up</NavLink>
             </div>
+            <div>
+                <NavLink to="/logout" className="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0">Log Out</NavLink>
+            </div>
+
         </div>
     </nav>
   )
