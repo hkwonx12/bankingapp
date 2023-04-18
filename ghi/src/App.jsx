@@ -8,14 +8,14 @@ import { useGetUserQuery } from './services/auth';
 function App() {
   const { data: user } = useGetUserQuery()
 
-  const showUsers = () => (
-    <div className='row'>
-      <div className='col'>
-    <User />
-    </div>
-    </div>
+  // const showUsers = () => (
+  //   <div className='row'>
+  //     <div className='col'>
+  //   <User />
+  //   </div>
+  //   </div>
 
-  )
+  // )
 
   const showAuthForms = () => (
     <div className='row'>
@@ -30,7 +30,7 @@ function App() {
       <h1> Hey, {user?.username || 'Friend'}</h1>
       <hr />
       {user && <Logout />}
-      {user ? showUsers() : showAuthForms() }
+      {showAuthForms() }
     </div>
 
   );

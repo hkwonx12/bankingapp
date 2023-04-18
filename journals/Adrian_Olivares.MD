@@ -50,4 +50,12 @@
 
 04/06/2023 >
 
-    - Today we realized we had to go back and fix up the migrations to show the relationships between the tables. I also learned that pscyopg2 is a very popular tool for working on SQL and Python. 
+    - Today we realized we had to go back and fix up the migrations to show the relationships between the tables. I also learned that pscyopg2 is a very popular tool for working on SQL and Python.
+
+04/07/2023 >
+
+    - Finished the transaction queries, pathways, and relationships
+
+04/17/2023 >
+
+    - Came back form break and did a standup to catch up on where we left off. Today we also started the front end and started the front end authentication. We have created different slices for our user and different jsx files.
