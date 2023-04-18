@@ -1,7 +1,7 @@
 import React from "react";
 import {useSelector, useDispatch} from "react-redux";
 import {handlePasswordChange, handleUsernameChange, reset} from "./features/auth/loginSlice"
-import {useLoginMutation} from "./services/users"
+import { useLoginMutation } from "./services/users";
 
 const Login = () => {
     const dispatch = useDispatch()
@@ -11,6 +11,7 @@ const Login = () => {
     const handleSubmit = (e) => {
         e.preventDefault()
         console.log('handleSubmit');
+        console.log({fields});
         login(fields)
         dispatch(reset())
     }
