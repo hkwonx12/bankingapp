@@ -4,7 +4,8 @@ const Logout = () => {
     const [logout] = useLogoutMutation()
     return (
         <button
-            className=""
+            className="btn btn-danger"
+            onClick={logout}
         >
             Logout
         </button>
