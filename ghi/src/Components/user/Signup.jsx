@@ -13,10 +13,6 @@ const Signup = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        // if (fields.password !== fields.passwordConfirmation) {
-        //     dispatch(error('Password does not match confirmation'))
-        //     return;
-        // }
         const {full_name, username, password, address, phone, email, dob, checking, savings, investment } = fields;
         signup({
             full_name,
@@ -35,7 +31,6 @@ const Signup = () => {
     console.log(fields)
     return (
         <div className="card">
-            {false && 'HI'}
             <div className="card-body">
                 <h5 className="card-title">Signup</h5>
                 <hr />
@@ -161,18 +156,6 @@ const Signup = () => {
                             onChange={e => dispatch(handleInvestmentChange(e.target.value))}
                         />
                     </div>
-                    {/* <div className="mb-3">
-                        <label htmlFor="Signup__password_confirmation" className='form-label'>
-                            Confirm Password:
-                        </label>
-                        <input
-                            className="form-control form-control-sm"
-                            type={`password`}
-                            id='Signup__password_confirmation'
-                            value={fields.passwordConfirmation}
-                            onChange={e => dispatch(handlePasswordConfirmationChange(e.target.value))}
-                        />
-                    </div> */}
                     <button type="submit" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded">Signup</button>
                 </form>
             </div>
