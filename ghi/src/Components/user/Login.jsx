@@ -1,7 +1,7 @@
 import React from "react";
 import {useSelector, useDispatch} from "react-redux";
-import {handlePasswordChange, handleUsernameChange, reset} from "./features/auth/loginSlice"
-import { useLoginMutation } from "./services/users";
+import {handlePasswordChange, handleUsernameChange, reset} from "../features/auth/loginSlice"
+import { useLoginMutation } from "../services/users";
 
 const Login = () => {
     const dispatch = useDispatch()
@@ -17,7 +17,7 @@ const Login = () => {
     }
 
     return (
-       
+
         <div className="w-full max-w-xs">
             <h5 className="">Login</h5>
             <hr />

@@ -1,9 +1,8 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import User from './User';
-import Signup from './Signup';
-import Login from './Login';
-import Logout from './Logout';
-import './App.css';
+import User from './user/User';
+import Signup from './user/Signup';
+import Login from './user/Login';
+import Logout from './user/Logout';
 import { useGetUserQuery } from './services/auth';
 import Nav from './Nav'
 
