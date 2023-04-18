@@ -15,8 +15,8 @@ const NewUser = () => {
             createUser(newUser)
             dispatch(reset())
         }}>
-            <div className="mb-3">
-                <label htmlFor="name-field" className="form-label">Name</label>
+            <div className="">
+                <label htmlFor="name-field" className="">Name</label>
                 <input
                     type="text"
                     className="form-control"
@@ -30,9 +30,9 @@ const NewUser = () => {
                     />
 
             </div>
-            <button className="btn btn-success">Submit</button>
+            <button className="">Submit</button>
             {' '}
-            <button className="btn btn-info" onClick={(e)=> {
+            <button className="" onClick={(e)=> {
                 e.preventDefault
                 dispatch(reset())
             }}>Reset</button>
