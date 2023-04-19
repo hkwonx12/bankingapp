@@ -52,4 +52,4 @@
 - Started building out our frontend and using Tailwind in our project.
 
 4-19-23
-- 
+-  Worked on jsx, depositslice, savingslice, checkingslice, transaction frontend and backend.
