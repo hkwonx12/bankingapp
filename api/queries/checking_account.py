@@ -1,24 +1,27 @@
-from models import CheckingAccountIn, CheckingAccountOut, CheckingAccountOutWithDetails
+from models import CheckingAccountIn, CheckingAccountOut, CheckingAccountOutWithDetails, CheckingAccountUpdate, TransactionsIn
 from queries.pool import pool
 from typing import List
 
 class CheckingAccountRepository:
-    def update_checking_account(self, id: int, checking_account: CheckingAccountIn) -> CheckingAccountOutWithDetails:
+    def update_checking_account(self, deposit: TransactionsIn):
+
         with pool.connection() as conn:
             with conn.cursor() as db:
-                db.execute(
+                result = db.execute(
                     """
                     UPDATE checking_account
-                    SET total_amount = %s
+                    SET total_amount = total_amount + %s
                     WHERE id = %s
                     """,
                     [
-                        checking_account.total_amount,
-                        id
+                        deposit.amount,
+                        deposit.checking_account_id
                     ]
                 )
-                return self.checking_account_in_to_out(id, checking_account)
-
+                # data = db.fetchone()
+                conn.commit()
+                return {"amount": deposit.amount, "id": deposit.checking_account_id}
+                # return data
 
     def delete_checking_account(self, id: int) -> bool:
         with pool.connection() as conn:
@@ -41,15 +44,13 @@ class CheckingAccountRepository:
                 result = db.execute(
                     """
                     INSERT INTO checking_account
-                        (total_amount, account_number, routing_number, owner_id)
+                        (total_amount, owner_id)
                     VALUES
-                        (%s, %s, %s, %s)
+                        (%s, %s)
                     RETURNING id;
                     """,
                     [
                         checking_account.total_amount,
-                        checking_account.account_number,
-                        checking_account.routing_number,
                         checking_account.owner_id
                     ]
                 )
@@ -103,6 +104,6 @@ class CheckingAccountRepository:
                 return result
 
 
-    def checking_account_in_to_out(self, id: int, checking_account: CheckingAccountOutWithDetails):
+    def checking_account_in_to_out(self, id: int, checking_account: CheckingAccountUpdate):
         old_data = checking_account.dict()
-        return CheckingAccountOutWithDetails(id=id, **old_data)
+        return CheckingAccountUpdate(id=id, **old_data)

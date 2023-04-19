@@ -3,6 +3,7 @@ from fastapi import FastAPI
 from datetime import date
 from jwtdown_fastapi.authentication import Token
 import typing
+from typing import Optional
 
 app = FastAPI()
 class UserIn(BaseModel):
@@ -37,13 +38,14 @@ class UserOutWithPassword(UserOut):
 
 class CheckingAccountIn(BaseModel):
     total_amount: int
-    account_number: int
-    routing_number: int
     owner_id: int
+
+class CheckingAccountUpdate(BaseModel):
+    total_amount: int
 
 class CheckingAccountOut(BaseModel):
     id: int
-    account_number: int
+    # account_number: int
     owner_id: int
 
 
@@ -97,10 +99,13 @@ class TransactionsIn(BaseModel):
     date: date
     amount: int
     institution: str
-    checking_account_id: typing.Any
-    savings_account_id: typing.Any
-    investment_account_id: typing.Any
+    checking_account_id : Optional[int] = 'null'
+    savings_account_id : Optional[int] = 'null'
+    investment_account_id : Optional[int] = 'null'
 
+class TransactionCheckingIn(BaseModel):
+    amount: int
+    checking_account_id : int
 
 class TransactionsOut(BaseModel):
     id: int
@@ -110,10 +115,9 @@ class TransactionsOutWithDetails(TransactionsOut):
     date: date
     amount: int
     institution: str
-    checking_account_id: typing.Any
-    savings_account_id : typing.Any
-    investment_account_id: typing.Any
-
+    checking_account_id : Optional[int] = 'null'
+    savings_account_id : Optional[int] = 'null'
+    investment_account_id : Optional[int] = 'null'
 
 class Stockout(BaseModel):
     c: float
@@ -122,4 +126,3 @@ class Stockout(BaseModel):
     o: float
     pc: float
     t: int
-

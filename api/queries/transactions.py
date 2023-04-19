@@ -1,4 +1,4 @@
-from models import TransactionsIn, TransactionsOut, TransactionsOutWithDetails
+from models import TransactionsIn, TransactionsOut, TransactionsOutWithDetails, TransactionCheckingIn
 from queries.pool import pool
 from typing import List
 
@@ -21,14 +21,12 @@ class TransactionsRepository:
                     RETURNING id;
                     """,
                     [
-
                     transaction.date,
                     transaction.amount,
                     transaction.institution,
                     transaction.checking_account_id,
                     transaction.savings_account_id,
                     transaction.investment_account_id
-
                     ]
                 )
                 id = result.fetchone()[0]
