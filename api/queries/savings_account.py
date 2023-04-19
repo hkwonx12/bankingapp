@@ -1,4 +1,4 @@
-from models import SavingsAccountIn, SavingsAccountOut, SavingsAccountOutWithDetails
+from models import SavingsAccountIn, SavingsAccountOut, SavingsAccountOutWithDetails, TransactionsIn
 from queries.pool import pool
 from typing import List
 
@@ -81,29 +81,22 @@ class SavingsRepository:
                 return result
 
 
-    def update_savings_account(self, id: int, savings_account: SavingsAccountIn) -> SavingsAccountOutWithDetails:
+    def update_savings_account(self, deposit: TransactionsIn):
         with pool.connection() as conn:
             with conn.cursor() as db:
                 db.execute(
                     """
                     UPDATE savings_account
-                    SET   total_amount = %s
-                        , interest_rate = %s
-                        , account_number = %s
-                        , routing_number = %s
-                        , owner_id = %s
+                    SET   total_amount =  total_amount + %s
                     WHERE id = %s
                     """,
                     [
-                        savings_account.total_amount,
-                        savings_account.interest_rate,
-                        savings_account.account_number,
-                        savings_account.routing_number,
-                        savings_account.owner_id,
-                        id
+                       deposit.amount,
+                       deposit.savings_account_id
                     ]
                 )
-                return self.savings_account_in_to_out(id, savings_account)
+                conn.commit()
+                return {"amount": deposit.amount, "id": deposit.savings_account_id}
 
 
     def delete_savings_account(self, id: int) -> bool:

@@ -1,7 +1,8 @@
-from models import SavingsAccountIn, SavingsAccountOut, SavingsAccountOutWithDetails
+from models import SavingsAccountIn, SavingsAccountOut, SavingsAccountOutWithDetails, TransactionsIn
 from fastapi import APIRouter, Response, Depends, HTTPException, status
 from queries.accounts import DuplicateAccountError
 from queries.savings_account import SavingsRepository
+from queries.transactions import TransactionsRepository
 from authenticator import authenticator
 from typing import List
 
@@ -54,11 +55,15 @@ def delete_savings_account(
     return repo.delete_savings_account(id)
 
 
-@router.put('/api/savings_account/{id}', response_model=SavingsAccountOutWithDetails)
+@router.put('/api/savings_account')
 def update_savings_account(
-    id: int,
-    savings_account: SavingsAccountIn,
+    transaction: TransactionsIn,
     repo: SavingsRepository = Depends(),
     account_data: dict = Depends(authenticator.get_current_account_data),
-) -> SavingsAccountOutWithDetails:
-    return repo.update_savings_account(id, savings_account)
+):
+    savings_account_response = repo.update_savings_account(transaction)
+    instance = TransactionsRepository()
+    if savings_account_response:
+        instance.create_transaction(transaction)
+
+    return savings_account_response
