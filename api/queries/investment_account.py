@@ -1,4 +1,4 @@
-from models import InvestmentAccountIn, InvestmentAccountOut, InvestmentAccountOutWithDetails
+from models import InvestmentAccountIn, InvestmentAccountOut, InvestmentAccountOutWithDetails, TransactionsIn
 from queries.pool import pool
 from typing import List
 
@@ -74,25 +74,22 @@ class InvestmentAccountRepository:
                 return result
 
 
-    def update_investment_account(self, owner_id: int, investment_account: InvestmentAccountIn) -> InvestmentAccountOutWithDetails:
+    def update_investment_account(self, deposit: TransactionsIn):
         with pool.connection() as conn:
             with conn.cursor() as db:
                 db.execute(
                     """
                     UPDATE investment_account
-                    SET account_number = %s
-                      , total_amount = %s
-                      , investment_value = %s
-                    WHERE owner_id = %s
+                    SET total_amount = total_amount + %s
+                    WHERE id = %s
                     """,
                     [
-                        investment_account.account_number,
-                        investment_account.total_amount,
-                        investment_account.investment_value,
-                        owner_id
+                       deposit.amount,
+                       deposit.investment_account_id
                     ]
                 )
-                return self.investment_account_in_to_out(owner_id, investment_account)
+                conn.commit()
+                return {"amount": deposit.amount, "id": deposit.investment_account_id}
 
 
     def delete_investment_account(self, investment_account_id: int) -> bool:

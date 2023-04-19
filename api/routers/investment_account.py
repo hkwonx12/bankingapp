@@ -1,7 +1,8 @@
 from fastapi import APIRouter, Response, Depends, HTTPException, status
-from models import InvestmentAccountIn, InvestmentAccountOut, InvestmentAccountOutWithDetails
+from models import InvestmentAccountIn, InvestmentAccountOut, InvestmentAccountOutWithDetails, TransactionsIn
 from queries.accounts import DuplicateAccountError
 from queries.investment_account import InvestmentAccountRepository
+from queries.transactions import TransactionsRepository
 from authenticator import authenticator
 from typing import List
 
@@ -45,15 +46,17 @@ def get_one_investment_account(
         response.status_code = 404
     return investment_account
 
-@router.put('/api/investment_account/{owner_id}', response_model=InvestmentAccountOutWithDetails)
+@router.put('/api/investment_account')
 def update_investment_account(
-    owner_id: int,
-    investment_account: InvestmentAccountIn,
+    transaction: TransactionsIn,
     repo: InvestmentAccountRepository = Depends(),
     account_data: dict = Depends(authenticator.get_current_account_data),
-) -> InvestmentAccountOutWithDetails:
-    return repo.update_investment_account(owner_id, investment_account)
-
+):
+    investment_account_response=repo.update_investment_account(transaction)
+    instance = TransactionsRepository()
+    if investment_account_response:
+        instance.create_transaction(transaction)
+    return investment_account_response
 
 
 

@@ -7,7 +7,7 @@ class CheckingAccountRepository:
 
         with pool.connection() as conn:
             with conn.cursor() as db:
-                result = db.execute(
+                db.execute(
                     """
                     UPDATE checking_account
                     SET total_amount = total_amount + %s
