@@ -36,6 +36,7 @@ class TransactionsRepository:
                 return TransactionsOut(id=id, **old_data)
 
 
+
     def get_one_transaction(self, id: int) -> TransactionsOutWithDetails:
         with pool.connection() as conn:
             with conn.cursor() as db:
