@@ -54,4 +54,12 @@ Reconfigured the models and tables in order to better fit our application.
 
 
 # April 7, 2023
-We completed all the routes for the backend. 
+We completed all the routes for the backend. Transactions was completed today.
+
+
+# April 17, 2023
+We began front-end authentication today. We created sign up, login, logout, and users using Redux in React. We learned about slices, stores, and connected everything to our backend endpoints to make it all functional.
+
+
+# April 18, 2023
+We completed the front-end sign up, login, and logout features today. We need to continue testing to see if authentication will work as we build out our components. However, we ran into a bug with the transactions as we discussed how we will implement deposits to the accounts. We rewrote the transactionin and transactionout model using typing.Any so that it takes in a "null" as a typefield. This is so that we can choose just one account to deposit the money into. We recognized that we must write a logic either in the backend queries or routers or front-end in order to actually make the transactions "post" into an account's "post" to update the deposit money. We will continue working on this tomorrow. 

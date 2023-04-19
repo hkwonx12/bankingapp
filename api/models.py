@@ -2,6 +2,7 @@ from pydantic import BaseModel
 from fastapi import FastAPI
 from datetime import date
 from jwtdown_fastapi.authentication import Token
+import typing
 
 app = FastAPI()
 class UserIn(BaseModel):
@@ -96,9 +97,9 @@ class TransactionsIn(BaseModel):
     date: date
     amount: int
     institution: str
-    checking_account_id: int
-    savings_account_id: int
-    investment_account_id: int
+    checking_account_id: typing.Any
+    savings_account_id: typing.Any
+    investment_account_id: typing.Any
 
 
 class TransactionsOut(BaseModel):
@@ -109,9 +110,9 @@ class TransactionsOutWithDetails(TransactionsOut):
     date: date
     amount: int
     institution: str
-    checking_account_id: int
-    savings_account_id : int
-    investment_account_id: int
+    checking_account_id: typing.Any
+    savings_account_id : typing.Any
+    investment_account_id: typing.Any
 
 
 class Stockout(BaseModel):
