@@ -28,7 +28,7 @@ const Signup = () => {
         })
         dispatch(reset())
     }
-    console.log(fields)
+
     return (
         <div className="card">
             <div className="card-body">
