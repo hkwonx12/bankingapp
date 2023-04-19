@@ -122,3 +122,4 @@ class Stockout(BaseModel):
     o: float
     pc: float
     t: int
+

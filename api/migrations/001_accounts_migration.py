@@ -82,7 +82,7 @@ steps = [
             id SERIAL PRIMARY KEY NOT NULL,
             date DATE NOT NULL,
             amount FLOAT4 NOT NULL,
-            institution VARCHAR(250) NOT NULL,
+            institution VARCHAR(250),
             checking_account_id INT REFERENCES checking_account("id") ON DELETE CASCADE,
             savings_account_id INT REFERENCES savings_account("id") ON DELETE CASCADE,
             investment_account_id INT REFERENCES investment_account("id") ON DELETE CASCADE

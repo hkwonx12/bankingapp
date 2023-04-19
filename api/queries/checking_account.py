@@ -10,14 +10,10 @@ class CheckingAccountRepository:
                     """
                     UPDATE checking_account
                     SET total_amount = %s
-                      , account_number = %s
-                      , routing_number = %s
                     WHERE id = %s
                     """,
                     [
                         checking_account.total_amount,
-                        checking_account.account_number,
-                        checking_account.routing_number,
                         id
                     ]
                 )
