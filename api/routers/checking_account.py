@@ -1,5 +1,5 @@
 from fastapi import APIRouter, Response, Depends, HTTPException, status
-from models import CheckingAccountIn, CheckingAccountOut, CheckingAccountOutWithDetails, TransactionsIn
+from models import CheckingAccountIn, CheckingAccountOut, CheckingAccountOutWithDetails, TransactionsIn, CheckingAccountUpdate, TransactionCheckingIn
 from queries.accounts import DuplicateAccountError
 from queries.checking_account import CheckingAccountRepository
 from queries.transactions import TransactionsRepository
@@ -57,16 +57,17 @@ def delete_checking_account(
     return repo.delete_checking_account(id)
 
 
-@router.put('/api/checking_account/{id}', response_model=CheckingAccountOutWithDetails)
+@router.put('/api/checking_account')
 def update_checking_account(
-    id: int,
-    checking_account: CheckingAccountIn,
     transaction: TransactionsIn,
     repo: CheckingAccountRepository = Depends(),
     account_data: dict = Depends(authenticator.get_current_account_data),
-) -> CheckingAccountOutWithDetails:
-    print(transaction)
-    checking_account_response = repo.update_checking_account(id, checking_account)
+):
+    checking_account_response = repo.update_checking_account(transaction)
+    print("Hello World")
+    print("checking_account_response", checking_account_response)
+    instance = TransactionsRepository()
     if checking_account_response:
-        TransactionsRepository.create_transaction(id, transaction)
+        instance.create_transaction(transaction)
+
     return checking_account_response
