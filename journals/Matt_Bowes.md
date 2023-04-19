@@ -50,3 +50,6 @@
 
 4-18-23
 - Started building out our frontend and using Tailwind in our project.
+
+4-19-23
+- 
