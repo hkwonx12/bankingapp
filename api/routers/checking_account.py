@@ -64,8 +64,6 @@ def update_checking_account(
     account_data: dict = Depends(authenticator.get_current_account_data),
 ):
     checking_account_response = repo.update_checking_account(transaction)
-    print("Hello World")
-    print("checking_account_response", checking_account_response)
     instance = TransactionsRepository()
     if checking_account_response:
         instance.create_transaction(transaction)
