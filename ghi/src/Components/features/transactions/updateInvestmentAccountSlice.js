@@ -5,20 +5,18 @@ fields: {
     date: '',
     amount: '',
     institution: '',
-    checking_accound_id: '',
-    savings_account_id: '',
     investment_account_id: ''
 },
 ErrorNotification: null
 }
 
 
-const depositSlice = createSlice ({
+const UpdateInvestmentSlice = createSlice ({
     name: 'deposit',
     initialState,
     reducers:{
         handleDateChange: (state, action) => {
-            state.fields.amount = actionl.payload
+            state.fields.date = action.payload
         },
         handleAmountChange: (state, action) =>{
             state.fields.amount = action.payload
@@ -26,14 +24,8 @@ const depositSlice = createSlice ({
         handleInstitutionChange: (state, action) =>{
             state.fields.institution = action.payload
         },
-        handleCheckingsAccountIdChange: (state, action) =>{
-            state.fields.checking_accound_id = action.payload
-        },
-        handleSavingsAccountIdChange: (state, action) =>{
-            state.fields.savings_account_id = action.payload
-        },
         handleInvestmentAccountIdChange: (state, action) =>{
-            state.fields.investment_account_id = action.payload
+            state.fields.checking_accound_id = action.payload
         },
         error: (state, action) =>{
             state.ErrorNotification = action.payload
@@ -46,10 +38,8 @@ export const {
     handleDateChange,
     handleAmountChange,
     handleInstitutionChange,
-    handleCheckingsAccountIdChange,
-    handleSavingsAccountIdChange,
     handleInvestmentAccountIdChange,
     reset,
     error
-} =depositSlice.actions;
-export default depositSlice.reducer
+} =UpdateInvestmentSlice.actions;
+export default UpdateInvestmentSlice.reducer

@@ -23,8 +23,16 @@ export const checkingAccountApi = createApi({
       }),
       invalidatesTags: [{ type: 'checking_account', id: 'LIST' }]
     }),
+    updateChecking: builder.mutation({
+            query: (body) => ({
+                url: '/api/checking_account',
+                method: 'PUT',
+                body
+            }),
+            invalidatesTags: [{type: 'Deposit', id: 'LIST'}]
+        }),
     getCheckingAccount: builder.query({
-      query: () => '/api/checking_account',
+      query: () => `/api/checking_account/${owner_id}`,
       transformResponse: (response) => response.checking_account,
       providesTags: (result) => {
         const tags = [{ type: 'checking_account', id: 'LIST' }]
@@ -41,5 +49,6 @@ export const checkingAccountApi = createApi({
 export const {
   useCreateCheckingAccountMutation,
   useDeleteCheckingAccountMutation,
+  useUpdateCheckingMutation,
   useGetCheckingAccountQuery
 } = checkingAccountApi;
