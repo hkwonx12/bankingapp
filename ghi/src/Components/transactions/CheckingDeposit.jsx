@@ -3,13 +3,16 @@ import { useSelector, useDispatch } from "react-redux";
 import {  handleDateChange, handleAmountChange, handleInstitutionChange,
     handleCheckingsAccountIdChange, reset } from "../features/transactions/updateCheckingAccountSlice";
 import { useUpdateCheckingMutation, useGetCheckingAccountQuery } from '../services/checking'
+import { useGetSavingsQuery } from '../services/savings'
+
 import ErrorNotification from '../ErrorNotification'
 
 const CheckingDeposit = () => {
     const dispatch = useDispatch()
     const [deposit] = useUpdateCheckingMutation()
     const { errorNotification, fields } = useSelector(state => state.deposit)
-    const {data}  = useGetCheckingAccountQuery([])
+    // const {data}  = useGetCheckingAccountQuery([])
+    const{data} = useGetSavingsQuery({})
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -24,6 +27,8 @@ const CheckingDeposit = () => {
     }
 
     return (
+        <>
+        <div>{data}</div>
         <div className="card">
             <div className="card-body">
                 <h5 className="card-title">Create Deposit</h5>
@@ -86,6 +91,8 @@ const CheckingDeposit = () => {
                 </form>
             </div>
         </div>
+        </>
+
     )
 }
 

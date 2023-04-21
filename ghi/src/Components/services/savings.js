@@ -1,10 +1,17 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react"
 
+const getToken = () => {
+    return localStorage.getItem("token");
+}
+
 export const savingsApi = createApi ({
     reducerPath: 'savingsApi',
     baseQuery: fetchBaseQuery({
         baseUrl:`${process.env.REACT_APP_API_HOST}`,
-        credentials: "include"
+        credentials: "include",
+        headers: {
+            'authorization': `Bearer ${getToken()}`
+        }
     }),
     tagTypes: ['Savings'],
     endpoints: (builder) => ({

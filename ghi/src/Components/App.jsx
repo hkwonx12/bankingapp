@@ -6,6 +6,7 @@ import Logout from './user/Logout';
 import { useGetUserQuery } from './services/auth';
 import Nav from './Nav'
 import CheckingDeposit from './transactions/CheckingDeposit';
+import SavingsDetail from './accounts/testSavings';
 
 
 function App() {
@@ -31,7 +32,7 @@ function App() {
         </Route>
 
         <Route path='/savings'>
-            <Route/>
+            <Route index element={< SavingsDetail/>}/>
           </Route>
 
         <Route path='/investment'>
