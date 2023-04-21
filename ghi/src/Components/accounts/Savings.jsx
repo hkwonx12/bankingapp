@@ -7,7 +7,7 @@ import ErrorNotification from "../ErrorNotification";
 
 
 const Savings = () => {
-    const {data, isLoading } = useGet
+    const { data } = useGet
 
     return <>
         <div className="row">
