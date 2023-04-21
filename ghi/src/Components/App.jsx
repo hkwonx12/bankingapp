@@ -5,14 +5,15 @@ import Login from './user/Login';
 import Logout from './user/Logout';
 import { useGetUserQuery } from './services/auth';
 import Nav from './Nav'
-import CreateCheckingAccount from './accounts/CreateChecking';
+import CheckingDeposit from './transactions/CheckingDeposit';
+
 
 function App() {
   return (
     <BrowserRouter>
     <Nav/>
       <Routes>
-        
+
         <Route path='/login'>
           <Route index element={<Login/>}/>
         </Route>
@@ -26,8 +27,16 @@ function App() {
         </Route>
 
         <Route path='/checking'>
-          <Route index element={<CreateCheckingAccount/>}/>
+          <Route index element={<CheckingDeposit/>}/>
         </Route>
+
+        <Route path='/savings'>
+            <Route/>
+          </Route>
+
+        <Route path='/investment'>
+            <Route/>
+          </Route>
 
       </Routes>
     </BrowserRouter>
