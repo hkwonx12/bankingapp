@@ -9,7 +9,8 @@ import ErrorNotification from "../ErrorNotification";
 const Savings = () => {
     const { data } = useGet
 
-    return <>
+    return (
+    <>
         <div className="row">
             <div className="offset-3 col-9">
                 <div className="shadow p-6 mt-5">
@@ -40,4 +41,5 @@ const Savings = () => {
             </div>
         </div>
     </>
+    )
 }
