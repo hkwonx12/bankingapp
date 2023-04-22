@@ -1,10 +1,18 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
+
+const getToken = () => {
+    return localStorage.getItem("token");
+}
+
 export const checkingAccountApi = createApi({
   reducerPath: 'CheckingApi',
   baseQuery: fetchBaseQuery({
     baseUrl: `${process.env.REACT_APP_API_HOST}`,
-    credentials: "include"
+    credentials: "include",
+    headers: {
+      'authorization': `Bearer ${getToken()}`
+    }
   }),
   tagTypes: ['Checking'],
   endpoints: (builder) => ({
@@ -31,18 +39,33 @@ export const checkingAccountApi = createApi({
             }),
             invalidatesTags: [{type: 'Deposit', id: 'LIST'}]
         }),
-    getCheckingAccount: builder.query({
-      query: () => `/api/checking_account/${owner_id}`,
-      transformResponse: (response) => response.checking_account,
-      providesTags: (result) => {
-        const tags = [{ type: 'checking_account', id: 'LIST' }]
-        if (!result) return tags;
-        return [
-          ...result.map(({id}) => ({type: 'checking_account', id})),
-          ...tags
-        ]
-      }
-    })
+    getCheckingAccount:builder.query({
+            query: () => '/api/checking_account',
+            transformResponse: (response) => {
+            console.log(response)
+            return response.id
+        },
+            providesTags: (result) => {
+                const tags = [{type: 'Savings', id: 'LIST'}]
+                if (!result) return tags;
+                return [
+                    ...result.map[({id}) => ({type: 'Savings', id: 'LIST'})],
+                    ...tags
+                ]
+            }
+        }),
+    // getCheckingAccount: builder.query({
+    //   query: () => `/api/checking_account/${owner_id}`,
+    //   transformResponse: (response) => response.checking_account,
+    //   providesTags: (result) => {
+    //     const tags = [{ type: 'checking_account', id: 'LIST' }]
+    //     if (!result) return tags;
+    //     return [
+    //       ...result.map(({id}) => ({type: 'checking_account', id})),
+    //       ...tags
+    //     ]
+    //   }
+    // })
   }),
 })
 

@@ -17,7 +17,10 @@ export const savingsApi = createApi ({
     endpoints: (builder) => ({
         getSavings: builder.query({
             query: () => '/api/savings_account',
-            transformResponse: (response) => response.savings_account,
+            transformResponse: (response) => {
+            console.log(response)
+            return response
+        },
             providesTags: (result) => {
                 const tags = [{type: 'Savings', id: 'LIST'}]
                 if (!result) return tags;

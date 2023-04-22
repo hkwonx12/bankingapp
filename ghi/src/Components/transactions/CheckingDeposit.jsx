@@ -1,19 +1,19 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {  handleDateChange, handleAmountChange, handleInstitutionChange,
-    handleCheckingsAccountIdChange, reset } from "../features/transactions/updateCheckingAccountSlice";
-import { useUpdateCheckingMutation, useGetCheckingAccountQuery } from '../services/checking'
-import { useGetSavingsQuery } from '../services/savings'
+    reset, handleCheckingsAccountIdChange } from "../features/transactions/updateCheckingAccountSlice";
+import { useUpdateCheckingMutation } from '../services/checking'
+import { useGetCheckingAccountQuery } from "../services/checking";
 
 import ErrorNotification from '../ErrorNotification'
 
 const CheckingDeposit = () => {
     const dispatch = useDispatch()
     const [deposit] = useUpdateCheckingMutation()
-    const { errorNotification, fields } = useSelector(state => state.deposit)
-    // const {data}  = useGetCheckingAccountQuery([])
-    const{data} = useGetSavingsQuery({})
-
+    const { errorNotification, fields } = useSelector(state => state.updateChecking)
+    const {data}  = useGetCheckingAccountQuery({})
+    // const{data} = useGetSavingsQuery({})
+    console.log(data)
     const handleSubmit = (e) => {
         e.preventDefault()
         const {date, amount, institution, checking_account_id, } = fields;
@@ -75,17 +75,13 @@ const CheckingDeposit = () => {
                         <label htmlFor="Deposit__checking_account_id" className='form-label'>
                             Checking Account
                         </label>
-                        some kind of data is success check wrapper for the button
-                        <button value={data.id}>
-                            make deposit
-                        </button>
-                        {/* <select
+                        <input
                             className="form-control form-control-sm"
                             type={`number`}
                             id='Deposit__checking_account_id'
-                            value={fields.checkings_account_id}
-                            onChange={data.map(checking_account_id => {})}
-                        /> */}
+                            value={fields.checking_account_id}
+                            onChange={e => dispatch(handleCheckingsAccountIdChange(e.target.value))}
+                        />
                     </div>
                     <button type="submit" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded">Deposit</button>
                 </form>

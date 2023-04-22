@@ -25,7 +25,7 @@ const updateCheckingSlice = createSlice ({
             state.fields.institution = action.payload
         },
         handleCheckingsAccountIdChange: (state, action) =>{
-            state.fields.checking_accound_id = action.payload
+            state.fields.checking_account_id = action.payload
         },
         error: (state, action) =>{
             state.ErrorNotification = action.payload
