@@ -1,6 +1,6 @@
 import { NavLink } from 'react-router-dom';
-import { useGetUserQuery } from './services/auth';
-import Logout from './user/Logout';
+import { useGetUserQuery } from './Components/services/auth';
+
 
 
 function Nav() {

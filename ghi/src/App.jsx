@@ -1,19 +1,15 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import User from './user/User';
-import Signup from './user/Signup';
-import Login from './user/Login';
-import Logout from './user/Logout';
-import { useGetUserQuery } from './services/auth';
 import Nav from './Nav'
-import CheckingDeposit from './transactions/CheckingDeposit';
-import SavingsDetail from './accounts/testSavings';
-
+import MainPage from 'MainPage'
+import { AuthProvider } from "@galvanize-inc/jwtdown-for-react";
 
 function App() {
   return (
+    <AuthProvider>
     <BrowserRouter>
     <Nav/>
       <Routes>
+        <Route path="/" element={<MainPage />} />
 
         <Route path='/login'>
           <Route index element={<Login/>}/>
@@ -41,6 +37,7 @@ function App() {
 
       </Routes>
     </BrowserRouter>
+    </AuthProvider>
   );
 }
 
