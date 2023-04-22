@@ -12,6 +12,7 @@ import updateCheckingReducer from '../Components/features/transactions/updateChe
 import updateInvestmentReducer from '../Components/features/transactions/updateInvestmentAccountSlice'
 import { investmentAccountApi } from '../Components/services/investment'
 
+
 export const store = configureStore({
     reducer: {
         newUser: newUserReducer,

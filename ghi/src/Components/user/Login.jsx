@@ -8,12 +8,13 @@ const Login = () => {
     const [login] = useLoginMutation()
     const { fields } = useSelector(state => state.login)
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
         console.log('handleSubmit');
         console.log({fields});
-        login(fields)
+        login(fields);
         dispatch(reset())
+        // localStorage.setItem("token", )
     }
 
     return (

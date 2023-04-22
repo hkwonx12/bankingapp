@@ -24,6 +24,10 @@ export const usersApi = createApi ({
                 body: formData,
             }
         },
+        transformResponse: (response) => {
+            console.log(response);
+            localStorage.setItem("token", response.access_token);
+        },
         invalidatesTag: ['User']
     }),
     signup: builder.mutation({
