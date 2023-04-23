@@ -1,14 +1,19 @@
 import useToken from "@galvanize-inc/jwtdown-for-react";
+import { useAuthContext } from '@galvanize-inc/jwtdown-for-react';
 import { useState } from "react";
 
 const LoginForm = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const { login } = useToken();
+    const {token} = useAuthContext();
 
     const handleSubmit = (e) => {
         e.preventDefault();
         login(username, password);
+        if (token) {
+            localStorage.setItem("access_token", token);
+        }
         e.target.reset();
     };
 

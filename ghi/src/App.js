@@ -3,9 +3,13 @@ import Nav from './Nav';
 import MainPage from './MainPage';
 import SignUpForm from './auth/signup';
 import LoginForm from './auth/login';
-import { AuthProvider } from "@galvanize-inc/jwtdown-for-react";
+import { AuthProvider, useAuthContext } from "@galvanize-inc/jwtdown-for-react";
+import CheckingStatements from './components/checking/checking';
+
 
 function App() {
+
+
   return (
     <BrowserRouter>
       <AuthProvider>
@@ -20,6 +24,10 @@ function App() {
 
             <Route>
               <Route path="/login" element={<LoginForm />} />
+            </Route>
+
+            <Route>
+              <Route path="/checking" element={<CheckingStatements/>}/>
             </Route>
           </Routes>
         </div>
