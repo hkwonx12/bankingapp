@@ -42,14 +42,21 @@
 4-6-23
 - Rehauled migrations and checking/saving endpoints.
 
+4-7-23
+-
+
 4-17-23
+
 - Started frontend authentication and created slices for our user and jsx files.
 
 4-18-23
-- Started building out our frontend login, logout, and using Tailwind in our project.
+- Started building out our frontend and using Tailwind in our project.
 
 4-19-23
 - Worked on jsx, depositslice, savingslice, checkingslice, transaction frontend and backend.
 
 4-20-23
-- Worked on 
+-
+
+4-24-23
+- Decided to scrap redux and start again. Working on saving components.
