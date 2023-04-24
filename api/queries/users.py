@@ -52,9 +52,9 @@ class UserRepository:
                 result = db.execute(
                     """
                     INSERT INTO users
-                        (full_name, username, hashed_password, email, address, phone, dob, checking, savings, investment)
+                        (full_name, username, hashed_password, email, address, phone, dob)
                     VALUES
-                        (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+                        (%s, %s, %s, %s, %s, %s, %s)
                     RETURNING id;
                     """,
                     [
@@ -65,9 +65,6 @@ class UserRepository:
                     user.address,
                     user.phone,
                     user.dob,
-                    user.checking,
-                    user.savings,
-                    user.investment
                     ]
                 )
                 id = result.fetchone()[0]
@@ -82,7 +79,7 @@ class UserRepository:
                 #Run our SELECT
                 result = db.execute(
                     """
-                    SELECT id, username, hashed_password, email, address, phone, dob, checking, savings, investment
+                    SELECT id, username, hashed_password, email, address, phone, dob
                     FROM users
                     WHERE username = %s
                     """,
@@ -98,10 +95,7 @@ class UserRepository:
                     email=record[3],
                     address=[4],
                     phone=record[5],
-                    dob=record[6],
-                    checking=record[7],
-                    savings=record[8],
-                    investment=record[9]
+                    dob=record[6]
                     )
 
 

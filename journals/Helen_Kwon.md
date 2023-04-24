@@ -62,4 +62,8 @@ We began front-end authentication today. We created sign up, login, logout, and 
 
 
 # April 18, 2023
-We completed the front-end sign up, login, and logout features today. We need to continue testing to see if authentication will work as we build out our components. However, we ran into a bug with the transactions as we discussed how we will implement deposits to the accounts. We rewrote the transactionin and transactionout model using typing.Any so that it takes in a "null" as a typefield. This is so that we can choose just one account to deposit the money into. We recognized that we must write a logic either in the backend queries or routers or front-end in order to actually make the transactions "post" into an account's "post" to update the deposit money. We will continue working on this tomorrow. 
+We completed the front-end sign up, login, and logout features today. We need to continue testing to see if authentication will work as we build out our components. However, we ran into a bug with the transactions as we discussed how we will implement deposits to the accounts. We rewrote the transactionin and transactionout model using typing.Any so that it takes in a "null" as a typefield. This is so that we can choose just one account to deposit the money into. We recognized that we must write a logic either in the backend queries or routers or front-end in order to actually make the transactions "post" into an account's "post" to update the deposit money. We will continue working on this tomorrow.
+
+
+# April 19, 2023
+We had to go back to the backend today in order to complete the deposit feature. We fixed the update routers for accounts and create queries for transactions in order for accounts to be updated while transaction history is created. 

@@ -9,15 +9,15 @@ class TransactionsRepository:
         return TransactionsOutWithDetails(id=id, **old_data)
 
 
-    def create_transaction(self, transaction: TransactionsIn):
+    def create_transaction(self, transaction: TransactionsIn, account_data):
         with pool.connection() as conn:
             with conn.cursor() as db:
                 result = db.execute(
                     """
                     INSERT INTO transactions
-                        (date, amount, institution, checking_account_id, savings_account_id, investment_account_id)
+                        (date, amount, institution, checking_account_id, savings_account_id, investment_account_id, owner_id)
                     VALUES
-                        (%s, %s, %s, %s, %s, %s)
+                        (%s, %s, %s, %s, %s, %s, %s)
                     RETURNING id;
                     """,
                     [
@@ -26,7 +26,8 @@ class TransactionsRepository:
                     transaction.institution,
                     transaction.checking_account_id,
                     transaction.savings_account_id,
-                    transaction.investment_account_id
+                    transaction.investment_account_id,
+                    account_data['id']
                     ]
                 )
                 id = result.fetchone()[0]
@@ -60,21 +61,29 @@ class TransactionsRepository:
                 )
 
 
-    def get_all_transactions(self) -> List[TransactionsOut]:
+    def get_all_transactions(self, account_data) -> List[TransactionsOutWithDetails]:
         with pool.connection() as conn:
             with conn.cursor() as db:
                 result = db.execute(
                     """
-                    SELECT id
-                    FROM transactions;
-                    """
+                    SELECT id, date, amount, institution, checking_account_id, savings_account_id, investment_account_id, owner_id
+                    FROM transactions
+                    WHERE owner_id = %s;
+                    """, [account_data['id']]
                 )
                 result = []
                 for record in db:
-                    id = TransactionsOut(
-                        id=record[0]
+                    output = TransactionsOutWithDetails(
+                        id=record[0],
+                        date=record[1],
+                        amount=record[2],
+                        institution=record[3],
+                        checking_account_id=record[4],
+                        savings_account_id=record[5],
+                        investment_account_id=record[6],
+                        owner_id=record[7]
                     )
-                    result.append(id)
+                    result.append(output)
                 return result
 
 

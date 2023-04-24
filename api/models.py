@@ -14,9 +14,6 @@ class UserIn(BaseModel):
     address: str
     phone: str
     dob: date
-    checking: bool
-    savings: bool
-    investment: bool
 
 
 class AccountForm(BaseModel):
@@ -118,6 +115,7 @@ class TransactionsOutWithDetails(TransactionsOut):
     checking_account_id : Optional[int] = 'null'
     savings_account_id : Optional[int] = 'null'
     investment_account_id : Optional[int] = 'null'
+    owner_id: int
 
 class Stockout(BaseModel):
     c: float

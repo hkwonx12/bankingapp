@@ -25,12 +25,12 @@ def create_transaction(
     return transaction
 
 
-@router.get('/api/transactions', response_model=List[TransactionsOut])
+@router.get('/api/transactions', response_model=List[TransactionsOutWithDetails])
 def get_all_transactions(
     repo: TransactionsRepository = Depends(),
     account_data: dict = Depends(authenticator.get_current_account_data),
 ):
-    return repo.get_all_transactions()
+    return repo.get_all_transactions(account_data)
 
 
 @router.get('/api/transactions/{id}', response_model=TransactionsOutWithDetails)

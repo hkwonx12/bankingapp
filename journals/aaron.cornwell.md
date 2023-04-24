@@ -26,3 +26,6 @@ Today we started working on front end authentication. We've created Login and si
 
 04-18-23
 started implementing tailwind and working on frontend components.
+
+04-20-23
+Continued working on fronted. We were able to get our deposit feature working to create a transaction when a checking/savings account has been updated.

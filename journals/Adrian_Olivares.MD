@@ -63,3 +63,11 @@
 04/18/2023 >
 
     - Today we started we started adding some styling to our website which which included importing things from tailwind. We ended up having our login pages display so we can login from the frontend and be authenticated.
+
+04/19/2023 >
+
+    - We started creating all the forms for all of our bank accounts. We have created the slice and the updated the store as well as created the JSX files for those components.
+
+04/20/2023 >
+
+    - Today we realized we had to change up our front end and rather than have create forms we needed to create a update form for all of our accounts. This was because our transactions were being accessed from our create update forms from our individual bank accounts.
