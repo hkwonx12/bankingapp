@@ -66,6 +66,6 @@ def update_checking_account(
     checking_account_response = repo.update_checking_account(transaction)
     instance = TransactionsRepository()
     if checking_account_response:
-        instance.create_transaction(transaction)
+        instance.create_transaction(transaction, account_data)
 
     return checking_account_response

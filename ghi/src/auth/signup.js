@@ -9,10 +9,7 @@ function SignUpForm() {
         password: '',
         address: '',
         phone: '',
-        dob: '',
-        checking: '',
-        savings: '',
-        investment: '',
+        dob: ''
     })
 
     const fetchData = async () => {
@@ -48,9 +45,6 @@ function SignUpForm() {
                 address: '',
                 phone: '',
                 dob: '',
-                checking: '',
-                savings: '',
-                investment: '',
             })
         }
     };
@@ -96,7 +90,7 @@ function SignUpForm() {
               <input value={formData.dob} onChange={handleChange} placeholder="dob" required type="text" name="dob" id="dob" className="form-control" />
               <label htmlFor="color">DOB</label>
             </div>
-            <div className="form-floating mb-3">
+            {/* <div className="form-floating mb-3">
               <input value={formData.checking} onChange={handleChange} placeholder="checking" required type="text" name="checking" id="checking" className="form-control" />
               <label htmlFor="color">Checking</label>
             </div>
@@ -107,7 +101,7 @@ function SignUpForm() {
             <div className="form-floating mb-3">
               <input value={formData.investment} onChange={handleChange} placeholder="investment" required type="text" name="investment" id="investment" className="form-control" />
               <label htmlFor="color">Investment</label>
-            </div>
+            </div> */}
             <button className="btn btn-primary">Sign Up</button>
           </form>
         </div>

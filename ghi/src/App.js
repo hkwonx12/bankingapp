@@ -5,6 +5,7 @@ import SignUpForm from './auth/signup';
 import LoginForm from './auth/login';
 import { AuthProvider, useAuthContext } from "@galvanize-inc/jwtdown-for-react";
 import CheckingStatements from './components/checking/checking';
+import CheckingAccount from './components/checking/checkingAccount';
 
 
 function App() {
@@ -26,8 +27,9 @@ function App() {
               <Route path="/login" element={<LoginForm />} />
             </Route>
 
-            <Route>
+            <Route >
               <Route path="/checking" element={<CheckingStatements/>}/>
+              <Route path="/checkingaccount" element={<CheckingAccount/>}/>
             </Route>
           </Routes>
         </div>
