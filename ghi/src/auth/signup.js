@@ -55,7 +55,7 @@ function SignUpForm() {
             [event.target.name]: event.target.value
         })
     }
-
+    console.log(formData)
     return (
         <div className="row">
       <div className="offset-3 col-6">
