@@ -7,7 +7,7 @@ function CheckingAccount() {
     const [accounts, setAccounts] = useState([]);
 
     const getData = async () => {
-        const response = await fetch(`http://localhost:8000/api/checking_account/${id}`,
+        const response = await fetch(`http://localhost:8000/api/checking_account/`,
         {headers: {Authorization: `Bearer ${token}`}});
 
         if (response.ok){

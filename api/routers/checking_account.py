@@ -37,14 +37,14 @@ def get_all_checking_account(
     return repo.get_all_checking_accounts(account_data)
 
 
-@router.get('/api/checking_account/{id}', response_model=CheckingAccountOutWithDetails)
+@router.get('/api/checking_account/{owner_id}', response_model=CheckingAccountOutWithDetails)
 def get_one_checking_account(
-    id: int,
+    owner_id: int,
     response: Response,
     repo: CheckingAccountRepository = Depends(),
     account_data: dict = Depends(authenticator.get_current_account_data),
 ) -> CheckingAccountOutWithDetails:
-    checking_account = repo.get_one_checking_account(id)
+    checking_account = repo.get_one_checking_account(account_data)
     if checking_account is None:
         response.status_code = 404
     return checking_account

@@ -1,4 +1,4 @@
-from models import SavingsAccountIn, SavingsAccountOut, SavingsAccountOutWithDetails, TransactionsIn
+from models import SavingsAccountIn, SavingsAccountOut, SavingsAccountOutWithDetails, TransactionsTestIn
 from queries.pool import pool
 from typing import List
 
@@ -59,43 +59,46 @@ class SavingsRepository:
                         )
 
 
-    def get_all_savings_accounts(self, account_data) -> List[SavingsAccountOut]:
+    def get_all_savings_accounts(self, account_data) -> List[SavingsAccountOutWithDetails]:
         with pool.connection() as conn:
             with conn.cursor() as db:
                 result = db.execute(
                     """
-                    SELECT id, account_number, owner_id
+                    SELECT id, total_amount, interest_rate, account_number, routing_number, owner_id
                     FROM savings_account
                     WHERE owner_id = %s;
                     """, [account_data['id']]
                 )
                 result = []
                 for record in db:
-                    id = SavingsAccountOut(
+                    id = SavingsAccountOutWithDetails(
                         id=record[0],
-                        account_number=record[1],
-                        owner_id=record[2]
+                        total_amount=record[1],
+                        interest_rate=record[2],
+                        account_number=record[3],
+                        routing_number=record[4],
+                        owner_id=record[5]
                     )
                     result.append(id)
                 return result
 
 
-    def update_savings_account(self, deposit: TransactionsIn):
+    def update_savings_account(self, deposit: TransactionsTestIn, account_data):
         with pool.connection() as conn:
             with conn.cursor() as db:
                 db.execute(
                     """
                     UPDATE savings_account
                     SET   total_amount =  total_amount + %s
-                    WHERE id = %s
+                    WHERE owner_id = %s
                     """,
                     [
                        deposit.amount,
-                       deposit.savings_account_id
+                       account_data['id']
                     ]
                 )
                 conn.commit()
-                return {"amount": deposit.amount, "id": deposit.savings_account_id}
+                return {"amount": deposit.amount, "id": account_data['id']}
 
 
     def delete_savings_account(self, id: int) -> bool:

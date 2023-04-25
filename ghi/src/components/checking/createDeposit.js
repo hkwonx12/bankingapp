@@ -8,7 +8,6 @@ function CreateDepositForm() {
         date: '',
         amount: '',
         institution: '',
-        checking_account_id: null,
     })
 
     const fetchData = async () => {
@@ -43,7 +42,6 @@ function CreateDepositForm() {
                 date: '',
                 amount: '',
                 institution: '',
-                checking_account_id: null,
             }, [token]);
         }
     };
@@ -59,7 +57,7 @@ function CreateDepositForm() {
     <div className="row">
       <div className="offset-3 col-6">
         <div className="shadow p-4 mt-4 font-monospace">
-          <h1>Open a checking account</h1>
+          <h1>Create a Deposit</h1>
           <form onSubmit={handleSubmit} id="create-manufacturer-form">
             <div className="form-floating mb-3">
               <input value={formData.date} onChange={handleChange} placeholder="YYYY-MM-DD" required type="text" name="date" id="date" className="form-control" />
@@ -71,11 +69,7 @@ function CreateDepositForm() {
             </div>
             <div className="form-floating mb-3">
               <input value={formData.institution} onChange={handleChange} placeholder="Institution name" required type="text" name="institution" id="institution" className="form-control" />
-              <label htmlFor="institution">Institution</label>
-            </div>
-            <div className="form-floating mb-3">
-              <input value={formData.checking_account_id} onChange={handleChange} required type="text" name="checking_account_id" id="checking_account_id" className="form-control" />
-              <label htmlFor="checking_account_id">Id:</label>
+              <label htmlFor="institution">Institution:</label>
             </div>
             <button className="btn btn-primary">Deposit</button>
           </form>
