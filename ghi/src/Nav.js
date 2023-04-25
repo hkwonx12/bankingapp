@@ -25,6 +25,7 @@ function Nav() {
          </div>
          <div className="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
              <div className="text-sm lg:flex-grow">
+                <NavLink className="block mt-4 lg:inline-block lg:mt-0 text-purple-200 hover:text-white mr-4" aria-current="page" to="/">Home</NavLink>
                  <NavLink to="/checkingaccount" className="block mt-4 lg:inline-block lg:mt-0 text-purple-200 hover:text-white mr-4">
                      Checking Total
                  </NavLink>
