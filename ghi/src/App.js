@@ -6,6 +6,8 @@ import LoginForm from './auth/login';
 import { AuthProvider, useAuthContext } from "@galvanize-inc/jwtdown-for-react";
 import CheckingStatements from './components/checking/checking';
 import CheckingAccount from './components/checking/checkingAccount';
+import InvestmentStatements from './components/investment/investmentHistory';
+import InvestmentInformation from './components/investment/investmentt';
 
 
 function App() {
@@ -30,6 +32,11 @@ function App() {
             <Route >
               <Route path="/checking" element={<CheckingStatements/>}/>
               <Route path="/checkingaccount" element={<CheckingAccount/>}/>
+            </Route>
+
+            <Route path='/investment'>
+              <Route path='statements' element={<InvestmentStatements/>}/>
+              <Route path='account' element={<InvestmentInformation/>}/>
             </Route>
           </Routes>
         </div>
