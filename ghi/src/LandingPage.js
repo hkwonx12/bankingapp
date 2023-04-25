@@ -1,6 +1,4 @@
-import LoginForm from "./auth/login";
-import SignUpForm from "./auth/signup";
-import Nav from "./Nav";
+
 import { NavLink } from "react-router-dom";
 
 function LandingPage() {

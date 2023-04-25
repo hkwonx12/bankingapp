@@ -29,12 +29,12 @@ def create_checking_account(
 
 
 
-@router.get('/api/checking_account', response_model=List[CheckingAccountOut])
+@router.get('/api/checking_account', response_model=List[CheckingAccountOutWithDetails])
 def get_all_checking_account(
     repo: CheckingAccountRepository = Depends(),
     account_data: dict = Depends(authenticator.get_current_account_data),
 ):
-    return repo.get_all_checking_accounts()
+    return repo.get_all_checking_accounts(account_data)
 
 
 @router.get('/api/checking_account/{id}', response_model=CheckingAccountOutWithDetails)

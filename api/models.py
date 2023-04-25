@@ -35,14 +35,14 @@ class UserOutWithPassword(UserOut):
 
 class CheckingAccountIn(BaseModel):
     total_amount: int
-    # owner_id: int # today
+    
 
 class CheckingAccountUpdate(BaseModel):
     total_amount: int
 
 class CheckingAccountOut(BaseModel):
     id: int
-    # account_number: int
+
 
 
 class CheckingAccountOutWithDetails(CheckingAccountOut):

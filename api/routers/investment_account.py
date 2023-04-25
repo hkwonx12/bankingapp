@@ -33,7 +33,7 @@ def get_all_investment_account(
     repo: InvestmentAccountRepository = Depends(),
     account_data: dict = Depends(authenticator.get_current_account_data),
 ):
-    return repo.get_all_investment_accounts()
+    return repo.get_all_investment_accounts(account_data)
 
 @router.get('/api/investment_account/{owner_id}', response_model=InvestmentAccountOutWithDetails)
 def get_one_investment_account(

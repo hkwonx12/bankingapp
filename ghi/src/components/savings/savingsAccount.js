@@ -5,11 +5,11 @@ import { useParams } from "react-router-dom";
 function SavingsAccount() {
   const { token } = useAuthContext();
   const [accounts, setAccounts] = useState([]);
-  const { id } = useParams();
+  const { owner_id } = useParams();
 
   const getData = async () => {
     const response = await fetch(
-      `http://localhost:8000/api/savings_account/${id}`,
+      `http://localhost:8000/api/savings_account/${owner_id}`,
       { headers: { Authorization: `Bearer ${token}` } }
     );
 

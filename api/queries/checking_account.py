@@ -2,6 +2,7 @@ from models import CheckingAccountIn, CheckingAccountOut, CheckingAccountOutWith
 from queries.pool import pool
 from typing import List
 
+
 class CheckingAccountRepository:
     def update_checking_account(self, deposit: TransactionsTestIn, account_data):
         print('update_checking_account test')
@@ -86,21 +87,23 @@ class CheckingAccountRepository:
                     )
 
 
-    def get_all_checking_accounts(self) -> List[CheckingAccountOut]:
+    def get_all_checking_accounts(self, account_data) -> List[CheckingAccountOutWithDetails]:
         with pool.connection() as conn:
             with conn.cursor() as db:
                 result = db.execute(
                     """
-                    SELECT id, account_number, owner_id
-                    FROM checking_account;
-                    """
+                    SELECT id, total_amount, routing_number, owner_id
+                    FROM checking_account
+                    WHERE owner_id = %s;
+                    """,[account_data['id']]
                 )
                 result = []
                 for record in db:
-                    id = CheckingAccountOut(
+                    id = CheckingAccountOutWithDetails(
                         id=record[0],
-                        account_number=record[1],
-                        owner_id=record[2]
+                        total_amount=record[1],
+                        routing_number=record[3],
+                        owner_id=record[3]
                     )
                     result.append(id)
                 return result
