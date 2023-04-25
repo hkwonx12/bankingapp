@@ -66,4 +66,10 @@ We completed the front-end sign up, login, and logout features today. We need to
 
 
 # April 19, 2023
-We had to go back to the backend today in order to complete the deposit feature. We fixed the update routers for accounts and create queries for transactions in order for accounts to be updated while transaction history is created. 
+We had to go back to the backend today in order to complete the deposit feature. We fixed the update routers for accounts and create queries for transactions in order for accounts to be updated while transaction history is created.
+
+
+# April 20, 2023
+We created slices for our components and jsx files for them. 
+
+# April 21, 2023

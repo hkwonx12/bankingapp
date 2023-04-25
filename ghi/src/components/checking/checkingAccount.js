@@ -3,12 +3,12 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 function CheckingAccount() {
-    const {token} = useAuthContext();
+    const {token, id} = useAuthContext();
     const [accounts, setAccounts] = useState([]);
-    const {id} = useParams();
+    const {owner_id} = {id};
 
     const getData = async () => {
-        const response = await fetch(`http://localhost:8000/api/checking_account/${id}`,
+        const response = await fetch(`http://localhost:8000/api/checking_account/${owner_id}`,
         {headers: {Authorization: `Bearer ${token}`}});
 
         if (response.ok){

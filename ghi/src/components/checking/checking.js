@@ -43,7 +43,7 @@ function CheckingStatements() {
                                 <tr key={statement.id}>
                                     <td>{statement.date}</td>
                                     <td>{statement.amount}</td>
-                                    <td>{statement.insitution}</td>
+                                    <td>{statement.institution}</td>
                                 </tr>
                             );
                         })}
