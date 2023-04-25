@@ -2,6 +2,7 @@ from models import CheckingAccountIn, CheckingAccountOut, CheckingAccountOutWith
 from queries.pool import pool
 from typing import List
 
+
 class CheckingAccountRepository:
     def update_checking_account(self, deposit: TransactionsIn):
 
@@ -12,7 +13,7 @@ class CheckingAccountRepository:
                     UPDATE checking_account
                     SET total_amount = total_amount + %s
                     WHERE id = %s
-                    """,
+                    """
                     [
                         deposit.amount,
                         deposit.checking_account_id
@@ -59,7 +60,7 @@ class CheckingAccountRepository:
                 return CheckingAccountOut(id=id, **old_data)
 
 
-    def get_one_checking_account(self, owner_id: int) -> CheckingAccountOutWithDetails:
+    def get_one_checking_account(self, id: int) -> CheckingAccountOutWithDetails:
     #connect the DB
         with pool.connection() as conn:
             with conn.cursor() as db:
@@ -68,9 +69,9 @@ class CheckingAccountRepository:
                     """
                     SELECT id, total_amount, account_number, routing_number, owner_id
                     FROM checking_account
-                    WHERE owner_id = %s
+                    WHERE id = %s
                     """,
-                    [owner_id]
+                    [id]
                 )
                 record = result.fetchone()
                 if record is None:
@@ -84,21 +85,23 @@ class CheckingAccountRepository:
                     )
 
 
-    def get_all_checking_accounts(self) -> List[CheckingAccountOut]:
+    def get_all_checking_accounts(self, account_data) -> List[CheckingAccountOutWithDetails]:
         with pool.connection() as conn:
             with conn.cursor() as db:
                 result = db.execute(
                     """
-                    SELECT id, account_number, owner_id
-                    FROM checking_account;
-                    """
+                    SELECT id, total_amount, routing_number, owner_id
+                    FROM checking_account
+                    WHERE owner_id = %s;
+                    """,[account_data['id']]
                 )
                 result = []
                 for record in db:
-                    id = CheckingAccountOut(
+                    id = CheckingAccountOutWithDetails(
                         id=record[0],
-                        account_number=record[1],
-                        owner_id=record[2]
+                        total_amount=record[1],
+                        routing_number=record[3],
+                        owner_id=record[3]
                     )
                     result.append(id)
                 return result

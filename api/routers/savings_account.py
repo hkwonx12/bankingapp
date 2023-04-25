@@ -31,7 +31,7 @@ def get_all_savings_account(
     repo: SavingsRepository = Depends(),
     account_data: dict = Depends(authenticator.get_current_account_data),
 ):
-    return repo.get_all_savings_accounts()
+    return repo.get_all_savings_accounts(account_data)
 
 
 @router.get('/api/savings_account/{owner_id}', response_model=SavingsAccountOutWithDetails)
@@ -65,6 +65,5 @@ def update_savings_account(
     savings_account_response = repo.update_savings_account(transaction)
     instance = TransactionsRepository()
     if savings_account_response:
-        instance.create_transaction(transaction)
-
+        instance.create_transaction(transaction, account_data)
     return savings_account_response

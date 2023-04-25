@@ -54,14 +54,15 @@ class InvestmentAccountRepository:
                         )
 
 
-    def get_all_investment_accounts(self) -> List[InvestmentAccountOut]:
+    def get_all_investment_accounts(self, account_data) -> List[InvestmentAccountOut]:
         with pool.connection() as conn:
             with conn.cursor() as db:
                 result = db.execute(
                     """
                     SELECT id, account_number
-                    FROM investment_account;
-                    """
+                    FROM investment_account
+                    WHERE owner_id = %s;
+                    """, [account_data['id']]
                 )
                 result = []
                 for record in db:
