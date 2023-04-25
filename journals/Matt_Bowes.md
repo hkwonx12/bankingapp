@@ -60,3 +60,6 @@
 
 4-24-23
 - Decided to scrap redux and start again. Working on saving components.
+
+4-25-23
+- Did the savings and savings account components along with some nav changes.
