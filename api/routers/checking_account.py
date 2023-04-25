@@ -1,8 +1,9 @@
 from fastapi import APIRouter, Response, Depends, HTTPException, status
-from models import CheckingAccountIn, CheckingAccountOut, CheckingAccountOutWithDetails, TransactionsIn, CheckingAccountUpdate, TransactionCheckingIn
+from models import CheckingAccountIn, CheckingAccountOut, CheckingAccountOutWithDetails, TransactionsIn, CheckingAccountUpdate, TransactionCheckingIn, TransactionsTestIn
 from queries.accounts import DuplicateAccountError
 from queries.checking_account import CheckingAccountRepository
 from queries.transactions import TransactionsRepository
+from queries.testTransactions import TransactionsTestRepository
 from authenticator import authenticator
 from typing import List
 
@@ -28,22 +29,22 @@ def create_checking_account(
 
 
 
-@router.get('/api/checking_account', response_model=List[CheckingAccountOut])
+@router.get('/api/checking_account', response_model=List[CheckingAccountOutWithDetails])
 def get_all_checking_account(
     repo: CheckingAccountRepository = Depends(),
     account_data: dict = Depends(authenticator.get_current_account_data),
 ):
-    return repo.get_all_checking_accounts()
+    return repo.get_all_checking_accounts(account_data)
 
 
-@router.get('/api/checking_account/{owner_id}', response_model=CheckingAccountOutWithDetails)
+@router.get('/api/checking_account/{id}', response_model=CheckingAccountOutWithDetails)
 def get_one_checking_account(
-    owner_id: int,
+    id: int,
     response: Response,
     repo: CheckingAccountRepository = Depends(),
     account_data: dict = Depends(authenticator.get_current_account_data),
 ) -> CheckingAccountOutWithDetails:
-    checking_account = repo.get_one_checking_account(owner_id)
+    checking_account = repo.get_one_checking_account(id)
     if checking_account is None:
         response.status_code = 404
     return checking_account
@@ -60,12 +61,13 @@ def delete_checking_account(
 
 @router.put('/api/checking_account')
 def update_checking_account(
-    transaction: TransactionsIn,
+    transaction: TransactionsTestIn,
     repo: CheckingAccountRepository = Depends(),
     account_data: dict = Depends(authenticator.get_current_account_data),
 ):
-    checking_account_response = repo.update_checking_account(transaction)
-    instance = TransactionsRepository()
+    # user_id = account_data['id']
+    checking_account_response = repo.update_checking_account(transaction, account_data)
+    instance = TransactionsTestRepository()
     if checking_account_response:
         instance.create_transaction(transaction, account_data)
     return checking_account_response

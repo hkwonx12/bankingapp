@@ -35,14 +35,14 @@ class UserOutWithPassword(UserOut):
 
 class CheckingAccountIn(BaseModel):
     total_amount: int
-    # owner_id: int # today
+    
 
 class CheckingAccountUpdate(BaseModel):
     total_amount: int
 
 class CheckingAccountOut(BaseModel):
     id: int
-    # account_number: int
+
 
 
 class CheckingAccountOutWithDetails(CheckingAccountOut):
@@ -54,16 +54,16 @@ class CheckingAccountOutWithDetails(CheckingAccountOut):
 
 class SavingsAccountIn(BaseModel):
     total_amount: int
-    interest_rate: int
-    account_number: int
-    routing_number: int
-    owner_id: int
+    # interest_rate: int 4/25
+    # account_number: int 4/25
+    # routing_number: int 4/25
+    # owner_id: int 4/25
 
 
 class SavingsAccountOut(BaseModel):
     id: int
-    account_number: int
-    owner_id: int
+    # account_number: int
+    # owner_id: int
 
 
 class SavingsAccountOutWithDetails(SavingsAccountOut):
@@ -75,15 +75,15 @@ class SavingsAccountOutWithDetails(SavingsAccountOut):
 
 class InvestmentAccountIn(BaseModel):
     total_amount: int
-    account_number: int
-    routing_number: int
-    investment_value: int
-    owner_id: int
+    # account_number: int
+    # routing_number: int
+    # investment_value: int
+    # owner_id: int
 
 
 class InvestmentAccountOut(BaseModel):
     id: int
-    account_number: int
+    # account_number: int
 
 
 
@@ -100,6 +100,15 @@ class TransactionsIn(BaseModel):
     checking_account_id : Optional[int] = 'null'
     savings_account_id : Optional[int] = 'null'
     investment_account_id : Optional[int] = 'null'
+
+
+class TransactionsTestIn(BaseModel):
+    date: date
+    amount: int
+    institution: str
+    # checking_account_id : Optional[int] = 'null'
+    # savings_account_id : Optional[int] = 'null'
+    # investment_account_id : Optional[int] = 'null'
 
 class TransactionCheckingIn(BaseModel):
     amount: int

@@ -9,7 +9,7 @@ class SavingsRepository:
         return SavingsAccountOutWithDetails(id=id, **old_data)
 
 
-    def create_savings_account(self, savings_account: SavingsAccountIn):
+    def create_savings_account(self, savings_account: SavingsAccountIn, user_id: int):
         # connect the DB
         with pool.connection() as conn:
             with conn.cursor() as db:
@@ -17,16 +17,14 @@ class SavingsRepository:
                 result = db.execute(
                     """
                     INSERT INTO savings_account
-                        (total_amount, interest_rate, account_number, routing_number)
+                        (total_amount, owner_id)
                     VALUES
-                        (%s, %s, %s, %s)
+                        (%s, %s)
                     RETURNING id;
                     """,
                     [
                     savings_account.total_amount,
-                    savings_account.interest_rate,
-                    savings_account.account_number,
-                    savings_account.routing_number
+                    user_id
 
                     ]
                 )
@@ -35,7 +33,7 @@ class SavingsRepository:
                 return SavingsAccountOut(id=id, **old_data)
 
 
-    def get_one_savings_account(self, owner_id: int) -> SavingsAccountOutWithDetails:
+    def get_one_savings_account(self, id: int) -> SavingsAccountOutWithDetails:
         #connect the DB
             with pool.connection() as conn:
                 with conn.cursor() as db:
@@ -44,9 +42,9 @@ class SavingsRepository:
                         """
                         SELECT id, total_amount, interest_rate, account_number, routing_number, owner_id
                         FROM savings_account
-                        WHERE owner_id = %s
+                        WHERE id = %s
                         """,
-                        [owner_id]
+                        [id]
                     )
                     record = result.fetchone()
                     if record is None:
@@ -61,14 +59,15 @@ class SavingsRepository:
                         )
 
 
-    def get_all_savings_accounts(self) -> List[SavingsAccountOut]:
+    def get_all_savings_accounts(self, account_data) -> List[SavingsAccountOut]:
         with pool.connection() as conn:
             with conn.cursor() as db:
                 result = db.execute(
                     """
                     SELECT id, account_number, owner_id
-                    FROM savings_account;
-                    """
+                    FROM savings_account
+                    WHERE owner_id = %s;
+                    """, [account_data['id']]
                 )
                 result = []
                 for record in db:
