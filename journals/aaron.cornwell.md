@@ -32,3 +32,6 @@ Continued working on fronted. We were able to get our deposit feature working to
 
 04-22-23
 Today we had to back track a bit and make some changes to our backend, and got our splash/landing page finished.
+
+04-25-23
+made updates to checking queries and route
