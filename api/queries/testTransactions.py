@@ -1,18 +1,39 @@
-from models import TransactionsIn, TransactionsOut, TransactionsOutWithDetails, TransactionCheckingIn
+from models import TransactionsIn, TransactionsOut, TransactionsOutWithDetails, TransactionCheckingIn, TransactionsTestIn
 from queries.pool import pool
 from typing import List
 
 
-class TransactionsRepository:
+class TransactionsTestRepository:
     def transactions_in_to_out(self, id: int, transaction: TransactionsOutWithDetails):
         old_data = transaction.dict()
         return TransactionsOutWithDetails(id=id, **old_data)
 
 
-    def create_transaction(self, transaction: TransactionsIn, account_data):
+    def create_transaction(self, transaction: TransactionsTestIn, account_data):
         with pool.connection() as conn:
             with conn.cursor() as db:
                 result = db.execute(
+
+                    """
+                    SELECT checking_account.id, savings_account.id, investment_account.id
+                    FROM checking_account
+                    LEFT JOIN savings_account ON checking_account.owner_id = savings_account.owner_id
+                    LEFT JOIN investment_account ON checking_account.owner_id = investment_account.owner_id
+                    WHERE checking_account.owner_id = %s
+
+                    """,
+                    [
+                    account_data['id']
+                    ]
+
+                )
+                ids = result.fetchone()
+                print(ids)
+                checking_account_id = ids[0]
+                savings_account_id = ids[1]
+                investment_account_id = ids[2]
+                result = db.execute(
+
                     """
                     INSERT INTO transactions
                         (date, amount, institution, checking_account_id, savings_account_id, investment_account_id, owner_id)
@@ -24,9 +45,9 @@ class TransactionsRepository:
                     transaction.date,
                     transaction.amount,
                     transaction.institution,
-                    transaction.checking_account_id,
-                    transaction.savings_account_id,
-                    transaction.investment_account_id,
+                    checking_account_id,
+                    savings_account_id,
+                    investment_account_id,
                     account_data['id']
                     ]
                 )

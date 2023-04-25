@@ -1,26 +1,28 @@
-from models import CheckingAccountIn, CheckingAccountOut, CheckingAccountOutWithDetails, CheckingAccountUpdate, TransactionsIn
+from models import CheckingAccountIn, CheckingAccountOut, CheckingAccountOutWithDetails, CheckingAccountUpdate, TransactionsIn, TransactionsTestIn
 from queries.pool import pool
 from typing import List
 
 class CheckingAccountRepository:
-    def update_checking_account(self, deposit: TransactionsIn):
-
+    def update_checking_account(self, deposit: TransactionsTestIn, account_data):
+        print('update_checking_account test')
         with pool.connection() as conn:
             with conn.cursor() as db:
                 db.execute(
                     """
                     UPDATE checking_account
                     SET total_amount = total_amount + %s
-                    WHERE id = %s
+                    WHERE owner_id = %s
                     """,
                     [
                         deposit.amount,
-                        deposit.checking_account_id
+                        account_data['id']
                     ]
                 )
                 # data = db.fetchone()
                 conn.commit()
-                return {"amount": deposit.amount, "id": deposit.checking_account_id}
+                print(deposit.amount)
+                print(account_data['id'])
+                return {"amount": deposit.amount, "id": account_data['id']}
                 # return data
 
     def delete_checking_account(self, id: int) -> bool:
@@ -59,7 +61,7 @@ class CheckingAccountRepository:
                 return CheckingAccountOut(id=id, **old_data)
 
 
-    def get_one_checking_account(self, owner_id: int) -> CheckingAccountOutWithDetails:
+    def get_one_checking_account(self, id: int) -> CheckingAccountOutWithDetails:
     #connect the DB
         with pool.connection() as conn:
             with conn.cursor() as db:
@@ -68,9 +70,9 @@ class CheckingAccountRepository:
                     """
                     SELECT id, total_amount, account_number, routing_number, owner_id
                     FROM checking_account
-                    WHERE owner_id = %s
+                    WHERE id = %s
                     """,
-                    [owner_id]
+                    [id]
                 )
                 record = result.fetchone()
                 if record is None:

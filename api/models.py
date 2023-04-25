@@ -101,6 +101,15 @@ class TransactionsIn(BaseModel):
     savings_account_id : Optional[int] = 'null'
     investment_account_id : Optional[int] = 'null'
 
+
+class TransactionsTestIn(BaseModel):
+    date: date
+    amount: int
+    institution: str
+    # checking_account_id : Optional[int] = 'null'
+    # savings_account_id : Optional[int] = 'null'
+    # investment_account_id : Optional[int] = 'null'
+
 class TransactionCheckingIn(BaseModel):
     amount: int
     checking_account_id : int
