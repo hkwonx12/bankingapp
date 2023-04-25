@@ -18,7 +18,8 @@ def create_investment_account(
 
 ):
     try:
-        investment_account = repo.create_investment_account(info)
+        user_id =account_data['id']
+        investment_account = repo.create_investment_account(info, user_id)
     except DuplicateAccountError:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,

@@ -16,7 +16,8 @@ def create_savings_account(
     account_data: dict = Depends(authenticator.get_current_account_data),
 ):
     try:
-        savings_account = repo.create_savings_account(info)
+        user_id = account_data['id']
+        savings_account = repo.create_savings_account(info, user_id)
     except DuplicateAccountError:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,

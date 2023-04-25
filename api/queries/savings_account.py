@@ -9,7 +9,7 @@ class SavingsRepository:
         return SavingsAccountOutWithDetails(id=id, **old_data)
 
 
-    def create_savings_account(self, savings_account: SavingsAccountIn):
+    def create_savings_account(self, savings_account: SavingsAccountIn, user_id: int):
         # connect the DB
         with pool.connection() as conn:
             with conn.cursor() as db:
@@ -17,16 +17,14 @@ class SavingsRepository:
                 result = db.execute(
                     """
                     INSERT INTO savings_account
-                        (total_amount, interest_rate, account_number, routing_number)
+                        (total_amount, owner_id)
                     VALUES
-                        (%s, %s, %s, %s)
+                        (%s, %s)
                     RETURNING id;
                     """,
                     [
                     savings_account.total_amount,
-                    savings_account.interest_rate,
-                    savings_account.account_number,
-                    savings_account.routing_number
+                    user_id
 
                     ]
                 )

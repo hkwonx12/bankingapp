@@ -5,7 +5,7 @@ from typing import List
 
 
 class InvestmentAccountRepository:
-    def create_investment_account(self, investment_account:InvestmentAccountIn):
+    def create_investment_account(self, investment_account:InvestmentAccountIn, user_id: int):
             # connect the DB
             with pool.connection() as conn:
                 with conn.cursor() as db:
@@ -13,16 +13,15 @@ class InvestmentAccountRepository:
                     result = db.execute(
                         """
                         INSERT INTO investment_account
-                            (total_amount, investment_value, account_number, owner_id)
+                            (total_amount, owner_id)
                         VALUES
-                            (%s, %s, %s, %s)
+                            (%s, %s)
                         RETURNING id;
                         """,
                         [
                         investment_account.total_amount,
-                        investment_account.investment_value,
-                        investment_account.account_number,
-                        investment_account.owner_id
+                        user_id
+
                         ]
                     )
                     id = result.fetchone()[0]
