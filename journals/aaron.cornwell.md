@@ -29,3 +29,6 @@ started implementing tailwind and working on frontend components.
 
 04-20-23
 Continued working on fronted. We were able to get our deposit feature working to create a transaction when a checking/savings account has been updated.
+
+04-22-23
+Today we had to back track a bit and make some changes to our backend, and got our splash/landing page finished.
