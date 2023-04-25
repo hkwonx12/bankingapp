@@ -17,7 +17,8 @@ def create_checking_account(
 
 ):
     try:
-        checking_account = repo.create_checking_account(info)
+        user_id = account_data['id']
+        checking_account = repo.create_checking_account(info, user_id)
     except DuplicateAccountError:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
@@ -67,5 +68,4 @@ def update_checking_account(
     instance = TransactionsRepository()
     if checking_account_response:
         instance.create_transaction(transaction, account_data)
-
     return checking_account_response

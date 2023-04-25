@@ -35,7 +35,7 @@ class UserOutWithPassword(UserOut):
 
 class CheckingAccountIn(BaseModel):
     total_amount: int
-    owner_id: int
+    # owner_id: int # today
 
 class CheckingAccountUpdate(BaseModel):
     total_amount: int
@@ -43,12 +43,13 @@ class CheckingAccountUpdate(BaseModel):
 class CheckingAccountOut(BaseModel):
     id: int
     # account_number: int
-    owner_id: int
 
 
 class CheckingAccountOutWithDetails(CheckingAccountOut):
     total_amount: int
     routing_number: int
+    owner_id: int
+
 
 
 class SavingsAccountIn(BaseModel):
@@ -124,3 +125,4 @@ class Stockout(BaseModel):
     o: float
     pc: float
     t: int
+    dp: float
