@@ -9,6 +9,7 @@ import CheckingAccount from './components/checking/checkingAccount';
 import CreateCheckingAccountForm from './components/checking/createCheckingAccount';
 import CreateDepositForm from './components/checking/createDeposit';import InvestmentStatements from './components/investment/investmentHistory';
 import InvestmentInformation from './components/investment/investmentt';
+import UserPage from './testuserpage';
 
 
 function App() {
@@ -17,10 +18,10 @@ function App() {
   return (
     <BrowserRouter>
       <AuthProvider>
-        {/* <Nav /> */}
+        <Nav />
         <div>
           <Routes>
-              <Route path="/" element={<MainPage />} />
+              {/* <Route path="/" element={<MainPage />} /> */}
 
               <Route>
                 <Route path="/signup" element={<SignUpForm />} />
@@ -29,6 +30,7 @@ function App() {
             <Route>
               <Route path="/login" element={<LoginForm />} />
             </Route>
+
 
             <Route >
               <Route path="/checking" element={<CheckingStatements/>}/>
