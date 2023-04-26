@@ -29,6 +29,7 @@ function CheckingAccount() {
                 <table>
                     <thead>
                         <tr>
+                            <th>Routing Number</th>
                             <th>Total Amount</th>
                         </tr>
                     </thead>
@@ -36,6 +37,7 @@ function CheckingAccount() {
                         {accounts && accounts.map(account => {
                             return (
                                 <tr key={account.id}>
+                                    <td>{account.routing_number}</td>
                                     <td>{account.total_amount}</td>
                                 </tr>
                             );

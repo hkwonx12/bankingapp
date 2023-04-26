@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { useAuthContext } from '@galvanize-inc/jwtdown-for-react';
-
+import { useNavigate } from "react-router-dom";
 
 function CreateDepositForm() {
+  const navigate = useNavigate();
     const {token} = useAuthContext();
     const [formData, setFormData] = useState({
         date: '',
