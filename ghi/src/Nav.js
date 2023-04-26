@@ -56,6 +56,15 @@ function Nav() {
                 <NavLink to="/savings" className="block mt-4 lg:inline-block lg:mt-0 text-purple-200 hover:text-white mr-4">
                      Savings History
                  </NavLink>
+                 <NavLink to="/savingsaccount" className="block mt-4 lg:inline-block lg:mt-0 text-purple-200 hover:text-white mr-4">
+                     Savings Total
+                 </NavLink>
+                 <NavLink to="/createsavings" className="block mt-4 lg:inline-block lg:mt-0 text-purple-200 hover:text-white mr-4">
+                     Create Savings Account
+                 </NavLink>
+                 <NavLink to="/savingsdeposit" className="block mt-4 lg:inline-block lg:mt-0 text-purple-200 hover:text-white mr-4">
+                     Savings Deposit
+                 </NavLink>
              </div>
              <div>
                 <NavLink to="/user" className="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0">User Account</NavLink>

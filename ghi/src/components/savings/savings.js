@@ -1,7 +1,7 @@
 import { useAuthContext } from "@galvanize-inc/jwtdown-for-react";
 import { useEffect, useState } from "react";
 
-function SavingStatements() {
+function SavingsStatements() {
   const { token } = useAuthContext();
   const [statements, setStatements] = useState([]);
 
@@ -22,7 +22,7 @@ function SavingStatements() {
 
       const getStatementsFiltered = () => {
         return statements.filter((statement) =>
-          statement["checking_account_id"] = !null && statement["savings_account_id"] == null && statement["investment_accout_id"] == null
+          statement["savings_account_id"] = !null && statement["checking_account_id"] == null && statement["investment_accout_id"] == null
         );
       };
 
@@ -56,4 +56,4 @@ function SavingStatements() {
   );
 }
 
-export default SavingStatements;
+export default SavingsStatements;
