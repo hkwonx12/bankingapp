@@ -7,7 +7,8 @@ import { AuthProvider } from "@galvanize-inc/jwtdown-for-react";
 import CheckingStatements from './components/checking/checking';
 import CheckingAccount from './components/checking/checkingAccount';
 import CreateCheckingAccountForm from './components/checking/createCheckingAccount';
-import CreateDepositForm from './components/checking/createDeposit';import InvestmentStatements from './components/investment/investmentHistory';
+import CreateDepositForm from './components/checking/createDeposit';
+import InvestmentStatements from './components/investment/investmentHistory';
 // import InvestmentInformation from './components/investment/investmentt';
 import LandingPage from './LandingPage';
 import CreateInvestmentAccountForm from './components/investment/createInvestmentAccount';
@@ -15,6 +16,11 @@ import CreateInvestmentDepositForm from './components/investment/investmentDepos
 import InvestmentAccountDetail from './components/investment/investmentAccountDetail';
 import UpdateUserForm from './components/user/userUpdate';
 import User from './components/user/getUser';
+import SavingsStatements from "./components/savings/savings";
+import SavingsAccount from "./components/saving/SavingsAccount";
+import CreateSavingsAccountForm from "./components/savings/createSavingsAccount";
+import CreateSavingsDepositForm from "./components/saving/createSavingDeposit";
+
 
 function App() {
 
@@ -49,6 +55,14 @@ function App() {
               <Route path="/checkingaccount" element={<CheckingAccount/>}/>
               <Route path="/createchecking" element={<CreateCheckingAccountForm />} />
               <Route path="/checkingdeposit" element={<CreateDepositForm/>}/>
+            </Route>
+
+            <Route>
+              <Route path="/savings" element={<SavingsStatements/>}/>
+              <Route path="/savingsaccount" element={<SavingsAccount/>}/>
+              <Route path="/createsavings" element={<CreateSavingsAccountForm/>}/>
+              <Route path="/savingsdeposit" element={<CreateSavingsDepositForm/>}/>
+              <Route path="/savingsdeposit" element={<CreateSavingsDepositForm/>}/>
             </Route>
 
             <Route path='/investment'>
