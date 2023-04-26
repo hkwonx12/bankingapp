@@ -71,3 +71,11 @@
 04/20/2023 >
 
     - Today we realized we had to change up our front end and rather than have create forms we needed to create a update form for all of our accounts. This was because our transactions were being accessed from our create update forms from our individual bank accounts.
+
+04/24/2023 >
+
+    - We realized that redux tool kit was harder and more time consuming than expected so we decided to continue with react without redux. THis would mean a bit extra time but it should pave a simpler path for us and will allow us to finish on time. 
+
+04/25/2023 >
+
+    - Today I went back to the backend and started fixing some things to mak eour life on the front end easier. Changed the routes so that our logged in user would only have access to certain routes and didnt have the power to view any others.

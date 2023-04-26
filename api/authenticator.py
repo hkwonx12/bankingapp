@@ -16,13 +16,6 @@ class MyAuthenticator(Authenticator):
         # username (which could be an email)
         return user.get_one_user(username)
 
-    async def get_checking_account_data(
-            self,
-            account_number: int,
-            checking_account: CheckingAccountRepository
-    ):
-        return checking_account.get_one_user(account_number)
-
 
     def get_account_getter(
         self,
@@ -31,10 +24,12 @@ class MyAuthenticator(Authenticator):
         # Return the user. That's it.
         return user
 
+
     def get_hashed_password(self, user: UserOutWithPassword):
         # Return the encrypted password value from your
         # account object
         return user.hashed_password
+
 
     def get_account_data_for_cookie(self, user: UserOut):
         # Return the username and the data for the cookie.
