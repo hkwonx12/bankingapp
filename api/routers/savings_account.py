@@ -66,5 +66,5 @@ def update_savings_account(
     savings_account_response = repo.update_savings_account(transaction, account_data)
     instance = TransactionsTestRepository()
     if savings_account_response:
-        instance.create_transaction(transaction, account_data)
+        instance.create_savings_transaction(transaction, account_data)
     return savings_account_response
