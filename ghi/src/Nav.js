@@ -41,6 +41,15 @@ function Nav() {
                  <NavLink to="/investment/statements/" className="block mt-4 lg:inline-block lg:mt-0 text-purple-200 hover:text-white mr-4">
                      Investment History
                  </NavLink>
+                 <NavLink to="/investment/create/" className="block mt-4 lg:inline-block lg:mt-0 text-purple-200 hover:text-white mr-4">
+                     Create Investment Account
+                 </NavLink>
+                 <NavLink to="/investment/deposit/" className="block mt-4 lg:inline-block lg:mt-0 text-purple-200 hover:text-white mr-4">
+                     Create Investment Deposit
+                 </NavLink>
+                 <NavLink to="/investment/detail/" className="block mt-4 lg:inline-block lg:mt-0 text-purple-200 hover:text-white mr-4">
+                     Investment Detail
+                 </NavLink>
                 <NavLink to="/savingsaccount" className="block mt-4 lg:inline-block lg:mt-0 text-purple-200 hover:text-white mr-4">
                      Savings Total
                  </NavLink>
