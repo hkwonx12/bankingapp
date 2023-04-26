@@ -10,7 +10,8 @@ import CreateCheckingAccountForm from './components/checking/createCheckingAccou
 import CreateDepositForm from './components/checking/createDeposit';import InvestmentStatements from './components/investment/investmentHistory';
 // import InvestmentInformation from './components/investment/investmentt';
 import LandingPage from './LandingPage';
-
+import UpdateUserForm from './components/user/userUpdate';
+import User from './components/user/getUser';
 
 function App() {
 
@@ -35,6 +36,10 @@ function App() {
               <Route path="/login" element={<LoginForm />} />
             </Route>
 
+            <Route>
+              <Route path="/user" element={<User/>} />
+              <Route path="/edituser" element={<UpdateUserForm />}/>
+            </Route>
 
             <Route>
               <Route path="/checking" element={<CheckingStatements/>}/>

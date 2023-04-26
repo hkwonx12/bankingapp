@@ -24,26 +24,26 @@ function CreateDepositForm() {
     }, [token]);
 
     const handleSubmit = async (event) => {
-        event.preventDefault();
-        const url = "http://localhost:8000/api/checking_account";
-        const fetchConfig = {
-            method: "PUT",
-            body: JSON.stringify(formData),
-            headers: {
-                'Content-Type': 'application/json',
-                Authorization: `Bearer ${token}`
-            },
+      event.preventDefault();
+      const url = "http://localhost:8000/api/checking_account";
+      const fetchConfig = {
+          method: "PUT",
+          body: JSON.stringify(formData),
+          headers: {
+              'Content-Type': 'application/json',
+              Authorization: `Bearer ${token}`
+          },
 
-        };
+      };
 
-        const response = await fetch(url, fetchConfig);
-        if (token && response.ok) {
-            setFormData({
-                date: '',
-                amount: '',
-                institution: '',
-            }, [token]);
-        }
+      const response = await fetch(url, fetchConfig);
+      if (token && response.ok) {
+          setFormData({
+              date: '',
+              amount: '',
+              institution: '',
+          }, [token]);
+      }
     };
 
     const handleChange = (event) => {

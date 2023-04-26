@@ -1,5 +1,5 @@
 from fastapi import APIRouter, Request, Response, Depends, HTTPException, status
-from models import UserIn, UserUpdateIn, UserOut, AccountForm, AccountToken
+from models import UserIn, UserUpdateIn, UserOut, UserOutWithDetails, AccountForm, AccountToken
 from queries.accounts import DuplicateAccountError
 from queries.users import UserRepository
 from authenticator import authenticator
@@ -30,11 +30,13 @@ async def create_user(
     return AccountToken(user=user, **token.dict())
 
 
-@router.get('/api/users', response_model=List[UserOut])
+@router.get('/api/users', response_model=List[UserOutWithDetails])
 def get_all_users(
     repo: UserRepository = Depends(),
+    account_data: dict = Depends(authenticator.get_current_account_data),
+
 ):
-    return repo.get_all_users()
+    return repo.get_all_users(account_data)
 
 
 @router.get('/api/users/{username}', response_model=UserOut)
