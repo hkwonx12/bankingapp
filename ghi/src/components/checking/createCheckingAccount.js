@@ -50,16 +50,16 @@ function CreateCheckingAccountForm() {
     }
 
     return (
-    <div className="row">
+    <div className="flex flex-col max-w-md px-4 py-8 bg-white rounded-lg shadow dark:bg-gray-800 sm:px-6 md:px-8 lg:px-10">
       <div className="offset-3 col-6">
-        <div className="shadow p-4 mt-4 font-monospace">
+        <div className="self-center mb-2 text-xl font-light text-gray-800 sm:text-2xl dark:text-white">
           <h1>Open a checking account</h1>
           <form onSubmit={handleSubmit} id="create-manufacturer-form">
-            <div className="form-floating mb-3">
-              <input value={formData.dob} onChange={handleChange} placeholder="$0.00" required type="text" name="total_amount" id="total_amount" className="form-control" />
+            <div className="flex flex-col mb-2">
               <label htmlFor="total_amount">Deposit Amount:</label>
+              <input value={formData.dob} onChange={handleChange} placeholder="$0.00" required type="text" name="total_amount" id="total_amount" className="form-control" />
             </div>
-            <button className="btn btn-primary">Create</button>
+            <button type="submit" className="py-2 px-4  bg-purple-600 hover:bg-purple-700 focus:ring-purple-500 focus:ring-offset-purple-200 text-white w-half transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg">Create</button>
           </form>
         </div>
       </div>

@@ -16,6 +16,20 @@ class UserIn(BaseModel):
     dob: date
 
 
+class UserUpdateIn(BaseModel):
+    email: str
+    full_name: str
+    address: str
+    phone: str
+
+
+class UserUpdateOut(BaseModel):
+    id: int
+    email: str
+    full_name: str
+    address: str
+    phone: str
+
 class AccountForm(BaseModel):
     username: str
     password: str
@@ -24,6 +38,16 @@ class AccountForm(BaseModel):
 class UserOut(BaseModel):
     id: int
     username: str
+
+class UserOutWithDetails(BaseModel):
+    id: int
+    email: str
+    full_name: str
+    username: str
+    hashed_password: str
+    address: str
+    phone: str
+    dob: date
 
 class AccountToken(Token):
     user: UserOut
@@ -136,15 +160,18 @@ class Stockout(BaseModel):
     t: int
     dp: float
 
+
 class TransactionOutForChecking(TransactionsIn):
     checking_account_id : Optional[int] = 'null'
     savings_account_id : str = 'null'
     investment_account_id : str = 'null'
 
+
 class TransactionOutForSaving(TransactionsIn):
     checking_account_id : str = 'null'
     savings_account_id : Optional[int] = 'null'
     investment_account_id : str = 'null'
+
 
 class TransactionOutForInvestment(TransactionsIn):
     checking_account_id : str = 'null'

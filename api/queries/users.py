@@ -1,36 +1,31 @@
-from models import UserIn, UserOut, UserOutWithPassword
+from models import UserIn, UserOut, UserOutWithPassword, UserUpdateIn, UserUpdateOut, UserOutWithDetails
 from queries.pool import pool
 from typing import List
 
 
 class UserRepository:
-    def update_user(self, user: UserIn, account_data) -> UserOut:
+    def update_user(self, user: UserUpdateIn, account_data):
         with pool.connection() as conn:
             with conn.cursor() as db:
                 db.execute(
                     """
                     UPDATE users
-                    SET full_name = %s
-                      , username = %s
-                      , hashed_password = %s
-                      , email = %s
+                    SET email = %s
+                      , full_name = %s
                       , address = %s
                       , phone = %s
                     WHERE id = %s
                     """,
                     [
-                        user.full_name,
-                        user.username,
-                        user.password,
                         user.email,
+                        user.full_name,
                         user.address,
                         user.phone,
                         account_data['id']
                     ]
                 )
                 conn.commit()
-
-                return {"full_name": user.full_name, "username": user.username, "password": user.password, "email": user.email, "address": user.address, "phone": user.phone,  "id": account_data['id']}
+                return {"email": user.email, "full_name": user.full_name, "address": user.address, "phone": user.phone,  "id": account_data['id']}
 
 
     def delete_user(self, user_id: int) -> bool:
@@ -101,20 +96,27 @@ class UserRepository:
                     )
 
 
-    def get_all_users(self) -> List[UserOut]:
+    def get_all_users(self, account_data) -> List[UserOutWithDetails]:
         with pool.connection() as conn:
             with conn.cursor() as db:
                 result = db.execute(
                     """
-                    SELECT id, username
-                    FROM users;
-                    """
+                    SELECT id, email, full_name, username, hashed_password, address, phone, dob
+                    FROM users
+                    WHERE id = %s;
+                    """, [account_data['id']]
                 )
                 result = []
                 for record in db:
-                    user = UserOut(
+                    user = UserOutWithDetails(
                         id=record[0],
-                        username=record[1]
+                        email=record[1],
+                        full_name=record[2],
+                        username=record[3],
+                        hashed_password=record[4],
+                        address=record[5],
+                        phone=record[6],
+                        dob=record[7]
                     )
                     result.append(user)
                 return result

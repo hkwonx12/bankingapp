@@ -70,6 +70,13 @@ We had to go back to the backend today in order to complete the deposit feature.
 
 
 # April 20, 2023
-We created slices for our components and jsx files for them. 
+We created slices for our components and jsx files for them.
 
 # April 21, 2023
+We decided to take out redux for our front end as we did not feel as though we had a good grasp on the concepts. We were getting more confused by the time that we were trying to get components to work. We deleted the redux files and began to work with React only.
+
+# April 24, 2023
+Front-end authorization was completed with JWTDown instead of RKTQ. A landing page was created with the navigation bar. Checking account forms and list pages were created but still needs to be worked on to make it fully functional. 
+
+# April 25, 2023
+We finished making ghi forms and list pages for checking account. We are able to create a checking account, deposit money, see the amount total, and list the transactions. We started on savings account to replicate all of those from checkings, and a main page has been started for the user to view all of their accounts.
