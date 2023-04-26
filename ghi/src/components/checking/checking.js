@@ -13,6 +13,7 @@ function CheckingStatements() {
             const data = await response.json();
             setStatements(data)
         }
+       
     };
 
     useEffect(() => {
