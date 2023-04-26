@@ -10,6 +10,9 @@ import CreateCheckingAccountForm from './components/checking/createCheckingAccou
 import CreateDepositForm from './components/checking/createDeposit';import InvestmentStatements from './components/investment/investmentHistory';
 // import InvestmentInformation from './components/investment/investmentt';
 import LandingPage from './LandingPage';
+import CreateInvestmentAccountForm from './components/investment/createInvestmentAccount';
+import CreateInvestmentDepositForm from './components/investment/investmentDeposit';
+import InvestmentAccountDetail from './components/investment/investmentAccountDetail';
 
 function App() {
 
@@ -44,6 +47,9 @@ function App() {
 
             <Route path='/investment'>
               <Route path='statements' element={<InvestmentStatements/>}/>
+              <Route path='create' element={<CreateInvestmentAccountForm/>}/>
+              <Route path='deposit' element={<CreateInvestmentDepositForm/>}/>
+              <Route path='detail' element={<InvestmentAccountDetail/>}/>
               {/* <Route path='account' element={<InvestmentInformation/>}/> */}
             </Route>
 

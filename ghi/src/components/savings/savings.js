@@ -6,9 +6,9 @@ function SavingStatements() {
   const [statements, setStatements] = useState([]);
 
   const getData = async () => {
-    const response = await fetch("http://localhost:8000/api/transactions", {
-      headers: { Authorization: `Bearer ${token}` },
-    });
+    const response = await fetch("http://localhost:8000/api/transactions",
+      {headers: { Authorization: `Bearer ${token}` }});
+
 
     if (response.ok) {
       const data = await response.json();
