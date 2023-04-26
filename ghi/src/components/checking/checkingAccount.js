@@ -13,6 +13,7 @@ function CheckingAccount() {
         if (response.ok){
             const data = await response.json();
             setAccounts(data)
+            console.log(data)
         }
     };
 
@@ -20,12 +21,6 @@ function CheckingAccount() {
     useEffect(() => {
         if (token) getData();
     }, [token]);
-//when useEffect, return gets rendered
-// then runs what is in the function
-// if [token] was [], it would only run one time
-// but since we passed a token, this gets run everytime token gets changed
-// so run 1 time initially + everytime token gets changed -> solving the issue with token disappearing after refreshing the pages
-// this is an issue because it is async because its going to take time for token to get data back from backend
 
     return (
         <div>

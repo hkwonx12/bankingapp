@@ -24,7 +24,7 @@ function User() {
 
 
     return (
-        <div>
+        <div className="flex items-center justify-center h-screen">
             <h1>Your Information</h1>
             <div>
                 <table>
@@ -53,7 +53,6 @@ function User() {
                         })}
                     </tbody>
                 </table>
-                <Link to="/edituser"> Update your Information</Link>
             </div>
         </div>
     )
