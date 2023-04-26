@@ -13,7 +13,7 @@ function CheckingStatements() {
             const data = await response.json();
             setStatements(data)
         }
-       
+
     };
 
     useEffect(() => {
@@ -31,7 +31,7 @@ function CheckingStatements() {
         <div>
             <h1>Your Checking Account Statements</h1>
             <div className='container'>
-                <table>
+                <table className="table-auto">
                     <thead>
                         <tr>
                             <th>date</th>

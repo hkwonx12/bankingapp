@@ -63,7 +63,7 @@ function Nav() {
                      Create Savings Account
                  </NavLink>
                  <NavLink to="/savingsdeposit" className="block mt-4 lg:inline-block lg:mt-0 text-purple-200 hover:text-white mr-4">
-                     Savings History
+                     Savings Deposit
                  </NavLink>
              </div>
              <div>

@@ -50,16 +50,16 @@ function CreateCheckingAccountForm() {
     }
 
     return (
-    <div className="flex flex-col max-w-md px-4 py-8 bg-white rounded-lg shadow dark:bg-gray-800 sm:px-6 md:px-8 lg:px-10">
-      <div className="offset-3 col-6">
-        <div className="self-center mb-2 text-xl font-light text-gray-800 sm:text-2xl dark:text-white">
-          <h1>Open a checking account</h1>
+    <div className="w-full max-w-xs">
+      <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+        <div className="mb-4">
+          <h1 className="block text-gray-700 text-sm font-bold mb-2">Open a checking account</h1>
           <form onSubmit={handleSubmit} id="create-manufacturer-form">
-            <div className="flex flex-col mb-2">
+            <div className="mb-6">
               <label htmlFor="total_amount">Deposit Amount:</label>
-              <input value={formData.dob} onChange={handleChange} placeholder="$0.00" required type="text" name="total_amount" id="total_amount" className="form-control" />
+              <input value={formData.dob} onChange={handleChange} placeholder="$0.00" required type="text" name="total_amount" id="total_amount" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
             </div>
-            <button type="submit" className="py-2 px-4  bg-purple-600 hover:bg-purple-700 focus:ring-purple-500 focus:ring-offset-purple-200 text-white w-half transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg">Create</button>
+            <button type="submit" className="py-2 px-4  bg-purple-600 hover:bg-purple-700 focus:ring-purple-500 focus:ring-offset-purple-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg ">Create</button>
           </form>
         </div>
       </div>
