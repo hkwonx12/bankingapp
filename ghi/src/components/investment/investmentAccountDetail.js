@@ -29,6 +29,7 @@ function InvestmentAccountDetail() {
                     <thead>
                         <tr>
                             <th>Total Amount</th>
+                            <th>Investment Percentage Change</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -36,6 +37,7 @@ function InvestmentAccountDetail() {
                             return (
                                 <tr key={account.id}>
                                     <td>{account.total_amount}</td>
+                                    <td>{account.investment_value}</td>
                                 </tr>
                             );
                         })}
