@@ -16,10 +16,10 @@ import CreateInvestmentDepositForm from './components/investment/investmentDepos
 import InvestmentAccountDetail from './components/investment/investmentAccountDetail';
 import UpdateUserForm from './components/user/userUpdate';
 import User from './components/user/getUser';
+import SavingsAccount from './components/savings/savingsAccount';
 import SavingsStatements from "./components/savings/savings";
-import SavingsAccount from "./components/saving/SavingsAccount";
 import CreateSavingsAccountForm from "./components/savings/createSavingsAccount";
-import CreateSavingsDepositForm from "./components/saving/createSavingDeposit";
+import CreateSavingsDepositForm from "./components/savings/createSavingsDeposit";
 
 
 function App() {
@@ -61,7 +61,6 @@ function App() {
               <Route path="/savings" element={<SavingsStatements/>}/>
               <Route path="/savingsaccount" element={<SavingsAccount/>}/>
               <Route path="/createsavings" element={<CreateSavingsAccountForm/>}/>
-              <Route path="/savingsdeposit" element={<CreateSavingsDepositForm/>}/>
               <Route path="/savingsdeposit" element={<CreateSavingsDepositForm/>}/>
             </Route>
 
