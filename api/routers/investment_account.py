@@ -29,7 +29,7 @@ def create_investment_account(
     return investment_account
 
 
-@router.get('/api/investment_account', response_model=List[InvestmentAccountOut])
+@router.get('/api/investment_account', response_model=List[InvestmentAccountOutWithDetails])
 def get_all_investment_account(
     repo: InvestmentAccountRepository = Depends(),
     account_data: dict = Depends(authenticator.get_current_account_data),
