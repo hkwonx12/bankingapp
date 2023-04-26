@@ -76,7 +76,11 @@ We created slices for our components and jsx files for them.
 We decided to take out redux for our front end as we did not feel as though we had a good grasp on the concepts. We were getting more confused by the time that we were trying to get components to work. We deleted the redux files and began to work with React only.
 
 # April 24, 2023
-Front-end authorization was completed with JWTDown instead of RKTQ. A landing page was created with the navigation bar. Checking account forms and list pages were created but still needs to be worked on to make it fully functional. 
+Front-end authorization was completed with JWTDown instead of RKTQ. A landing page was created with the navigation bar. Checking account forms and list pages were created but still needs to be worked on to make it fully functional.
 
 # April 25, 2023
-We finished making ghi forms and list pages for checking account. We are able to create a checking account, deposit money, see the amount total, and list the transactions. We started on savings account to replicate all of those from checkings, and a main page has been started for the user to view all of their accounts.
+I finished making ghi forms and list pages for checking account. I was able to create a checking account, deposit money, see the amount total, and list the transactions. We started on savings account to replicate all of those from checkings, and a main page has been started for the user to view all of their accounts.
+
+
+# April 26, 2023
+I am finished creating a functional edit user information page and a user details page. I will format the pages to make it more clean. 
