@@ -4,7 +4,7 @@ from typing import List
 
 
 class UserRepository:
-    def update_user(self, user_id: int, user: UserIn) -> UserOut:
+    def update_user(self, user: UserIn, account_data) -> UserOut:
         with pool.connection() as conn:
             with conn.cursor() as db:
                 db.execute(
@@ -25,10 +25,12 @@ class UserRepository:
                         user.email,
                         user.address,
                         user.phone,
-                        user_id
+                        account_data['id']
                     ]
                 )
-                return self.user_in_to_out(user_id, user)
+                conn.commit()
+
+                return {"full_name": user.full_name, "username": user.username, "password": user.password, "email": user.email, "address": user.address, "phone": user.phone,  "id": account_data['id']}
 
 
     def delete_user(self, user_id: int) -> bool:

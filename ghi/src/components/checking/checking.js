@@ -18,17 +18,18 @@ function CheckingStatements() {
     useEffect(() => {
         if (token) getData();
     }, [token]);
-//when useEffect, return gets rendered
-//then runs what is in the function
-//if [token] was [], it would only run one time
-//but since we passed a token, this gets run everytime token gets changed
-//so run 1 time initially + everytime token gets changed -> solving the issue with token disappearing after refreshing the pages
-//this is an issue because it is async because its going to take time for token to get data back from backend
+
+    const getStatementsFiltered = () => {
+        return statements.filter((statement) =>
+            statement['checking_account_id'] = !null && statement['savings_account_id'] == null && statement['investment_accout_id'] == null
+        );
+    }
+
 
     return (
         <div>
             <h1>Your Checking Account Statements</h1>
-            <div>
+            <div className='container'>
                 <table>
                     <thead>
                         <tr>
@@ -38,7 +39,7 @@ function CheckingStatements() {
                         </tr>
                     </thead>
                     <tbody>
-                        {statements && statements.map(statement => {
+                        {getStatementsFiltered() && getStatementsFiltered().map((statement) => {
                             return (
                                 <tr key={statement.id}>
                                     <td>{new Date(statement.date).toLocaleDateString('en-US', {year: 'numeric', month: 'long', day: 'numeric'})}</td>

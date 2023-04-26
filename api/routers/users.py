@@ -57,13 +57,14 @@ def delete_user(
     return repo.delete_user(user_id)
 
 
-@router.put('/api/users/{user_id}', response_model=UserOut)
+@router.put('/api/users')
 def update_user(
-    user_id: int,
     user: UserIn,
     repo: UserRepository = Depends(),
-) -> UserOut:
-    return repo.update_user(user_id, user)
+    account_data: dict = Depends(authenticator.get_current_account_data),
+
+):
+    return repo.update_user(user, account_data)
 
 
 @router.get("/token", response_model=AccountToken | None)
