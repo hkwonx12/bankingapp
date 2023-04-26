@@ -6,9 +6,9 @@ function SavingStatements() {
   const [statements, setStatements] = useState([]);
 
   const getData = async () => {
-    const response = await fetch("http://localhost:8000/api/transactions", {
-      headers: { Authorization: `Bearer ${token}` },
-    });
+    const response = await fetch("http://localhost:8000/api/transactions",
+      {headers: { Authorization: `Bearer ${token}` }});
+
 
     if (response.ok) {
       const data = await response.json();
@@ -43,9 +43,9 @@ function SavingStatements() {
               statements.map((statement) => {
                 return (
                   <tr key={statement.id}>
-                    <td>{statement.date}</td>
-                    <td>{statement.amount}</td>
-                    <td>{statement.insitution}</td>
+                      <td>{new Date(statement.date).toLocaleDateString('en-US', {year: 'numeric', month: 'long', day: 'numeric'})}</td>
+                      <td>{new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(statement.amount)}</td>
+                      <td>{statement.institution}</td>
                   </tr>
                 );
               })}
