@@ -52,6 +52,8 @@ function User() {
                         })}
                     </tbody>
                 </table>
+
+                <a href="localhost:3000/edituser">Update your Information</a>
             </div>
         </div>
     )
