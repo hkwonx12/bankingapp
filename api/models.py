@@ -35,7 +35,7 @@ class UserOutWithPassword(UserOut):
 
 class CheckingAccountIn(BaseModel):
     total_amount: int
-    
+
 
 class CheckingAccountUpdate(BaseModel):
     total_amount: int
@@ -135,3 +135,18 @@ class Stockout(BaseModel):
     pc: float
     t: int
     dp: float
+
+class TransactionOutForChecking(TransactionsIn):
+    checking_account_id : Optional[int] = 'null'
+    savings_account_id : str = 'null'
+    investment_account_id : str = 'null'
+
+class TransactionOutForSaving(TransactionsIn):
+    checking_account_id : str = 'null'
+    savings_account_id : Optional[int] = 'null'
+    investment_account_id : str = 'null'
+
+class TransactionOutForInvestment(TransactionsIn):
+    checking_account_id : str = 'null'
+    savings_account_id : str = 'null'
+    investment_account_id : Optional[int] = 'null'
