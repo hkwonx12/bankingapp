@@ -1,7 +1,7 @@
 import { useAuthContext } from "@galvanize-inc/jwtdown-for-react";
 import { useEffect, useState } from "react";
 
-function SavingStatements() {
+function SavingsStatements() {
   const { token } = useAuthContext();
   const [statements, setStatements] = useState([]);
 
@@ -56,4 +56,4 @@ function SavingStatements() {
   );
 }
 
-export default SavingStatements;
+export default SavingsStatements;

@@ -92,7 +92,7 @@ class CheckingAccountRepository:
             with conn.cursor() as db:
                 result = db.execute(
                     """
-                    SELECT id, total_amount, routing_number, owner_id
+                    SELECT id, total_amount, account_number, routing_number, owner_id
                     FROM checking_account
                     WHERE owner_id = %s;
                     """,[account_data['id']]
@@ -102,8 +102,9 @@ class CheckingAccountRepository:
                     id = CheckingAccountOutWithDetails(
                         id=record[0],
                         total_amount=record[1],
+                        account_number=record[2],
                         routing_number=record[3],
-                        owner_id=record[3]
+                        owner_id=record[4]
                     )
                     result.append(id)
                 return result

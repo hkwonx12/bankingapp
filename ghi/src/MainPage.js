@@ -1,11 +1,41 @@
+import { useAuthContext } from '@galvanize-inc/jwtdown-for-react';
+import { useEffect, useState } from 'react';
+import { Link, useNavigate } from "react-router-dom"
 import useToken from "@galvanize-inc/jwtdown-for-react";
-import React from 'react';
-import { NavLink, useNavigate } from 'react-router-dom';
-// import { useAuthContext } from '@galvanize-inc/jwtdown-for-react';
-// import { useEffect } from "react";
 
 function MainPage() {
-    // const {token} = useAuthContext();
+    const {token} = useAuthContext();
+    const [accounts, setAccounts] = useState([]);
+    const [savings, setSavings] = useState([]);
+
+    const getData = async () => {
+        const response = await fetch(`http://localhost:8000/api/checking_account/`,
+        {headers: {Authorization: `Bearer ${token}`}});
+
+        if (response.ok){
+            const data = await response.json();
+            setAccounts(data)
+        }
+    };
+
+
+    const fetchData = async () => {
+    const response = await fetch(
+      'http://localhost:8000/api/savings_account',
+      { headers: { Authorization: `Bearer ${token}` } }
+    );
+
+    if (response.ok) {
+      const savings = await response.json();
+      setSavings(savings);
+    }
+  };
+
+
+    useEffect(() => {
+        if (token) getData() && fetchData();
+    }, [token]);
+
     const { logout } = useToken();
     const navigate = useNavigate()
 
@@ -14,71 +44,97 @@ function MainPage() {
         navigate("/");
     }
 
-    const fetchData = async () => {
-        const url = "http://localhost:3000/mainpage";
-        const response = await fetch(url,
-            {headers: {Authorization: `Bearer ${token}`}});
-        if (response.ok) {
-
-        }
-    }
-    useEffect(() => {
-        if(token) fetchData();
-    }, [token]);
-
-
-  return (
-   <>
-    <nav className="flex items-center justify-between flex-wrap bg-purple-500 p-6">
-        <div className="flex items-center flex-shrink-0 text-white mr-6">
-            <svg className="fill-current h-8 w-8 mr-2" width="54" height="54" viewBox="0 0 54 54" xmlns="http://www.w3.org/2000/svg"><path d="M13.5 22.1c1.8-7.2 6.3-10.8 13.5-10.8 10.8 0 12.15 8.1 17.55 9.45 3.6.9 6.75-.45 9.45-4.05-1.8 7.2-6.3 10.8-13.5 10.8-10.8 0-12.15-8.1-17.55-9.45-3.6-.9-6.75.45-9.45 4.05zM0 38.3c1.8-7.2 6.3-10.8 13.5-10.8 10.8 0 12.15 8.1 17.55 9.45 3.6.9 6.75-.45 9.45-4.05-1.8 7.2-6.3 10.8-13.5 10.8-10.8 0-12.15-8.1-17.55-9.45-3.6-.9-6.75.45-9.45 4.05z"/></svg>
-            <span className="font-semibold text-xl tracking-tight">Croissant United Bank</span>
+    return (
+      <>
+      <div className="flex items-center justify-between flex-wrap bg-purple-500 p-6">
+        <h1 className="text-white text-lg font-bold font-serif">Croissant United Bank</h1>
+      </div>
+      <br/>
+        <div className=" ml-10 mt-0 rounded-2xl pl-25 bg-purple-50 py-10 text-center ring-1 ring-inset ring-gray-900/5 w-1/2 lg:py-16"><Link to="/checking">
+          <div className=" pl-10 sm:p-10 lg:flex-auto">
+            <h1 className="pb-10-0 text-center font-medium pb-5">Checking Account</h1>
+            <div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th className="pr-10 pl-10">Routing Number</th>
+                            <th>Total Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {accounts && accounts.map(account => {
+                            return (
+                                <tr key={account.id}>
+                                    <td>{account.routing_number}</td>
+                                    <td>{account.total_amount}</td>
+                                </tr>
+                            );
+                        })}
+                    </tbody>
+                </table>
+            </div>
         </div>
-         <div className="block lg:hidden">
-             <button className="flex items-center px-3 py-2 border rounded text-purple-200 border-purple-400 hover:text-white hover:border-white">
-                 <svg className="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http:www.w3.org/2000/svg"><title>Menu</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/></svg>
-             </button>
-         </div>
-         <div className="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
-             <div className="text-sm lg:flex-grow">
-                <NavLink className="block mt-4 lg:inline-block lg:mt-0 text-purple-200 hover:text-white mr-4" aria-current="page" to="/">Home</NavLink>
-                 <NavLink to="/checkingaccount" className="block mt-4 lg:inline-block lg:mt-0 text-purple-200 hover:text-white mr-4">
-                     Checking Total
-                 </NavLink>
-                <NavLink to="/checking" className="block mt-4 lg:inline-block lg:mt-0 text-purple-200 hover:text-white mr-4">
-                     Checking History
-                 </NavLink>
-                 <NavLink to="/createchecking" className="block mt-4 lg:inline-block lg:mt-0 text-purple-200 hover:text-white mr-4">
-                    Create Checking Account
-                 </NavLink>
-                 <NavLink to="/checkingdeposit" className="block mt-4 lg:inline-block lg:mt-0 text-purple-200 hover:text-white mr-4">
-                    Create Checking Deposit
-                </NavLink>
-                 <NavLink to="/investment/statements/" className="block mt-4 lg:inline-block lg:mt-0 text-purple-200 hover:text-white mr-4">
-                     Investment History
-                 </NavLink>
-                <NavLink to="/savingsaccount" className="block mt-4 lg:inline-block lg:mt-0 text-purple-200 hover:text-white mr-4">
-                     Savings Total
-                 </NavLink>
-                <NavLink to="/savings" className="block mt-4 lg:inline-block lg:mt-0 text-purple-200 hover:text-white mr-4">
-                     Savings History
-                 </NavLink>
-                 <a href="#responsive-header" className="block mt-4 lg:inline-block lg:mt-0 text-purple-200 hover:text-white">
-                     Blog
-                 </a>
-             </div>
-             <div>
-                 <button onClick={myLogout} className="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0">Log Out</button>
-             </div>
-         </div>
-     </nav>
-     <br/>
-     <div className="fixed inset-0 hidden bg-gray-500 bg-opacity-75 transition-opacity md:block">
-
-     </div>
-     </>
-
-  );
+        </Link>
+        </div>
+        <div className="fixed top-13 right-0 h-60 w-64 bg-purple-50 text-center text-black shadow-lg rounded-2xl">
+          <ul className="mt-5 pb-10"><Link to="/checkingdeposit">Make A Deposit</Link></ul>
+           <button onClick={myLogout} className="text-sm px-4 py-2 leading-none border rounded text-white border-purple
+          bg-purple-500 mt-4 lg:mt-0">Log Out</button>
+        </div>
+         <div className=" ml-10 mt-5 rounded-2xl pl-25 bg-purple-50 py-10 text-center ring-1 ring-inset ring-gray-900/5 w-1/2 lg:py-16"><Link to="/savings">
+          <div className=" pl-10 sm:p-10 lg:flex-auto">
+            <h1 className="pt-0 text-center font-medium pb-5">Savings Account</h1>
+            <div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th className="pr-10 pl-10">Routing Number</th>
+                            <th>Total Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {savings && savings.map(saving => {
+                            return (
+                                <tr key={saving.id}>
+                                    <td>{saving.routing_number}</td>
+                                    <td>{saving.total_amount}</td>
+                                </tr>
+                            );
+                        })}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        </Link>
+        </div>
+        <div className=" ml-10 mt-5 mb rounded-2xl pl-25 bg-purple-50 py-10 text-center ring-1 ring-inset ring-gray-900/5 w-1/2 lg:py-16"><Link to="/savings">
+          <div className=" pl-10 sm:p-10 lg:flex-auto">
+            <h1 className="pt-0 text-center font-medium pb-5">Investment Account</h1>
+            <div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th className="pr-10 pl-10">Routing Number</th>
+                            <th>Total Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {savings && savings.map(saving => {
+                            return (
+                                <tr key={saving.id}>
+                                    <td>{saving.routing_number}</td>
+                                    <td>{saving.total_amount}</td>
+                                </tr>
+                            );
+                        })}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        </Link>
+        </div>
+      </>
+    )
 }
 
 

@@ -1,5 +1,6 @@
 import { useAuthContext } from '@galvanize-inc/jwtdown-for-react';
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 
 function User() {
@@ -23,7 +24,7 @@ function User() {
 
 
     return (
-        <div>
+        <div className="flex items-center justify-center h-screen">
             <h1>Your Information</h1>
             <div>
                 <table>
@@ -52,8 +53,6 @@ function User() {
                         })}
                     </tbody>
                 </table>
-
-                <a href="localhost:3000/edituser">Update your Information</a>
             </div>
         </div>
     )
