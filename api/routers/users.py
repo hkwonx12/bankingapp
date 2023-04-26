@@ -1,5 +1,5 @@
 from fastapi import APIRouter, Request, Response, Depends, HTTPException, status
-from models import UserIn, UserOut, AccountForm, AccountToken
+from models import UserIn, UserUpdateIn, UserOut, AccountForm, AccountToken
 from queries.accounts import DuplicateAccountError
 from queries.users import UserRepository
 from authenticator import authenticator
@@ -59,7 +59,7 @@ def delete_user(
 
 @router.put('/api/users')
 def update_user(
-    user: UserIn,
+    user: UserUpdateIn,
     repo: UserRepository = Depends(),
     account_data: dict = Depends(authenticator.get_current_account_data),
 

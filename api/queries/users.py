@@ -1,18 +1,16 @@
-from models import UserIn, UserOut, UserOutWithPassword
+from models import UserIn, UserOut, UserOutWithPassword, UserUpdateIn, UserUpdateOut
 from queries.pool import pool
 from typing import List
 
 
 class UserRepository:
-    def update_user(self, user: UserIn, account_data) -> UserOut:
+    def update_user(self, user: UserUpdateIn, account_data) -> UserUpdateOut:
         with pool.connection() as conn:
             with conn.cursor() as db:
                 db.execute(
                     """
                     UPDATE users
                     SET full_name = %s
-                      , username = %s
-                      , hashed_password = %s
                       , email = %s
                       , address = %s
                       , phone = %s
@@ -20,8 +18,6 @@ class UserRepository:
                     """,
                     [
                         user.full_name,
-                        user.username,
-                        user.password,
                         user.email,
                         user.address,
                         user.phone,
@@ -30,7 +26,7 @@ class UserRepository:
                 )
                 conn.commit()
 
-                return {"full_name": user.full_name, "username": user.username, "password": user.password, "email": user.email, "address": user.address, "phone": user.phone,  "id": account_data['id']}
+                return {"full_name": user.full_name, "email": user.email, "address": user.address, "phone": user.phone,  "id": account_data['id']}
 
 
     def delete_user(self, user_id: int) -> bool:
