@@ -57,7 +57,7 @@ function CreateDepositForm() {
     <div className="w-full max-w-xs">
       <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
         <div className="mb-4">
-          <h1 className="block text-gray-700 text-sm font-bold mb-2" >Create a Deposit</h1>
+          <h1 className="block text-gray-700 text-sm font-bold mb-2" >Create a Checking Deposit</h1>
           <form onSubmit={handleSubmit} id="create-deposit-form">
             <div className="mb-6">
               <label htmlFor="date">Date:</label>

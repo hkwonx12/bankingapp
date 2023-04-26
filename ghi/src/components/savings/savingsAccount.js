@@ -7,7 +7,7 @@ function SavingsAccount() {
 
   const getData = async () => {
     const response = await fetch(
-      `http://localhost:8000/api/savings_account`,
+      'http://localhost:8000/api/savings_account',
       { headers: { Authorization: `Bearer ${token}` } }
     );
 
