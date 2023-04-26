@@ -17,9 +17,9 @@ import InvestmentAccountDetail from './components/investment/investmentAccountDe
 import UpdateUserForm from './components/user/userUpdate';
 import User from './components/user/getUser';
 import SavingsStatements from "./components/savings/savings";
-import SavingsAccount from "./components/saving/SavingsAccount";
+import SavingsAccount from "./components/savings/savingsAccount";
 import CreateSavingsAccountForm from "./components/savings/createSavingsAccount";
-import CreateSavingsDepositForm from "./components/saving/createSavingDeposit";
+import CreateSavingsDepositForm from "./components/savings/createSavingsDeposit";
 
 
 function App() {

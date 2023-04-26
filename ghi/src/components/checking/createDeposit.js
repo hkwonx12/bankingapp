@@ -36,7 +36,6 @@ function CreateDepositForm() {
           },
 
       };
-
       const response = await fetch(url, fetchConfig);
       if (token && response.ok) {
           setFormData({
@@ -44,7 +43,9 @@ function CreateDepositForm() {
               amount: '',
               institution: '',
           }, [token]);
+
       }
+      navigate("/mainpage");
     };
 
     const handleChange = (event) => {
@@ -73,7 +74,7 @@ function CreateDepositForm() {
               <input value={formData.institution} onChange={handleChange} placeholder="Institution name" required type="text" name="institution" id="institution" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
             </div>
             <div className="flex items-center justify-between">
-            <button className="py-2 px-4  bg-purple-600 hover:bg-purple-700 focus:ring-purple-500 focus:ring-offset-purple-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg ">Deposit</button>
+            <button onClick={handleSubmit} className="py-2 px-4  bg-purple-600 hover:bg-purple-700 focus:ring-purple-500 focus:ring-offset-purple-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg ">Deposit</button>
             </div>
           </form>
         </div>
