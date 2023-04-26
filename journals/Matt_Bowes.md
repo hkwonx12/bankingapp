@@ -62,4 +62,4 @@
 - Did the savings and savings account components along with some nav changes. Made changes to the checking account id and investment components.
 
 # 4-26-23
-- 
+- Finished with the savings components but ran into serious mechanical/error issues, eventually resolved and then moved on to make CreateAccountPage.

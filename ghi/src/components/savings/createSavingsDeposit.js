@@ -3,12 +3,12 @@ import { useAuthContext } from '@galvanize-inc/jwtdown-for-react';
 
 
 function CreateSavingsDepositForm() {
-    const {token} = useAuthContext();
-    const [formData, setFormData] = useState({
-        date: '',
-        amount: '',
-        institution: '',
-    })
+  const {token} = useAuthContext();
+  const [formData, setFormData] = useState({
+      date: '',
+      amount: '',
+      institution: '',
+  })
 
   const fetchData = async () => {
       const url = "http://localhost:8000/api/savings_account";
@@ -36,16 +36,15 @@ function CreateSavingsDepositForm() {
 
     };
 
-        const response = await fetch(url, fetchConfig);
-        if (token && response.ok) {
-            setFormData({
-                date: '',
-                amount: '',
-                institution: '',
-                savings_account_id: null,
-            }, [token]);
-        }
-    };
+    const response = await fetch(url, fetchConfig);
+      if (token && response.ok) {
+          setFormData({
+              date: '',
+              amount: '',
+              institution: '',
+          }, [token]);
+      }
+  };
 
   const handleChange = (event) => {
       setFormData({
@@ -58,10 +57,91 @@ function CreateSavingsDepositForm() {
     <div className="row">
       <div className="offset-3 col-6">
         <div className="shadow p-4 mt-4 font-monospace">
-          <h1>Open a savings account</h1>
+          <h1>Create a savings deposit</h1>
           <form onSubmit={handleSubmit} id="create-manufacturer-form">
             <div className="form-floating mb-3">
               <input value={formData.date} onChange={handleChange} placeholder="YYYY-MM-DD" required type="text" name="date" id="date" className="form-control" />
+              <label htmlFor="date">Date:</label>
+            </div>
+            <div className="form-floating mb-3">
+              <input value={formData.amount} onChange={handleChange} placeholder="0.00" required type="text" name="amount" id="amount" className="form-control" />
+              <label htmlFor="amount">Deposit Amount:</label>
+            </div>
+            <div className="form-floating mb-3">
+              <input value={formData.institution} onChange={handleChange} placeholder="Institution name" required type="text" name="institution" id="institution" className="form-control" />
+              <label htmlFor="institution">Institution</label>
+            </div>
+            <button className="btn btn-primary">Deposit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    )
+}
+
+export default CreateSavingsDepositForm;
+import { useEffect, useState } from "react";
+import { useAuthContext } from '@galvanize-inc/jwtdown-for-react';
+
+
+function CreateSavingsDepositForm() {
+    const {token} = useAuthContext();
+    const [formData, setFormData] = useState({
+        date: '',
+        amount: '',
+        institution: '',
+    })
+
+    const fetchData = async () => {
+        const url = "http://localhost:8000/api/savings_account";
+        const response = await fetch(url,
+            {headers: {Authorization: `Bearer ${token}`}});
+        if (response.ok) {
+            const data = await response.json();
+            setFormData(data);
+        }
+    }
+    useEffect(() => {
+        if (token) fetchData();
+    }, [token]);
+
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        const url = "http://localhost:8000/api/savings_account";
+        const fetchConfig = {
+            method: "PUT",
+            body: JSON.stringify(formData),
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${token}`
+            },
+
+        };
+
+        const response = await fetch(url, fetchConfig);
+        if (token && response.ok) {
+            setFormData({
+                date: '',
+                amount: '',
+                institution: '',
+            }, [token]);
+        }
+    };
+
+    const handleChange = (event) => {
+        setFormData({
+            ...formData,
+            [event.target.name]: event.target.value
+        })
+    }
+
+    return (
+    <div className="w-full max-w-xs">
+      <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+        <div className="mb-4">
+          <h1 className="block text-gray-700 text-sm font-bold mb-2" >Create a Savings Deposit</h1>
+          <form onSubmit={handleSubmit} id="create-deposit-form">
+            <div className="mb-6">
               <label htmlFor="date">Date:</label>
               <input value={formData.date} onChange={handleChange} placeholder="YYYY-MM-DD" required type="text" name="date" id="date" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
             </div>
@@ -73,11 +153,9 @@ function CreateSavingsDepositForm() {
               <label htmlFor="institution">Institution:</label>
               <input value={formData.institution} onChange={handleChange} placeholder="Institution name" required type="text" name="institution" id="institution" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
             </div>
-            <div className="form-floating mb-3">
-              <input value={formData.checking_account_id} onChange={handleChange} required type="text" name="savings_account_id" id="savings_account_id" className="form-control" />
-              <label htmlFor="savings_account_id">Id:</label>
+            <div className="flex items-center justify-between">
+            <button className="py-2 px-4  bg-purple-600 hover:bg-purple-700 focus:ring-purple-500 focus:ring-offset-purple-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg ">Deposit</button>
             </div>
-            <button className="btn btn-primary">Deposit</button>
           </form>
         </div>
       </div>
