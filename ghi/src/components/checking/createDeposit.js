@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { useAuthContext } from '@galvanize-inc/jwtdown-for-react';
-
+import { useNavigate } from "react-router-dom";
 
 function CreateDepositForm() {
+  const navigate = useNavigate();
     const {token} = useAuthContext();
     const [formData, setFormData] = useState({
         date: '',
@@ -33,9 +34,8 @@ function CreateDepositForm() {
                 'Content-Type': 'application/json',
                 Authorization: `Bearer ${token}`
             },
-
         };
-
+        navigate("/mainpage");
         const response = await fetch(url, fetchConfig);
         if (token && response.ok) {
             setFormData({
@@ -71,7 +71,7 @@ function CreateDepositForm() {
               <input value={formData.institution} onChange={handleChange} placeholder="Institution name" required type="text" name="institution" id="institution" className="form-control" />
               <label htmlFor="institution">Institution:</label>
             </div>
-            <button className="btn btn-primary">Deposit</button>
+            <button onClick={handleSubmit} className="btn btn-primary">Deposit</button>
           </form>
         </div>
       </div>

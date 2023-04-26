@@ -35,3 +35,6 @@ Today we had to back track a bit and make some changes to our backend, and got o
 
 04-25-23
 made updates to checking queries and route
+
+04-26-23
+Today I was able to make a users home page and start linking our components to navigate through our UI
