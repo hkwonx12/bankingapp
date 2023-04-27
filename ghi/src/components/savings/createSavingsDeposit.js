@@ -78,3 +78,5 @@ function CreateSavingsDepositForm() {
     </div>
     )
 }
+
+export default CreateSavingsDepositForm;
