@@ -1,7 +1,8 @@
-import CreateDepositForm from "./components/checking/createDeposit";
-import CreateSavingsDepositForm from "./components/savings/createSavingsDeposit";
-import CreateInvestmentDepositForm from "./components/investment/investmentDeposit";
+import CreateCheckingAccountForm from "./components/checking/createCheckingAccount";
+import CreateSavingsAccountForm from "./components/savings/createSavingsAccount";
+import CreateInvestmentAccountForm from "./components/investment/createInvestmentAccount";
 import{Link} from "react-router-dom"
+
 
 function CreateAccountsPage() {
 
@@ -13,15 +14,15 @@ function CreateAccountsPage() {
                 <button className="text-white"><Link to="/mainpage"> Return To Dashboard</Link></button>
             </div>
             <div>
-                <div className="grid grid-cols-3 gap-8 py-24">
-                    <div className="md:w-8/12 lg:ml-6 ">
-                        <CreateDepositForm />
+                <div className="grid grid-cols-3 gap-8 py-24 px-24">
+                    <div className=" md:w-8/12 lg:ml-6 ">
+                        <CreateCheckingAccountForm />
                     </div>
-                        <div className="md:w-8/12 lg:ml-6 ">
-                            <CreateSavingsDepositForm />
+                        <div className="pb-10 md:w-8/12 lg:ml-6 ">
+                            <CreateSavingsAccountForm />
                         </div>
-                        <div className="md:w-8/12 lg:ml-6 ">
-                        <CreateInvestmentDepositForm />
+                        <div className=" md:w-8/12 lg:ml-6 ">
+                        <CreateInvestmentAccountForm />
                     </div>
                 </div>
             </div>
