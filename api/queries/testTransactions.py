@@ -147,7 +147,7 @@ class TransactionsTestRepository:
                 old_data = transaction.dict()
                 return TransactionOutForSaving(id=id, **old_data)
 
-    def create_investment_transaction(self, transaction: TransactionsTestIn, account_data):
+    def create_test_investment_transaction(self, transaction: TransactionsTestIn, account_data):
         with pool.connection() as conn:
             with conn.cursor() as db:
                 result = db.execute(
