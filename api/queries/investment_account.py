@@ -85,7 +85,7 @@ class InvestmentAccountRepository:
                     """
                     UPDATE investment_account
                     SET total_amount = total_amount + %s
-                    WHERE id = %s
+                    WHERE owner_id = %s
                     """,
                     [
                        deposit.amount,

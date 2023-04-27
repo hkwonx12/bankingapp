@@ -1,7 +1,7 @@
 import { useAuthContext } from '@galvanize-inc/jwtdown-for-react';
 import { useEffect, useState } from 'react';
 
-function InvestmentStatements() {
+function InvestmentDayChangeHistory() {
     const {token} = useAuthContext();
     const [statements, setStatements] = useState([]);
 
@@ -15,7 +15,7 @@ function InvestmentStatements() {
         }
     };
 
-    
+
 
     useEffect(() => {
         if (token) getData();
@@ -51,4 +51,4 @@ function InvestmentStatements() {
 }
 
 
-export default InvestmentStatements;
+export default InvestmentDayChangeHistory;

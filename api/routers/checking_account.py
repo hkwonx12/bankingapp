@@ -18,8 +18,8 @@ def create_checking_account(
 
 ):
     try:
-        user_id = account_data['id']
-        checking_account = repo.create_checking_account(info, user_id)
+        # user_id = account_data['id']
+        checking_account = repo.create_checking_account(info, account_data)
     except DuplicateAccountError:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
