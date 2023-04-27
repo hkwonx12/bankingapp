@@ -38,3 +38,6 @@ made updates to checking queries and route
 
 04-26-23
 Today I was able to make a users home page and start linking our components to navigate through our UI
+
+04-27-23
+Created the users "account page" so the users can choose which type of accounts they would like to sign up for

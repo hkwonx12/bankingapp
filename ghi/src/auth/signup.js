@@ -1,7 +1,10 @@
 import {useState, useEffect } from "react";
+import { useAuthContext } from '@galvanize-inc/jwtdown-for-react';
+
 
 function SignUpForm() {
-  const [models, setModels] = useState([])
+  const {token} = useAuthContext();
+  const [models, setModels] = useState([]);
   const [formData, setFormData] = useState({
       email: '',
       full_name: '',
@@ -10,7 +13,7 @@ function SignUpForm() {
       address: '',
       phone: '',
       dob: ''
-  })
+  });
 
   const fetchData = async () => {
       const url = "http://localhost:8000/api/users";
@@ -32,10 +35,14 @@ function SignUpForm() {
         body: JSON.stringify(formData),
         headers: {
             'Content-Type': 'application/json',
-        },
-    };
+        }
+      };
+
 
     const response = await fetch(url, fetchConfig);
+    const data = await response.json();
+    console.log(data)
+    console.log(response)
     if (response.ok) {
         setFormData({
             email: '',
@@ -47,6 +54,7 @@ function SignUpForm() {
             dob: '',
         })
     }
+
   };
 
 
@@ -93,7 +101,7 @@ function SignUpForm() {
                 <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="color">DOB</label>
                 <input value={formData.dob} onChange={handleChange} placeholder="dob" required type="text" name="dob" id="dob" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
               </div>
-              <button className="py-2 px-4  bg-purple-600 hover:bg-purple-700 focus:ring-purple-500 focus:ring-offset-purple-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg">Sign Up</button>
+              <button onClick={handleSubmit} className="py-2 px-4  bg-purple-600 hover:bg-purple-700 focus:ring-purple-500 focus:ring-offset-purple-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg">Sign Up</button>
             </form>
           </div>
         </div>
