@@ -65,6 +65,11 @@ function SignUpForm() {
 
     return (
     <div className="flex items-center justify-center h-screen">
+        <img
+        src = "/DoughtoDollars.jpeg"
+        className="w-half"
+        alt="doughtodollars"
+        />
       <div className="w-full max-w-xs">
         <div className="mb-6">
           <div className="mb-4">
