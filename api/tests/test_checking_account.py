@@ -6,7 +6,7 @@ from authenticator import authenticator
 client = TestClient(app)
 
 class FakeCheckingQuries:
-     def get_all_checking_account(self):
+     def get_all_checking_accounts(self):
         return [
             {
                 "id": 0,
@@ -20,7 +20,7 @@ def fake_get_current_account_data():
             id: int
         }
 
-def test_get_all_checking_account():
+def test_get_all_checking_accounts():
     # Arrange
     app.dependency_overrides[CheckingAccountRepository] = FakeCheckingQuries
     app.dependency_overrides[authenticator.get_current_account_data] = fake_get_current_account_data
@@ -33,10 +33,3 @@ def test_get_all_checking_account():
     # A Cleanup
     app.dependency_overrides = {}
 
-def test_create_checking_account():
-    # Arrange
-
-    # Act
-
-    # Assert
-    pass
