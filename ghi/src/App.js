@@ -20,6 +20,7 @@ import SavingsAccount from './components/savings/savingsAccount';
 import SavingsStatements from './components/savings/savings';
 import CreateSavingsAccountForm from './components/savings/createSavingsAccount';
 import CreateSavingsDepositForm from './components/savings/createSavingsDeposit';
+import CreateAccountsPage from './CreateAccountsPage';
 
 function App() {
 
@@ -69,6 +70,10 @@ function App() {
                 <Route path='deposit' element={<CreateInvestmentDepositForm/>}/>
                 <Route path='detail' element={<InvestmentAccountDetail/>}/>
                 {/* <Route path='account' element={<InvestmentInformation/>}/> */}
+              </Route>
+
+              <Route>
+                <Route path="/createaccounts" element={<CreateAccountsPage />} />
               </Route>
 
             </Routes>
