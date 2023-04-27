@@ -24,7 +24,7 @@ function SavingsStatements() {
 
       const getStatementsFiltered = () => {
         return statements.filter((statement) =>
-          statement["savings_account_id"] = !null && statement["checking_account_id"] == null && statement["investment_accout_id"] == null
+          statement["savings_account_id"] == true && statement["checking_account_id"] == null && statement["investment_accout_id"] == null
         );
       };
 
@@ -36,7 +36,7 @@ function SavingsStatements() {
                 <div className="g-6 flex h-full flex-wrap items-center justify-center lg:justify-between">
                     <div className="mb-12 md:mb-0 md:w-8/12 lg:w-6/12">
                         <div className="p-5 h-screen bg-gray-100">
-                            <h1 className="text-xl mb-2 font-serif text-left">Your Checking Account Statements</h1>
+                            <h1 className="text-xl mb-2 font-serif text-left">Your Saving Account Statements</h1>
                                 <table className="w-full">
                                     <thead className="bg-gray-50 border-b-2 border-gray-200">
                                         <tr className="bg-purple-300">
