@@ -1,6 +1,7 @@
 import { useAuthContext } from '@galvanize-inc/jwtdown-for-react';
 import { useEffect, useState } from 'react';
 import CreateDepositForm from './createDeposit';
+import {Link} from "react-router-dom"
 
 function CheckingStatements() {
     const {token} = useAuthContext();
@@ -36,6 +37,9 @@ function CheckingStatements() {
                     <div className="mb-12 md:mb-0 md:w-8/12 lg:w-6/12">
                         <div className="p-5 h-screen bg-gray-100">
                             <h1 className="text-xl mb-2 font-serif text-left">Your Checking Account Statements</h1>
+                            <button className="text-right">
+                                <Link to="/mainpage">Back to dashboard</Link>
+                            </button>
                                 <table className="w-full">
                                     <thead className="bg-gray-50 border-b-2 border-gray-200">
                                         <tr className="bg-purple-300">
