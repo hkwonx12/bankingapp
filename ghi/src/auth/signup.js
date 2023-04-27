@@ -1,6 +1,11 @@
 import {useState, useEffect } from "react";
+import useToken from "@galvanize-inc/jwtdown-for-react";
+
+// import { useNavigate } from "react-router-dom";
 
 function SignUpForm() {
+  // const navigate = useNavigate();
+  const { login } = useToken();
   const [models, setModels] = useState([]);
   const [formData, setFormData] = useState({
       email: '',
@@ -37,10 +42,12 @@ function SignUpForm() {
 
 
     const response = await fetch(url, fetchConfig);
+    console.log(response)
     const data = await response.json();
     console.log(data)
     localStorage.setItem("access_token", data.access_token)
     if (response.ok) {
+        login(formData.username, formData.password);
         setFormData({
             email: '',
             full_name: '',
@@ -51,7 +58,6 @@ function SignUpForm() {
             dob: '',
         })
     }
-    navigate("/createaccounts");
   };
 
 

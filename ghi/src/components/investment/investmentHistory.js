@@ -17,11 +17,16 @@ function InvestmentStatements() {
         }
     };
 
-    
-
     useEffect(() => {
         if (token) getData();
     }, [token]);
+
+    const getStatementsFiltered = () => {
+        return statements.filter((statement) =>
+            statement['investment_account_id'] = !null && statement['savings_account_id'] == null && statement['checking_accout_id'] == null
+        );
+    }
+
 
     return (
         <section className="h-screen">
@@ -42,12 +47,12 @@ function InvestmentStatements() {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {statements && statements.map(statement => {
+                                        {getStatementsFiltered() && getStatementsFiltered().map((statement) => {
                                             return (
-                                                <tr key={statement.id}>
-                                                    <td>{new Date(statement.date).toLocaleDateString('en-US', {year: 'numeric', month: 'long', day: 'numeric'})}</td>
-                                                    <td>{new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(statement.amount)}</td>
-                                                    <td>{statement.institution}</td>
+                                                <tr className="even:bg-purple-100 odd:bg-slate-50" key={statement.id}>
+                                                    <td className=" p-3 text-sm text-gray-700">{new Date(statement.date).toLocaleDateString('en-US', {year: 'numeric', month: 'long', day: 'numeric'})}</td>
+                                                    <td className=" p-3 text-sm text-gray-700">{new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(statement.amount)}</td>
+                                                    <td className=" p-3 text-sm text-gray-700">{statement.institution}</td>
                                                 </tr>
                                             );
                                         })}
