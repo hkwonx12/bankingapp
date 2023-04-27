@@ -63,3 +63,6 @@
 
 # 4-26-23
 - Finished with the savings components but ran into serious mechanical/error issues, eventually resolved and then moved on to make CreateAccountPage.
+
+# 4-27-23
+- Finished the CreateAccountPage and helped with some issues regarding account history. Then worked on formatting user.
