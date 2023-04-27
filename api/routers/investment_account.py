@@ -57,7 +57,7 @@ def update_investment_account(
     investment_account_response=repo.update_investment_account(transaction, account_data)
     instance = TransactionsTestRepository()
     if investment_account_response:
-        instance.create_investment_transaction(transaction, account_data)
+        instance.create_test_investment_transaction(transaction, account_data)
     return investment_account_response
 
 

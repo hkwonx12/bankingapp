@@ -38,7 +38,7 @@ class CheckingAccountRepository:
                 return True
 
 
-    def create_checking_account(self, checking_account: CheckingAccountIn, user_id: int):
+    def create_checking_account(self, checking_account: CheckingAccountIn, account_data):
         # connect the DB
         with pool.connection() as conn:
             with conn.cursor() as db:
@@ -53,7 +53,7 @@ class CheckingAccountRepository:
                     """,
                     [
                         checking_account.total_amount,
-                        user_id
+                        account_data['id']
                     ]
                 )
                 id = result.fetchone()[0]
