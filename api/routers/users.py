@@ -29,6 +29,13 @@ async def create_user(
     print(token)
     return AccountToken(user=user, **token.dict())
 
+@router.get('/api/all_users', response_model=List[UserOutWithDetails])
+def get_all_user_accounts(
+    repo: UserRepository = Depends(),
+
+):
+    return repo.get_all_user_accounts()
+
 
 @router.get('/api/users', response_model=List[UserOutWithDetails])
 def get_all_users(

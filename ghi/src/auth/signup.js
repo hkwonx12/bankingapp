@@ -1,9 +1,6 @@
 import {useState, useEffect } from "react";
-import { useAuthContext } from '@galvanize-inc/jwtdown-for-react';
-
 
 function SignUpForm() {
-  const {token} = useAuthContext();
   const [models, setModels] = useState([]);
   const [formData, setFormData] = useState({
       email: '',
@@ -16,7 +13,7 @@ function SignUpForm() {
   });
 
   const fetchData = async () => {
-      const url = "http://localhost:8000/api/users";
+      const url = "http://localhost:8000/api/all_users";
       const response = await fetch(url);
       if (response.ok) {
           const data = await response.json();
@@ -41,6 +38,7 @@ function SignUpForm() {
 
     const response = await fetch(url, fetchConfig);
     const data = await response.json();
+    console.log(data)
     localStorage.setItem("access_token", data.access_token)
     if (response.ok) {
         setFormData({

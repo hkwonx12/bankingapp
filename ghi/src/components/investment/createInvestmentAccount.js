@@ -38,7 +38,7 @@ function CreateInvestmentAccountForm() {
         if (token && response.ok) {
             setFormData({
                 total_amount: '',
-            }, [token]);
+            });
         }
     };
 

@@ -95,6 +95,29 @@ class UserRepository:
                     dob=record[6]
                     )
 
+    def get_all_user_accounts(self) -> List[UserOutWithDetails]:
+            with pool.connection() as conn:
+                with conn.cursor() as db:
+                    result = db.execute(
+                        """
+                        SELECT id, email, full_name, username, hashed_password, address, phone, dob
+                        FROM users;
+                        """
+                    )
+                    result = []
+                    for record in db:
+                        user = UserOutWithDetails(
+                            id=record[0],
+                            email=record[1],
+                            full_name=record[2],
+                            username=record[3],
+                            hashed_password=record[4],
+                            address=record[5],
+                            phone=record[6],
+                            dob=record[7]
+                        )
+                        result.append(user)
+                    return result
 
     def get_all_users(self, account_data) -> List[UserOutWithDetails]:
         with pool.connection() as conn:
