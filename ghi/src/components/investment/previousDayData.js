@@ -70,29 +70,6 @@ function InvestmentDayChangeHistory() {
 
     return (
         <div>
-            {/* <h1>Your Investment Account Statements</h1>
-            <div>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>date</th>
-                            <th>amount</th>
-                            <th>institution</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {statements && statements.map(statement => {
-                            return (
-                                <tr key={statement.id}>
-                                    <td>{new Date(statement.date).toLocaleDateString('en-US', {year: 'numeric', month: 'long', day: 'numeric'})}</td>
-                                    <td>{new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(statement.amount)}</td>
-                                    <td>{statement.institution}</td>
-                                </tr>
-                            );
-                        })}
-                    </tbody>
-                </table>
-            </div> */}
             {chartData && <Line data={chartData} />}
             {/* for some reason the chart data would not load fast enough so has to have conditional */}
         </div>
