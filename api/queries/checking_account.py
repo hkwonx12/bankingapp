@@ -5,7 +5,6 @@ from typing import List
 
 class CheckingAccountRepository:
     def update_checking_account(self, deposit: TransactionsTestIn, account_data):
-        print('update_checking_account test')
         with pool.connection() as conn:
             with conn.cursor() as db:
                 db.execute(

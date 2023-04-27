@@ -38,7 +38,7 @@ function CreateCheckingAccountForm() {
         if (token && response.ok) {
             setFormData({
                 total_amount: '',
-            }, [token]);
+            });
         }
     };
 

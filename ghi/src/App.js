@@ -9,7 +9,6 @@ import CheckingAccount from './components/checking/checkingAccount';
 import CreateCheckingAccountForm from './components/checking/createCheckingAccount';
 import CreateDepositForm from './components/checking/createDeposit';
 import InvestmentStatements from './components/investment/investmentHistory';
-// import InvestmentInformation from './components/investment/investmentt';
 import LandingPage from './LandingPage';
 import CreateInvestmentAccountForm from './components/investment/createInvestmentAccount';
 import CreateInvestmentDepositForm from './components/investment/investmentDeposit';
