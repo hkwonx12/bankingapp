@@ -55,10 +55,10 @@ function InvestmentAccountDetail() {
         if (token) {
             getData();
             getStockData();
-            console.log(accounts[0].total_amount)
+            console.log(accounts)
             const interval = setInterval(() => {
-                handleInvestmentTotalUpdate(accounts[0].total_amount, stock.dp)
-            }, 30000)
+                accounts && accounts.map(account => handleInvestmentTotalUpdate(account, stock.dp))
+            }, 330000)
             return () => clearInterval(interval)
             }
     }, [token]);
