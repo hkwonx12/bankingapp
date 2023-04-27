@@ -61,7 +61,7 @@ function CreateInvestmentDepositForm() {
           <form onSubmit={handleSubmit} id="create-deposit-form">
             <div className="mb-6">
               <label htmlFor="date">Date:</label>
-              <input value={formData.date || ''} onChange={handleChange} placeholder="YYYY-MM-DD" required type="text" name="date" id="date" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
+              <input value={formData.date || ''} onChange={handleChange} placeholder="YYYY-MM-DD" required type="date" name="date" id="date" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
             </div>
             <div className="mb-6">
               <label htmlFor="amount">Deposit Amount:</label>

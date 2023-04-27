@@ -1,10 +1,8 @@
 import {useState, useEffect } from "react";
 import useToken from "@galvanize-inc/jwtdown-for-react";
-
-// import { useNavigate } from "react-router-dom";
+import { Link} from "react-router-dom";
 
 function SignUpForm() {
-  // const navigate = useNavigate();
   const { login } = useToken();
   const [models, setModels] = useState([]);
   const [formData, setFormData] = useState({
@@ -107,11 +105,14 @@ function SignUpForm() {
               </div>
               <div className="form-floating mb-3">
                 <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="color">DOB</label>
-                <input value={formData.dob} onChange={handleChange} placeholder="dob" required type="text" name="dob" id="dob" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
+                <input value={formData.dob} onChange={handleChange} placeholder="dob" required type="date" name="dob" id="dob" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
               </div>
               <button onClick={handleSubmit} className="py-2 px-4  bg-purple-600 hover:bg-purple-700 focus:ring-purple-500 focus:ring-offset-purple-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg">Sign Up</button>
             </form>
           </div>
+
+            <Link to="/createaccounts" className="py-2 px-4  bg-purple-600 hover:bg-purple-700 focus:ring-purple-500 focus:ring-offset-purple-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg">Click here to start your bank accounts</Link>
+
         </div>
       </div>
     </div>
