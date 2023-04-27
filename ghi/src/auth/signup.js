@@ -1,8 +1,10 @@
 import {useState, useEffect } from "react";
 import { useAuthContext } from '@galvanize-inc/jwtdown-for-react';
+import { useNavigate } from "react-router-dom";
 
 
 function SignUpForm() {
+  const navigate = useNavigate();
   const {token} = useAuthContext();
   const [models, setModels] = useState([]);
   const [formData, setFormData] = useState({
@@ -54,7 +56,7 @@ function SignUpForm() {
             dob: '',
         })
     }
-
+    navigate("/createaccounts");
   };
 
 
