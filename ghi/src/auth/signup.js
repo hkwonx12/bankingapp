@@ -43,8 +43,7 @@ function SignUpForm() {
 
     const response = await fetch(url, fetchConfig);
     const data = await response.json();
-    console.log(data)
-    console.log(response)
+    localStorage.setItem("access_token", data.access_token)
     if (response.ok) {
         setFormData({
             email: '',

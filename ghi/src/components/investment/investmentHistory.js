@@ -17,6 +17,8 @@ function InvestmentStatements() {
         }
     };
 
+    
+
     useEffect(() => {
         if (token) getData();
     }, [token]);
