@@ -21,6 +21,7 @@ import SavingsStatements from './components/savings/savings';
 import CreateSavingsAccountForm from './components/savings/createSavingsAccount';
 import CreateSavingsDepositForm from './components/savings/createSavingsDeposit';
 import CreateAccountsPage from './CreateAccountsPage';
+import InvestmentDayChangeHistory from './components/investment/previousDayData';
 
 function App() {
 
@@ -69,6 +70,7 @@ function App() {
                 <Route path='create' element={<CreateInvestmentAccountForm/>}/>
                 <Route path='deposit' element={<CreateInvestmentDepositForm/>}/>
                 <Route path='detail' element={<InvestmentAccountDetail/>}/>
+                <Route path='chart' element={< InvestmentDayChangeHistory/>}/>
                 {/* <Route path='account' element={<InvestmentInformation/>}/> */}
               </Route>
 
