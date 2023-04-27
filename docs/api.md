@@ -235,13 +235,57 @@
 
 ## Investment Account
 
-* Endpoint path: /investment/
-* Endpoint method: POST
+* Endpoint path: /investment_account
+* Endpoint method: GET
 
-* Request shape (form):
-
-* Response:
+* Response: All investment accounts
 * Response shape (JSON):
     ```json
+    [
+    {
+        id: int,
+        total_amount: int,
+        investment_value: int,
+        owner_id: int
+    }
+    ]
 
+    ```
+
+* Endpoint path: /investment_account
+* Endpoint method: PUT
+
+* Response: Update Investment Account
+* Request Shape (JSON):
+    ```json
+    {
+    date: date,
+    amount: int,
+    institution: string
+    }
+    ```
+
+* Endpoint path: /investment_account
+* Endpoint method: POST
+
+* Response: Create Investment Account
+* Request Shape (JSON):
+    ```json
+    {
+    total_amount: int
+    }
+    ```
+
+* Endpoint path: /investment_account/{owner_id}
+* Endpoint method: GET
+
+* Response: Get Investment Account
+* Response Shape (JSON):
+    ```json
+    {
+    id: int,
+    total_amount: int,
+    investment_value: int,
+    owner_id: int
+    }
     ```
