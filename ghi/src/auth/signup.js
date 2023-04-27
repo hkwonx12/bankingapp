@@ -51,7 +51,7 @@ function SignUpForm() {
             dob: '',
         })
     }
-
+    navigate("/createaccounts");
   };
 
 

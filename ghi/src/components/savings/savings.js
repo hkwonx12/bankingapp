@@ -48,7 +48,7 @@ function SavingsStatements() {
                                     <tbody>
                                         {getStatementsFiltered() && getStatementsFiltered().map((statement) => {
                                             return (
-                                                <tr className="bg-purple-100 underline-offset-0" key={statement.id}>
+                                                <tr className="even:bg-purple-100 odd:bg-slate-50" key={statement.id}>
                                                     <td className=" p-3 text-sm text-gray-700">{new Date(statement.date).toLocaleDateString('en-US', {year: 'numeric', month: 'long', day: 'numeric'})}</td>
                                                     <td className=" p-3 text-sm text-gray-700">{new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(statement.amount)}</td>
                                                     <td className=" p-3 text-sm text-gray-700">{statement.institution}</td>

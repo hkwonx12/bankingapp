@@ -4,8 +4,6 @@ import InvestmentAccountDetail from './components/investment/investmentAccountDe
 
 
 
-
-
 function MainPage() {
 
 
