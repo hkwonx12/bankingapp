@@ -55,29 +55,31 @@ function UpdateUserForm() {
     }
 
     return (
-    <div className="row">
-      <div className="offset-3 col-6">
-        <div className="shadow p-4 mt-4 font-monospace">
-          <h1>Edit your account</h1>
-          <form onSubmit={handleSubmit} id="create-manufacturer-form">
-            <div className="form-floating mb-3">
-              <label htmlFor="full_name">Name:</label>
-              <input value={formData.full_name} onChange={handleChange} placeholder="example@example.com" required type="text" name="full_name" id="full_name" className="form-control" />
-            </div>
-            <div className="form-floating mb-3">
-              <label htmlFor="email">Email:</label>
-              <input value={formData.email} onChange={handleChange} placeholder="example@example.com" required type="text" name="email" id="email" className="form-control" />
-            </div>
-            <div className="form-floating mb-3">
-              <label htmlFor="address">Address:</label>
-              <input value={formData.address} onChange={handleChange} placeholder="example@example.com" required type="text" name="address" id="address" className="form-control" />
-            </div>
-            <div className="form-floating mb-3">
-              <label htmlFor="phone">Phone number:</label>
-              <input value={formData.phone} onChange={handleChange} placeholder="example@example.com" required type="text" name="phone" id="phone" className="form-control" />
-            </div>
-            <button className="btn btn-primary">Update</button>
-          </form>
+    <div className="flex items-center justify-center h-screen">
+      <div className="w-full max-w-xs">
+        <div className="mb-6">
+          <div className="mb-4">
+            <h1 className="block text-gray-700 text-sm font-bold mb-2">Edit your account</h1>
+            <form onSubmit={handleSubmit} id="create-manufacturer-form" className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+              <div className="form-floating mb-3">
+                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="full_name">Name:</label>
+                <input value={formData.full_name} onChange={handleChange} placeholder="Croissant Doe" required type="text" name="full_name" id="full_name" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
+              </div>
+              <div className="form-floating mb-3">
+                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">Email:</label>
+                <input value={formData.email} onChange={handleChange} placeholder="example@example.com" required type="text" name="email" id="email" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
+              </div>
+              <div className="form-floating mb-3">
+                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="address">Address:</label>
+                <input value={formData.address} onChange={handleChange} placeholder="221B Baker Street" required type="text" name="address" id="address" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
+              </div>
+              <div className="form-floating mb-3">
+                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="phone">Phone number:</label>
+                <input value={formData.phone} onChange={handleChange} placeholder="xxx-xxx-xxxx" required type="text" name="phone" id="phone" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
+              </div>
+              <button className="py-2 px-4  bg-purple-600 hover:bg-purple-700 focus:ring-purple-500 focus:ring-offset-purple-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg">Update</button>
+            </form>
+          </div>
         </div>
       </div>
     </div>
