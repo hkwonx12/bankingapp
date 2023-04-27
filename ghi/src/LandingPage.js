@@ -23,7 +23,7 @@ function LandingPage() {
     <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
       <div className="hidden sm:mb-8 sm:flex sm:justify-center">
         <div className="text-base font-semibold leading-7 text-purple-600">
-          Announcing our next round of funding!
+          Experience a tast of financial excellence with Croissant United Bank
         </div>
       </div>
       <div className="text-center pt-6">
@@ -33,8 +33,6 @@ function LandingPage() {
           alt="Bank Logo"/>
         <br/>
         <p className="mt-6 text-lg leading-8 text-gray-600">Sign up in 2 minutes! Unlock these features, when you open a Croissant United Checking Account: </p>
-        <br/>
-        <li>No overdraft fees up $250</li>
         <br/>
         <li>No Monthly fees or late fees</li>
         <br/>

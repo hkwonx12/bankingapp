@@ -45,6 +45,15 @@ function CreateSavingsDepositForm() {
           }, [token]);
       }
   };
+        const response = await fetch(url, fetchConfig);
+        if (token && response.ok) {
+            setFormData({
+                date: '',
+                amount: '',
+                institution: '',
+            });
+        }
+    };
 
   const handleChange = (event) => {
       setFormData({
@@ -62,14 +71,16 @@ function CreateSavingsDepositForm() {
             <div className="form-floating mb-3">
               <input value={formData.date} onChange={handleChange} placeholder="YYYY-MM-DD" required type="text" name="date" id="date" className="form-control" />
               <label htmlFor="date">Date:</label>
+              <input value={formData.date || ''} onChange={handleChange} placeholder="YYYY-MM-DD" required type="date" name="date" id="date" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
             </div>
             <div className="form-floating mb-3">
               <input value={formData.amount} onChange={handleChange} placeholder="0.00" required type="text" name="amount" id="amount" className="form-control" />
               <label htmlFor="amount">Deposit Amount:</label>
+              <input value={formData.amount || ''} onChange={handleChange} placeholder="0.00" required type="text" name="amount" id="amount" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
             </div>
-            <div className="form-floating mb-3">
-              <input value={formData.institution} onChange={handleChange} placeholder="Institution name" required type="text" name="institution" id="institution" className="form-control" />
-              <label htmlFor="institution">Institution</label>
+            <div className="mb-6">
+              <label htmlFor="institution">Institution:</label>
+              <input value={formData.institution || ''} onChange={handleChange} placeholder="Institution name" required type="text" name="institution" id="institution" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
             </div>
             <button className="btn btn-primary">Deposit</button>
           </form>

@@ -20,7 +20,6 @@ const LoginForm = () => {
             localStorage.setItem("access_token", token)
             navigate("/mainpage");
         }
-        e.target.reset();
     };
 
     return (
