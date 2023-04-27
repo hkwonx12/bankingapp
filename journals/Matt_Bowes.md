@@ -66,3 +66,6 @@
 
 # 4-27-23
 - Finished the CreateAccountPage and helped with some issues regarding account history. Then worked on formatting user.
+
+# 4-28-23
+- 
