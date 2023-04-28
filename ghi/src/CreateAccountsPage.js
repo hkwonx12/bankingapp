@@ -2,9 +2,11 @@ import CreateCheckingAccountForm from "./components/checking/createCheckingAccou
 import CreateSavingsAccountForm from "./components/savings/createSavingsAccount";
 import CreateInvestmentAccountForm from "./components/investment/createInvestmentAccount";
 import{Link} from "react-router-dom"
+import useToken from "@galvanize-inc/jwtdown-for-react";
 
 
 function CreateAccountsPage() {
+    const { login } = useToken();
 
     return (
         <>
