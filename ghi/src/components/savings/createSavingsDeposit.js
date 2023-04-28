@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useAuthContext } from "@galvanize-inc/jwtdown-for-react";
 
-function CreateSavingsDepositForm() {
+function CreateSavingsDepositForm({getStatementData})  {
   const { token } = useAuthContext();
   const [formData, setFormData] = useState({
     date: "",
@@ -37,6 +37,7 @@ function CreateSavingsDepositForm() {
 
     const response = await fetch(url, fetchConfig);
     if (token && response.ok) {
+      getStatementData();
       setFormData({
         date: "",
         amount: "",

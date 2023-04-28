@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import {useEffect} from 'react';
 import Nav from './Nav';
 import MainPage from './MainPage';
 import SignUpForm from './auth/signup';
@@ -25,7 +26,6 @@ import PrivateRoute from './PrivateRoute/private';
 
 function App() {
 
-
     return (
       <BrowserRouter>
         <AuthProvider>
@@ -35,7 +35,7 @@ function App() {
               <Route path="/" element={<LandingPage />} />
 
               <Route>
-                <Route path="/mainpage" element={<PrivateRoute><MainPage/></PrivateRoute>} />
+                <Route path="/mainpage" element={<MainPage/>} />
               </Route>
 
               <Route>
@@ -75,7 +75,7 @@ function App() {
               </Route>
 
               <Route>
-                <Route path="/createaccounts" element={<PrivateRoute><CreateAccountsPage /></PrivateRoute>} />
+                <Route path="/createaccounts" element={<CreateAccountsPage />} />
               </Route>
 
             </Routes>

@@ -60,7 +60,7 @@ function SavingsStatements() {
                             </div>
                         </div>
                         <div className="md:w-8/12 lg:ml-6 lg:w-3/12">
-                            <CreateSavingsDepositForm />
+                            <CreateSavingsDepositForm getStatementData={getData} />
                         </div>
                     </div>
                 </div>
