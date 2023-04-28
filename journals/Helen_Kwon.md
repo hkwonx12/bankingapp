@@ -87,4 +87,8 @@ I am finished creating a functional edit user information page and a user detail
 
 
 # April 27, 2023
+Today I fixed the sign up sheet to log in the user after they submit the form. I also debugged transactions/statements to filter through the correct statement for that account. I assisted in correcting and adding to our api documentation.
 
+
+# April 28, 2023
+Today I completed the Checking Account unit test. It passed when tested in Docker.

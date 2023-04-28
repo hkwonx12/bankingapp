@@ -7,12 +7,14 @@ client = TestClient(app)
 
 
 class FakeCheckingQuries:
-    def get_all_checking_accounts(self):
+    def get_all_checking_accounts(self, account_data):
         return [
             {
-                "id": 0,
+                "id": 1,
+                "total_amount": 100,
                 "account_number": 0,
-                "owner_id": 0
+                "routing_number": 0,
+                "owner_id": 1
             }
         ]
 
@@ -32,6 +34,6 @@ def test_get_all_checking_accounts():
     data = res.json()
 
     assert res.status_code == 200
-    assert len(data["checking_account"]) == 1
+    assert len(data) == 1
 
     app.dependency_overrides = {}

@@ -2,6 +2,7 @@ import { useAuthContext } from '@galvanize-inc/jwtdown-for-react';
 import { useEffect, useState } from 'react';
 import {Link} from "react-router-dom"
 import CreateInvestmentDepositForm from './investmentDeposit';
+import InvestmentDayChangeHistory from './previousDayData';
 
 function InvestmentStatements() {
     const {token} = useAuthContext();
@@ -62,6 +63,9 @@ function InvestmentStatements() {
                         </div>
                         <div className="md:w-8/12 lg:ml-6 lg:w-3/12">
                             <CreateInvestmentDepositForm />
+                        </div>
+                        <div className="">
+                            <InvestmentDayChangeHistory/>
                         </div>
                     </div>
                 </div>
