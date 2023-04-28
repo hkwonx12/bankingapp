@@ -14,7 +14,7 @@ function User() {
 
         if (response.ok){
             const data = await response.json();
-            setUsers(data)
+            setUsers(data);
         }
     };
 
@@ -40,7 +40,6 @@ function User() {
                                             <th className="p-3 text-sm font-semibold tracking-wide text-left">Username</th>
                                             <th className="p-3 text-sm font-semibold tracking-wide text-left">Address</th>
                                             <th className="p-3 text-sm font-semibold tracking-wide text-left">Phone</th>
-                                            <th className="p-3 text-sm font-semibold tracking-wide text-left">DOB</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -66,9 +65,6 @@ function User() {
                         <td className=" p-3 text-sm text-gray-700">
                           {user.phone}
                         </td>
-                        <td className=" p-3 text-sm text-gray-700">
-                          {user.dob}
-                        </td>
                       </tr>
                     );
                   })}
@@ -77,7 +73,7 @@ function User() {
                             </div>
                         </div>
                         <div className="md:w-8/12 lg:ml-6 lg:w-3/12">
-                            <UpdateUserForm />
+                            <UpdateUserForm getUserData={getData}/>
                         </div>
                     </div>
                 </div>

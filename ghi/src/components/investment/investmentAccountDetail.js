@@ -14,7 +14,9 @@ function InvestmentAccountDetail() {
         if (response.ok){
             const data = await response.json();
             setAccounts(data)
+            console.log("data",data)
         }
+
     };
 
     const getStockData = async () => {
@@ -54,14 +56,15 @@ function InvestmentAccountDetail() {
     useEffect(() => {
         if (token) {
             getData();
+            console.log("getData", accounts)
             getStockData();
-            console.log(accounts)
+            console.log("accounts", accounts)
             const interval = setInterval(() => {
                 accounts && accounts.map(account => handleInvestmentTotalUpdate(account, stock.dp))
-            }, 330000)
+            }, 30000)
             return () => clearInterval(interval)
             }
-    }, [token]);
+    }, [token],[accounts]);
 
     return (
         <>
@@ -74,20 +77,23 @@ function InvestmentAccountDetail() {
                     <table>
                         <thead>
                             <tr>
-                                <th className="pr-10">Total Amount</th>
-                                <th>Investment Value</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {accounts && accounts.map(account => {
-                                return (
-                                    <tr key={account.id}>
-                                        <td>{account.total_amount}</td>
-                                        <td>{account.investment_value}</td>
-                                    </tr>
-                                );
-                            })}
-                        </tbody>
+                            <th className="pr-10">Total Amount</th>
+                            <th>Investment Percentage Change</th>
+                            {/* <th> Update Total</th> */}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {accounts && accounts.map(account => {
+                            return (
+                                <tr key={account.id}>
+                                    <td>{new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(account.total_amount)}</td>
+                                    <td>{stock.dp}</td>
+                                    {/* <td><button className='btn btn-purple'onClick={() => handleInvestmentTotalUpdate(account, stock.dp)}>Update</button> </td> */}
+                                </tr>
+                            );
+                        })}
+                    </tbody>
+
                     </table>
                 </div>
             </div>

@@ -63,9 +63,9 @@ function CheckingAccount() {
         </div>
         </Link>
         </div>
-        <div className="fixed top-13 right-0 h-64 w-64 bg-purple-50 text-center text-black shadow-lg rounded-2xl">
+        <div className="fixed top-13 right-0 h-30 w-64 bg-purple-50 text-center text-black shadow-lg rounded-2xl">
           <ul className="pb-10 hover:underline mt-5"><Link to="/user">User Info</Link></ul>
-           <button onClick={myLogout} className="py-2 bg-purple-600 hover:bg-purple-700 focus:ring-purple-500 focus:ring-offset-purple-200 text-white w-1/2 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg ">Log Out</button>
+           <button onClick={myLogout} className="py-2 mb-5 bg-purple-600 hover:bg-purple-700 focus:ring-purple-500 focus:ring-offset-purple-200 text-white w-1/2 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg ">Log Out</button>
         </div>
         </>
     );

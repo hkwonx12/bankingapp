@@ -24,7 +24,7 @@ function CheckingStatements() {
 
     const getStatementsFiltered = () => {
         return statements.filter((statement) =>
-            statement['checking_account_id'] == true && statement['savings_account_id'] == null && statement['investment_accout_id'] == null
+            statement['checking_account_id'] =! null && statement['savings_account_id'] == null && statement['investment_accout_id'] == null
         );
     }
 
