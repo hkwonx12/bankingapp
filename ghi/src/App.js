@@ -21,6 +21,7 @@ import CreateSavingsAccountForm from './components/savings/createSavingsAccount'
 import CreateSavingsDepositForm from './components/savings/createSavingsDeposit';
 import CreateAccountsPage from './CreateAccountsPage';
 import InvestmentDayChangeHistory from './components/investment/previousDayData';
+import PrivateRoute from './PrivateRoute/private';
 
 function App() {
 
@@ -51,7 +52,7 @@ function App() {
               </Route>
 
               <Route>
-                <Route path="/checking" element={<CheckingStatements/>}/>
+                <Route path="/checking" element={<PrivateRoute><CheckingStatements/></PrivateRoute>}/>
                 <Route path="/checkingaccount" element={<CheckingAccount/>}/>
                 <Route path="/createchecking" element={<CreateCheckingAccountForm />} />
                 <Route path="/checkingdeposit" element={<CreateDepositForm/>}/>
@@ -74,7 +75,7 @@ function App() {
               </Route>
 
               <Route>
-                <Route path="/createaccounts" element={<CreateAccountsPage />} />
+                <Route path="/createaccounts" element={<PrivateRoute><CreateAccountsPage /></PrivateRoute>} />
               </Route>
 
             </Routes>
