@@ -10,6 +10,7 @@ from typing import List
 
 router = APIRouter()
 
+
 @router.post('/api/checking_account', response_model=CheckingAccountOut)
 def create_checking_account(
     info: CheckingAccountIn,
@@ -28,8 +29,8 @@ def create_checking_account(
     return checking_account
 
 
-
-@router.get('/api/checking_account', response_model=List[CheckingAccountOutWithDetails])
+@router.get('/api/checking_account',
+            response_model=List[CheckingAccountOutWithDetails])
 def get_all_checking_account(
     repo: CheckingAccountRepository = Depends(),
     account_data: dict = Depends(authenticator.get_current_account_data),
@@ -37,7 +38,8 @@ def get_all_checking_account(
     return repo.get_all_checking_accounts(account_data)
 
 
-@router.get('/api/checking_account/{owner_id}', response_model=CheckingAccountOutWithDetails)
+@router.get('/api/checking_account/{owner_id}',
+            response_model=CheckingAccountOutWithDetails)
 def get_one_checking_account(
     owner_id: int,
     response: Response,
@@ -65,8 +67,8 @@ def update_checking_account(
     repo: CheckingAccountRepository = Depends(),
     account_data: dict = Depends(authenticator.get_current_account_data),
 ):
-    # user_id = account_data['id']
-    checking_account_response = repo.update_checking_account(transaction, account_data)
+    checking_account_response = repo.update_checking_account(
+        transaction, account_data)
     instance = TransactionsTestRepository()
     if checking_account_response:
         instance.create_checking_transaction(transaction, account_data)
