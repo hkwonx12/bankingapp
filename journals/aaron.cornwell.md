@@ -41,3 +41,7 @@ Today I was able to make a users home page and start linking our components to n
 
 04-27-23
 Created the users "account page" so the users can choose which type of accounts they would like to sign up for
+
+04-27-23
+created unit test for get all user accounts. Created a private route object to wrap components that we want only logged in users to view
+

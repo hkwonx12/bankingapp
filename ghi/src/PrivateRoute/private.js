@@ -7,6 +7,6 @@ const PrivateRoute = ({ children }) => {
     const { login } = useToken();
     const { token } = useToken();
 
-    return token ? children : <Navigate to="/" />
+    return token ? children : <Navigate to="/login" />
 }
 export default PrivateRoute;
