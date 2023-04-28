@@ -83,4 +83,8 @@ I finished making ghi forms and list pages for checking account. I was able to c
 
 
 # April 26, 2023
-I am finished creating a functional edit user information page and a user details page. I formatted the forms to make it more clean. I also assisted Matt in creating his savings account components and debugging it. I finished up with storing the access token to the local storage when a user signs up for an account. 
+I am finished creating a functional edit user information page and a user details page. I formatted the forms to make it more clean. I also assisted Matt in creating his savings account components and debugging it. I finished up with storing the access token to the local storage when a user signs up for an account.
+
+
+# April 27, 2023
+

@@ -24,63 +24,20 @@ function Nav() {
              </button>
          </div>
          <div className="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
-             <div className="text-sm lg:flex-grow">
-                <NavLink className="block mt-4 lg:inline-block lg:mt-0 text-purple-200 hover:text-white mr-4" aria-current="page" to="/">Home</NavLink>
-                 <NavLink to="/checkingaccount" className="block mt-4 lg:inline-block lg:mt-0 text-purple-200 hover:text-white mr-4">
-                     Checking Total
-                 </NavLink>
-                <NavLink to="/checking" className="block mt-4 lg:inline-block lg:mt-0 text-purple-200 hover:text-white mr-4">
-                     Checking History
-                 </NavLink>
-                 <NavLink to="/createchecking" className="block mt-4 lg:inline-block lg:mt-0 text-purple-200 hover:text-white mr-4">
-                    Create Checking Account
-                 </NavLink>
-                 <NavLink to="/checkingdeposit" className="block mt-4 lg:inline-block lg:mt-0 text-purple-200 hover:text-white mr-4">
-                    Create Checking Deposit
-                </NavLink>
-                 <NavLink to="/investment/statements/" className="block mt-4 lg:inline-block lg:mt-0 text-purple-200 hover:text-white mr-4">
-                     Investment History
-                 </NavLink>
-                 <NavLink to="/investment/create/" className="block mt-4 lg:inline-block lg:mt-0 text-purple-200 hover:text-white mr-4">
-                     Create Investment Account
-                 </NavLink>
-                 <NavLink to="/investment/deposit/" className="block mt-4 lg:inline-block lg:mt-0 text-purple-200 hover:text-white mr-4">
-                     Create Investment Deposit
-                 </NavLink>
-                 <NavLink to="/investment/detail/" className="block mt-4 lg:inline-block lg:mt-0 text-purple-200 hover:text-white mr-4">
-                     Investment Detail
-                 </NavLink>
-                <NavLink to="/savingsaccount" className="block mt-4 lg:inline-block lg:mt-0 text-purple-200 hover:text-white mr-4">
-                     Savings Total
-                 </NavLink>
-                <NavLink to="/savings" className="block mt-4 lg:inline-block lg:mt-0 text-purple-200 hover:text-white mr-4">
-                     Savings History
-                 </NavLink>
-                 <NavLink to="/savingsaccount" className="block mt-4 lg:inline-block lg:mt-0 text-purple-200 hover:text-white mr-4">
-                     Savings Total
-                 </NavLink>
-                 <NavLink to="/createsavings" className="block mt-4 lg:inline-block lg:mt-0 text-purple-200 hover:text-white mr-4">
-                     Create Savings Account
-                 </NavLink>
-                 <NavLink to="/savingsdeposit" className="block mt-4 lg:inline-block lg:mt-0 text-purple-200 hover:text-white mr-4">
-                     Savings Deposit
-                 </NavLink>
-                 <NavLink to="/createaccounts" className="block mt-4 lg:inline-block lg:mt-0 text-purple-200 hover:text-white mr-4">
-                     Create Accounts Page
-                 </NavLink>
-             </div>
-             <div>
-                <NavLink to="/user" className="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0">User Account</NavLink>
-             </div>
-                <NavLink to="/edituser" className="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0">Update Info</NavLink>
-             <div>
-                 <NavLink to="/login" className="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0">Login</NavLink>
-             </div>
-             <div>
-                 <NavLink to="/signup" className="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0">Sign Up</NavLink>
-             </div>
-             <div>
-                 <button onClick={myLogout} className="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0">Log Out</button>
+            <div className="text-sm lg:flex-grow">
+                <div>
+                    <NavLink to="/user" className="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0">User Account</NavLink>
+                </div>
+                    <NavLink to="/edituser" className="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0">Update Info</NavLink>
+                <div>
+                    <NavLink to="/login" className="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0">Login</NavLink>
+                </div>
+                <div>
+                    <NavLink to="/signup" className="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0">Sign Up</NavLink>
+                </div>
+                <div>
+                    <button onClick={myLogout} className="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0">Log Out</button>
+                </div>
              </div>
          </div>
      </nav>

@@ -38,7 +38,7 @@ function CreateSavingsAccountForm() {
         if (token && response.ok) {
             setFormData({
                 total_amount: '',
-            }, [token]);
+            });
         }
     };
 
