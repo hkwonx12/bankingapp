@@ -74,7 +74,7 @@ function InvestmentAccountDetail() {
                     <table>
                         <thead>
                             <tr>
-                            <th>Total Amount</th>
+                            <th className="pr-10">Total Amount</th>
                             <th>Investment Percentage Change</th>
                             {/* <th> Update Total</th> */}
                         </tr>
