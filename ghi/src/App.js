@@ -67,7 +67,6 @@ function App() {
                 <Route path='deposit' element={<CreateInvestmentDepositForm/>}/>
                 <Route path='detail' element={<InvestmentAccountDetail/>}/>
                 <Route path='chart' element={<InvestmentDayChangeHistory/>}/>
-                {/* <Route path='account' element={<InvestmentInformation/>}/> */}
               </Route>
 
               <Route>

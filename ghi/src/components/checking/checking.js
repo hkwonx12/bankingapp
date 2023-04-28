@@ -26,6 +26,8 @@ function CheckingStatements() {
         return statements.filter((statement) =>
             statement['checking_account_id'] && statement['savings_account_id'] == null && statement['investment_accout_id'] == null
         );
+
+        return filtered;
     }
 
 

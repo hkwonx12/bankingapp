@@ -1,13 +1,16 @@
 import CreateCheckingAccountForm from "./components/checking/createCheckingAccount";
 import CreateSavingsAccountForm from "./components/savings/createSavingsAccount";
 import CreateInvestmentAccountForm from "./components/investment/createInvestmentAccount";
+import { useAuthContext } from "@galvanize-inc/jwtdown-for-react";
 import{Link} from "react-router-dom"
 
 
 
 function CreateAccountsPage() {
 
-        return (
+    const {token} = useAuthContext();
+
+        return token && (
             <>
             <section>
                 <div className="flex items-center justify-between flex-wrap bg-purple-500 p-6">

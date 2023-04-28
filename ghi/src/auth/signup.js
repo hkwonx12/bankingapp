@@ -40,9 +40,7 @@ function SignUpForm() {
 
 
     const response = await fetch(url, fetchConfig);
-    console.log(response)
     const data = await response.json();
-    console.log(data)
     localStorage.setItem("access_token", data.access_token)
     if (response.ok) {
         login(formData.username, formData.password);

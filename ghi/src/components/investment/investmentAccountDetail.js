@@ -14,7 +14,6 @@ function InvestmentAccountDetail() {
         if (response.ok){
             const data = await response.json();
             setAccounts(data)
-            console.log("data",data)
         }
 
     };
@@ -33,8 +32,6 @@ function InvestmentAccountDetail() {
         const amount = newTotalAmount - account.total_amount;
         const formattedAmount = parseFloat(amount.toFixed(2))
         setAccounts([{...account, total_amount: newTotalAmount}])
-        // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map
-        // for some reason only likes it in array
         const url = `http://localhost:8000/api/investment_account/`
         const fetchConfigs = {
             method: 'put',
@@ -49,16 +46,12 @@ function InvestmentAccountDetail() {
             })
         }
         const response = await fetch(url, fetchConfigs)
-        console.log(newTotalAmount)
-        console.log(formattedAmount)
     }
 
     useEffect(() => {
         if (token) {
             getData();
-            console.log("getData", accounts)
             getStockData();
-            console.log("accounts", accounts)
             const interval = setInterval(() => {
                 accounts && accounts.map(account => handleInvestmentTotalUpdate(account, stock.dp))
             }, 30000)
