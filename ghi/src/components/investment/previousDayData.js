@@ -58,8 +58,8 @@ function InvestmentDayChangeHistory() {
                     label: 'Investment Account Data',
                     data: oldValues,
                     fill: false,
-                    borderColor: 'rgb(255, 99, 132)',
-                    backgroundColor: 'rgba(255, 99, 132, 0.5)',
+                    borderColor: '#69DDFF',
+                    backgroundColor: '#69DDFF',
 
                 }]
             })
