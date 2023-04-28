@@ -86,4 +86,8 @@
 
 04/27/2023 >
 
-    - Today I build a chart to show the last 10 'total_amounts' for investment_account. It displays each intervals value before change. I imported chart.js and react-chartsjs2 to help me create the element on the site. 
+    - Today I build a chart to show the last 10 'total_amounts' for investment_account. It displays each intervals value before change. I imported chart.js and react-chartsjs2 to help me create the element on the site.
+
+04/28/2023 >
+
+    - Today we finished writing our api documentation and made sure we had all of our tests working. We checked that are issues were good and that our merge requests were done. We did a trial run of the project and there were no issues and we are ready to submit.
