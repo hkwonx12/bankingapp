@@ -47,30 +47,30 @@ function App() {
               </Route>
 
               <Route>
-                <Route path="/user" element={<PrivateRoute><User/></PrivateRoute>} />
-                <Route path="/edituser" element={<PrivateRoute><UpdateUserForm /></PrivateRoute>}/>
+                <Route path="/user" element={<User/>} />
+                <Route path="/edituser" element={<UpdateUserForm />}/>
               </Route>
 
               <Route>
-                <Route path="/checking" element={<PrivateRoute><CheckingStatements/></PrivateRoute>}/>
-                <Route path="/checkingaccount" element={<PrivateRoute><CheckingAccount/></PrivateRoute>}/>
-                <Route path="/createchecking" element={<PrivateRoute><CreateCheckingAccountForm /></PrivateRoute>} />
-                <Route path="/checkingdeposit" element={<PrivateRoute><CreateDepositForm/></PrivateRoute>}/>
+                <Route path="/checking" element={<CheckingStatements />} />
+                <Route path="/checkingaccount" element={<CheckingAccount/>}/>
+                <Route path="/createchecking" element={<CreateCheckingAccountForm />} />
+                <Route path="/checkingdeposit" element={<CreateDepositForm/>}/>
               </Route>
 
               <Route>
-                <Route path="/savings" element={<PrivateRoute><SavingsStatements/></PrivateRoute>}/>
-                <Route path="/savingsaccount" element={<PrivateRoute><SavingsAccount/></PrivateRoute>}/>
-                <Route path="/createsavings" element={<PrivateRoute><CreateSavingsAccountForm/></PrivateRoute>}/>
-                <Route path="/savingsdeposit" element={<PrivateRoute><CreateSavingsDepositForm/></PrivateRoute>}/>
+                <Route path="/savings" element={<SavingsStatements/>}/>
+                <Route path="/savingsaccount" element={<SavingsAccount/>}/>
+                <Route path="/createsavings" element={<CreateSavingsAccountForm/>}/>
+                <Route path="/savingsdeposit" element={<CreateSavingsDepositForm/>}/>
               </Route>
 
               <Route path='/investment'>
-                <Route path='statements' element={<PrivateRoute><InvestmentStatements/></PrivateRoute>}/>
-                <Route path='create' element={<PrivateRoute><CreateInvestmentAccountForm/></PrivateRoute>}/>
-                <Route path='deposit' element={<PrivateRoute><CreateInvestmentDepositForm/></PrivateRoute>}/>
-                <Route path='detail' element={<PrivateRoute><InvestmentAccountDetail/></PrivateRoute>}/>
-                <Route path='chart' element={<PrivateRoute><InvestmentDayChangeHistory/></PrivateRoute>}/>
+                <Route path='statements' element={<InvestmentStatements/>}/>
+                <Route path='create' element={<CreateInvestmentAccountForm/>}/>
+                <Route path='deposit' element={<CreateInvestmentDepositForm/>}/>
+                <Route path='detail' element={<InvestmentAccountDetail/>}/>
+                <Route path='chart' element={<InvestmentDayChangeHistory/>}/>
                 {/* <Route path='account' element={<InvestmentInformation/>}/> */}
               </Route>
 
