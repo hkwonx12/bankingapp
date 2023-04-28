@@ -14,17 +14,20 @@ function CheckingStatements() {
         if (response.ok){
             const data = await response.json();
             setStatements(data)
+            console.log('initial fetch', data)
         }
 
     };
 
     useEffect(() => {
         if (token) getData();
-    }, [token]);
+        console.log(statements)
+    }, [token], statements);
 
     const getStatementsFiltered = () => {
         return statements.filter((statement) =>
-            statement['checking_account_id'] == true && statement['savings_account_id'] == null && statement['investment_accout_id'] == null
+            statement['checking_account_id'] === false && statement['savings_account_id'] === null && statement['investment_accout_id'] === null,
+            console.log(getStatementsFiltered)
         );
     }
 
