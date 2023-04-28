@@ -6,6 +6,7 @@ import useToken from "@galvanize-inc/jwtdown-for-react";
 
 
 function CreateAccountsPage() {
+    const { login } = useToken();
 
     const { token } = useToken();
 
