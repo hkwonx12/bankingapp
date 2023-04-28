@@ -11,7 +11,7 @@
 - We continued to work on the API and had a discussion about databases.
 
 # 3-24-23
-- We decided that SQL would be the best database to handle our finance application.
+- We decided that SQL would be the best database to handle our finance application. Added routes to wireframe and added a detail page.
 
 # 3-27-23
 - We collectively worked on the docker-compose.yaml file and added to our requirements.txt
@@ -29,7 +29,7 @@
 - Worked on authentication, routers, and migrations
 
 # 4-3-23
-- Decided who was assigned to what microservices and will work on them together throughout the week, and we wrote up some issues in our git repo.
+- Decided who was assigned to what microservices and will work on them together throughout the week, and we wrote up some issues in our git repo. Debugged authentication and git.
 
 # 4-4-23
 - Worked on the user routers portion and we've started the checking account routers.
@@ -41,7 +41,7 @@
 - Rehauled migrations and checking/saving endpoints.
 
 # 4-7-23
-- Completed routes and queries.
+- Completed routes, transactions, and queries.
 
 # 4-17-23
 - Started frontend authentication and created slices for our user and jsx files.
@@ -56,16 +56,16 @@
 - Changed frontend, transactions weren't accessing our forms correctly.
 
 # 4-24-23
-- Decided to scrap redux and start again. Working on saving components.
+- Decided to scrap redux and start again. Working on the saving components.
 
 # 4-25-23
 - Did the savings and savings account components along with some nav changes. Made changes to the checking account id and investment components.
 
 # 4-26-23
-- Finished with the savings components but ran into serious mechanical/error issues, eventually resolved and then moved on to make CreateAccountPage.
+- Finished with the savings components but ran into serious mechanical/error issues, eventually resolved and then moved on to make CreateAccountPage with Aaron.
 
 # 4-27-23
-- Finished the CreateAccountPage and helped with some issues regarding account history. Then worked on formatting user.
+- Finished the CreateAccountPage with Aaron and helped with some issues regarding account history. Then worked on formatting getUser and created it as an issue in git (potential docker issues, will look to resolve).
 
 # 4-28-23
-- 
+- Created a unit-test for savings account, created an issue in git for getUser, and created a merge request.

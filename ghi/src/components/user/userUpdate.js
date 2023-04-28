@@ -9,6 +9,7 @@ function UpdateUserForm() {
         full_name: '',
         address: '',
         phone: '',
+        dob: ''
     })
 
     const fetchData = async () => {
@@ -43,6 +44,7 @@ function UpdateUserForm() {
             full_name: '',
             address: '',
             phone: '',
+            dob: ''
         }, [token]);
       }
     };
@@ -62,7 +64,7 @@ function UpdateUserForm() {
             <h1 className="block text-gray-700 text-sm font-bold mb-2">Edit your account</h1>
             <form onSubmit={handleSubmit} id="create-manufacturer-form" className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
               <div className="form-floating mb-3">
-                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="full_name">Name:</label>
+                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="full_name">Full Name:</label>
                 <input value={formData.full_name} onChange={handleChange} placeholder="Croissant Doe" required type="text" name="full_name" id="full_name" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
               </div>
               <div className="form-floating mb-3">
@@ -76,6 +78,10 @@ function UpdateUserForm() {
               <div className="form-floating mb-3">
                 <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="phone">Phone number:</label>
                 <input value={formData.phone} onChange={handleChange} placeholder="xxx-xxx-xxxx" required type="text" name="phone" id="phone" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
+                <div className="form-floating mb-3">
+                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="phone">DOB:</label>
+                <input value={formData.dob} onChange={handleChange} placeholder="Date of birth" required type="text" name="dob" id="dob" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
+              </div>
               </div>
               <button className="py-2 px-4  bg-purple-600 hover:bg-purple-700 focus:ring-purple-500 focus:ring-offset-purple-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg">Update</button>
             </form>
