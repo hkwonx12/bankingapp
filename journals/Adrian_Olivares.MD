@@ -74,8 +74,16 @@
 
 04/24/2023 >
 
-    - We realized that redux tool kit was harder and more time consuming than expected so we decided to continue with react without redux. THis would mean a bit extra time but it should pave a simpler path for us and will allow us to finish on time. 
+    - We realized that redux tool kit was harder and more time consuming than expected so we decided to continue with react without redux. THis would mean a bit extra time but it should pave a simpler path for us and will allow us to finish on time.
 
 04/25/2023 >
 
     - Today I went back to the backend and started fixing some things to mak eour life on the front end easier. Changed the routes so that our logged in user would only have access to certain routes and didnt have the power to view any others.
+
+04/26/2023 >
+
+    - On the front end I got my API to show up on the localhost with teh daily percentage change for the QQQ from start of the market. It would show up alongside the total_amount. The update button will update that total_amount based on days change.
+
+04/27/2023 >
+
+    - Today I build a chart to show the last 10 'total_amounts' for investment_account. It displays each intervals value before change. I imported chart.js and react-chartsjs2 to help me create the element on the site. 
