@@ -56,7 +56,7 @@
 - Changed frontend, transactions weren't accessing our forms correctly.
 
 # 4-24-23
-- Decided to scrap redux and start again. Working on the saving components.
+- Decided to scrap redux and start again. Working on the saving components. A landing page was created with a navigation bar.
 
 # 4-25-23
 - Did the savings and savings account components along with some nav changes. Made changes to the checking account id and investment components.
