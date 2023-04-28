@@ -73,7 +73,7 @@ function User() {
                             </div>
                         </div>
                         <div className="md:w-8/12 lg:ml-6 lg:w-3/12">
-                            <UpdateUserForm />
+                            <UpdateUserForm getUserData={getData}/>
                         </div>
                     </div>
                 </div>

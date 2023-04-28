@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useAuthContext } from '@galvanize-inc/jwtdown-for-react';
 
-function CreateDepositForm() {
+function CreateDepositForm({getStatementData}) {
     const {token} = useAuthContext();
     const [formData, setFormData] = useState({
         date: '',
@@ -17,7 +17,7 @@ function CreateDepositForm() {
             const data = await response.json();
             setFormData(data);
         }
-    }
+    };
     useEffect(() => {
         if (token) fetchData();
     }, [token]);
@@ -32,10 +32,11 @@ function CreateDepositForm() {
               'Content-Type': 'application/json',
               Authorization: `Bearer ${token}`
           },
-
       };
+
       const response = await fetch(url, fetchConfig);
       if (token && response.ok) {
+          getStatementData();
           setFormData({
               date: '',
               amount: '',

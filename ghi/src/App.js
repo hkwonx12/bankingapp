@@ -1,5 +1,4 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Nav from './Nav';
 import MainPage from './MainPage';
 import SignUpForm from './auth/signup';
 import LoginForm from './auth/login';
@@ -21,21 +20,18 @@ import CreateSavingsAccountForm from './components/savings/createSavingsAccount'
 import CreateSavingsDepositForm from './components/savings/createSavingsDeposit';
 import CreateAccountsPage from './CreateAccountsPage';
 import InvestmentDayChangeHistory from './components/investment/previousDayData';
-import PrivateRoute from './PrivateRoute/private';
 
 function App() {
-
 
     return (
       <BrowserRouter>
         <AuthProvider>
-          {/* <Nav /> */}
           <div>
             <Routes>
               <Route path="/" element={<LandingPage />} />
 
               <Route>
-                <Route path="/mainpage" element={<PrivateRoute><MainPage/></PrivateRoute>} />
+                <Route path="/mainpage" element={<MainPage/>} />
               </Route>
 
               <Route>
@@ -71,11 +67,10 @@ function App() {
                 <Route path='deposit' element={<CreateInvestmentDepositForm/>}/>
                 <Route path='detail' element={<InvestmentAccountDetail/>}/>
                 <Route path='chart' element={<InvestmentDayChangeHistory/>}/>
-                {/* <Route path='account' element={<InvestmentInformation/>}/> */}
               </Route>
 
               <Route>
-                <Route path="/createaccounts" element={<PrivateRoute><CreateAccountsPage /></PrivateRoute>} />
+                <Route path="/createaccounts" element={<CreateAccountsPage />} />
               </Route>
 
             </Routes>

@@ -1,8 +1,7 @@
-from models import SavingsAccountIn, SavingsAccountOut, SavingsAccountOutWithDetails, TransactionsIn, TransactionsTestIn
+from models import SavingsAccountIn, SavingsAccountOut, SavingsAccountOutWithDetails, TransactionsTestIn
 from fastapi import APIRouter, Response, Depends, HTTPException, status
 from queries.accounts import DuplicateAccountError
 from queries.savings_account import SavingsRepository
-from queries.transactions import TransactionsRepository
 from queries.testTransactions import TransactionsTestRepository
 from authenticator import authenticator
 from typing import List

@@ -1,4 +1,4 @@
-from models import CheckingAccountIn, CheckingAccountOut, CheckingAccountOutWithDetails, CheckingAccountUpdate, TransactionsIn, TransactionsTestIn
+from models import CheckingAccountIn, CheckingAccountOut, CheckingAccountOutWithDetails, CheckingAccountUpdate, TransactionsTestIn
 from queries.pool import pool
 from typing import List
 
@@ -21,8 +21,6 @@ class CheckingAccountRepository:
                 )
 
                 conn.commit()
-                print(deposit.amount)
-                print(account_data['id'])
                 return {"amount": deposit.amount, "id": account_data['id']}
 
     def delete_checking_account(self, id: int) -> bool:

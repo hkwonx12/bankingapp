@@ -24,7 +24,7 @@ function SavingsStatements() {
 
       const getStatementsFiltered = () => {
         return statements.filter((statement) =>
-          statement["savings_account_id"] == true && statement["checking_account_id"] == null && statement["investment_accout_id"] == null
+          statement["savings_account_id"] && statement["checking_account_id"] == null && statement["investment_accout_id"] == null
         );
       };
 
@@ -60,7 +60,7 @@ function SavingsStatements() {
                             </div>
                         </div>
                         <div className="md:w-8/12 lg:ml-6 lg:w-3/12">
-                            <CreateSavingsDepositForm />
+                            <CreateSavingsDepositForm getStatementData={getData} />
                         </div>
                     </div>
                 </div>

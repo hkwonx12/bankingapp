@@ -24,7 +24,7 @@ function InvestmentStatements() {
 
     const getStatementsFiltered = () => {
         return statements.filter((statement) =>
-            statement['investment_account_id'] ==true && statement['savings_account_id'] == null && statement['checking_accout_id'] == null
+            statement['investment_account_id'] && statement['savings_account_id'] == null && statement['checking_accout_id'] == null
         );
     }
 
@@ -62,7 +62,7 @@ function InvestmentStatements() {
                             </div>
                         </div>
                         <div className="md:w-8/12 lg:ml-6 lg:w-3/12">
-                            <CreateInvestmentDepositForm />
+                            <CreateInvestmentDepositForm getStatementData={getData}/>
                         </div>
                         <div className="">
                             <InvestmentDayChangeHistory/>

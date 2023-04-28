@@ -91,4 +91,4 @@ Today I fixed the sign up sheet to log in the user after they submit the form. I
 
 
 # April 28, 2023
-Today I completed the Checking Account unit test. It passed when tested in Docker.
+Today I completed the Checking Account unit test. It passed when tested in Docker. I learned to re-render the statement page using the setStatements hook in Savings Statements by passing the data through the handleSubmit in Savings Deposit Form. 

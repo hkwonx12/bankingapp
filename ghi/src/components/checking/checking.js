@@ -23,9 +23,12 @@ function CheckingStatements() {
     }, [token]);
 
     const getStatementsFiltered = () => {
-        return statements.filter((statement) =>
-            statement['checking_account_id'] == true && statement['savings_account_id'] == null && statement['investment_accout_id'] == null
+
+        const filtered = statements.filter((statement) =>
+            statement['checking_account_id'] && statement['savings_account_id'] == null && statement['investment_accout_id'] == null
         );
+
+        return filtered;
     }
 
 
@@ -63,7 +66,7 @@ function CheckingStatements() {
                             </div>
                         </div>
                         <div className="md:w-8/12 lg:ml-6 lg:w-3/12">
-                            <CreateDepositForm />
+                            <CreateDepositForm getStatementData={getData}/>
                         </div>
                     </div>
                 </div>
