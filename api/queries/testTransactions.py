@@ -1,4 +1,4 @@
-from models import TransactionsIn, TransactionsOut, TransactionsOutWithDetails, TransactionCheckingIn, TransactionsTestIn, TransactionOutForChecking, TransactionOutForSaving, TransactionOutForInvestment
+from models import TransactionsIn, TransactionsOut, TransactionsOutWithDetails, TransactionsTestIn, TransactionOutForChecking, TransactionOutForSaving, TransactionOutForInvestment
 from queries.pool import pool
 from typing import List
 
@@ -29,7 +29,6 @@ class TransactionsTestRepository:
 
                 )
                 ids = result.fetchone()
-                print(ids)
                 checking_account_id = ids[0]
                 savings_account_id = ids[1]
                 investment_account_id = ids[2]
@@ -76,7 +75,6 @@ class TransactionsTestRepository:
 
                 )
                 ids = result.fetchone()
-                print(ids)
                 checking_account_id = ids[0]
                 savings_account_id = None
                 investment_account_id = None
@@ -123,7 +121,6 @@ class TransactionsTestRepository:
 
                 )
                 ids = result.fetchone()
-                print(ids)
                 checking_account_id = None
                 savings_account_id = ids[1]
                 investment_account_id = None
@@ -170,7 +167,6 @@ class TransactionsTestRepository:
 
                 )
                 ids = result.fetchone()
-                print(ids)
                 checking_account_id = None
                 savings_account_id = None
                 investment_account_id = ids[2]
