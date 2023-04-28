@@ -68,4 +68,4 @@
 - Finished the CreateAccountPage with Aaron and helped with some issues regarding account history. Then worked on formatting getUser and created it as an issue in git (potential docker issues, will look to resolve).
 
 # 4-28-23
-- Created a unit-test for savings account, created an issue in git for getUser, and created a merge request. Reviewed overall project to check for errors, presentation purposes, and application functionality. Explored the possibility of tackling websockets, but decided against it.
+- Created a unit-test for savings account, created an issue in git for getUser, and created a merge request. Reviewed overall project to check for errors, presentation purposes, and application functionality. Explored the possibility of tackling websockets, but decided against it. Getting rid of old console logs in code.
