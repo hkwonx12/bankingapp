@@ -10,7 +10,7 @@ class FakeSavingsQueries:
         return [
             {
                 "id": 1,
-                "total_amount": 500,
+                "total_amount": 20,
                 "interest_rate": 0,
                 "routing_number": 0,
                 "owner_id": 1

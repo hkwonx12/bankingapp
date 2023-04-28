@@ -32,4 +32,3 @@ def test_get_all_checking_accounts():
     assert len(data["checking_account"]) == 1
     # A Cleanup
     app.dependency_overrides = {}
-
