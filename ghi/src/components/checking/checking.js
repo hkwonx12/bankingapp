@@ -25,10 +25,12 @@ function CheckingStatements() {
     }, [token], statements);
 
     const getStatementsFiltered = () => {
-        return statements.filter((statement) =>
-            statement['checking_account_id'] === false && statement['savings_account_id'] === null && statement['investment_accout_id'] === null,
-            console.log(getStatementsFiltered)
+
+        const filtered = statements.filter((statement) =>
+            statement['checking_account_id'] && statement['savings_account_id'] == null && statement['investment_accout_id'] == null
         );
+
+        return filtered;
     }
 
 

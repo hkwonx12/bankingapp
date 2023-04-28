@@ -4,7 +4,6 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 
-
 const LoginForm = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
@@ -32,7 +31,6 @@ const LoginForm = () => {
                         className="w-full"
                         alt="Bank Logo"/>
                 </div>
-                {/* right column container with form */}
             <div className="md:w-8/12 lg:ml-6 lg:w-5/12">
                 <h5 className="block text-gray-700 text-sm font-bold mb-2">Login Here</h5>
                 <div className="mb-4">
