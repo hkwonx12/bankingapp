@@ -14,7 +14,9 @@ function InvestmentAccountDetail() {
         if (response.ok){
             const data = await response.json();
             setAccounts(data)
+            console.log("data",data)
         }
+
     };
 
     const getStockData = async () => {
@@ -54,14 +56,15 @@ function InvestmentAccountDetail() {
     useEffect(() => {
         if (token) {
             getData();
+            console.log("getData", accounts)
             getStockData();
             console.log("accounts", accounts)
             const interval = setInterval(() => {
                 accounts && accounts.map(account => handleInvestmentTotalUpdate(account, stock.dp))
-            }, 15000)
+            }, 330000)
             return () => clearInterval(interval)
             }
-    }, [token]);
+    }, [token],[accounts]);
 
     return (
         <>
