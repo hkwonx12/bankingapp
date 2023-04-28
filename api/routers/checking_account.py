@@ -19,7 +19,6 @@ def create_checking_account(
 
 ):
     try:
-        # user_id = account_data['id']
         checking_account = repo.create_checking_account(info, account_data)
     except DuplicateAccountError:
         raise HTTPException(
