@@ -11,11 +11,8 @@
 * Response shape (JSON):
     ```json
     {
-      "account": {
-        username: str,
-        password: str
-      },
-      "token": string
+      "access_token": str,
+        "token_type": "Bearer"
     }
     ```
 
@@ -35,79 +32,101 @@
     ```
 
 
-## User Sign Up
+## Create User
 
-* Endpoint path: /signup
+* Endpoint path: /users
 * Endpoint method: POST
 
 * Request shape (form):
+    * email: str,
+    * full_name: str,
     * username: str,
     * password: str,
-    * full_name: str,
-    * email: str,
     * address: str,
     * phone_number: int,
     * dob: date,
-    * checking: bool,
-    * savings: bool,
-    * investment: bool,
+
 
 * Response: Account information
 * Response shape (JSON):
     ```json
     {
         "account": {
+            email: str,
+            full_name: str,
             username: str,
             password: str,
-            full_name: str,
-            email: str,
             address: str,
             phone_number: int,
             dob: date,
-            checking: bool,
-            savings: bool,
-            investment: bool
         }
     }
     ```
 
 
-## User Account
+## Get All Users
 
-* Endpoint path: /account/
+* Endpoint path: /users
+* Endpoint method: GET
+
+* Headers:
+  * Authorization: Bearer token
+
+* Response: Account information
+* Response shape (JSON):
+    ```json
+    {
+        "account": {
+            id: int,
+            email: str,
+            full_name: str,
+            username: str,
+            hashed_password: str,
+            address: str,
+            phone_number: int,
+            dob: date,
+        }
+    }
+    ```
+
+## Get All User Accounts
+
+* Endpoint path: /all_users
 * Endpoint method: GET
 
 * Response: Account information
 * Response shape (JSON):
     ```json
-    {
-        "account": {
-            username: str,
-            password: str,
-            full_name: str,
+    [
+        {
+
+            id: int,
             email: str,
+            full_name: str,
+            username: str,
+            hashed_password: str,
             address: str,
             phone_number: int,
             dob: date,
-            checking: bool,
-            savings: bool,
-            investment: bool
+
         }
-    }
+    ]
     ```
 
 
 ## Edit User Account
 
-* Endpoint path: /signup
+* Endpoint path: /users/{username}
 * Endpoint method: PUT
 
+* Headers:
+  * Authorization: Bearer token
+
 * Request shape (form):
-    * username: str,
-    * password: str,
     * email: str,
+    * full_name: str,
     * address: str,
-    * phone_number: int
+    * phone: str
 
 
 * Response: Account information
@@ -115,11 +134,11 @@
     ```json
     {
         "account": {
-            username: str,
-            password: str,
+
             email: str,
+            full_name: str,
             address: str,
-            phone_number: int
+            phone: str
         }
     }
     ```
@@ -127,8 +146,132 @@
 
 ## Delete User Account
 
-* Endpoint path: /account/
+* Endpoint path: /users/{user_id}
 * Endpoint method: DELETE
+
+* Request shape:
+    * user_id: int
+
+* Headers:
+  * Authorization: Bearer token
+
+* Response: Always true
+* Response shape (JSON):
+    ```json
+    true
+    ```
+
+## Get Token
+* Endpoint path: /token
+* Endpoint method: GET
+
+* Headers:
+  * Authorization: Bearer token
+
+* Response: Token
+* Response shape (JSON):
+    ```json
+    {
+        access_token: str,
+        token_type: "Bearer",
+        "user" :{
+            "id": int,
+            "username": str
+        }
+    }
+
+    ```
+
+## Create Checking Account
+* Endpoint path: /checking_account
+* Endpoint method: POST
+
+* Headers:
+  * Authorization: Bearer token
+
+* Response: Create Checking Account
+* Request Shape (JSON):
+    ```json
+    {
+    total_amount: int
+    }
+    ```
+
+
+## Get All Checking Account
+
+* Endpoint path: /checking_account
+* Endpoint method: GET
+
+* Headers:
+  * Authorization: Bearer token
+
+* Response: Checking Account information
+* Response shape (JSON):
+    ```json
+    [
+         {
+            id: int,
+            total_amount: int,
+            routing_number: int,
+            owner_id: int
+        }
+    ]
+    ```
+
+## Get One Checking Account
+* Endpoint path: /checking_account/{owner_id}
+* Endpoint method: GET
+
+* Headers:
+  * Authorization: Bearer token
+
+* Request Body (JSON):
+    ```json
+    {
+        owner_id: int
+    }
+    ```
+
+* Response: Checking Account information
+* Response shape (JSON):
+    ```json
+    [
+         {
+            id: int,
+            total_amount: int,
+            routing_number: int,
+            owner_id: int
+        }
+    ]
+    ```
+
+## Update Checking Account
+
+* Endpoint path:/checking_account
+* Endpoint method: PUT
+
+* Headers:
+  * Authorization: Bearer token
+
+* Response: Update Checking Account
+* Request Shape (JSON):
+    ```json
+    {
+    date: date,
+    amount: int,
+    institution: string
+    }
+    ```
+* Headers:
+  * Authorization: Bearer token
+
+## Delete Checking Account
+* Endpoint path: /checking_account/{owner_id}
+* Endpoint method: DELETE
+
+* Request shape:
+    * owner_id: int
 
 * Headers:
   * Authorization: Bearer token
@@ -140,122 +283,128 @@
     ```
 
 
-## View Checking Account
-
-* Endpoint path: /checking/
-* Endpoint method: GET
-
-* Response: Checking Account information
-* Response shape (JSON):
-    ```json
-    {
-        "checking": {
-            amount: int,
-            company: varchar,
-            date: date,
-            checking_account_number: int,
-        }
-    }
-    ```
-
-
 ## View Savings Account
 
-* Endpoint path: /checking/
+* Endpoint path: /savings_account
 * Endpoint method: GET
+
+* Headers:
+  * Authorization: Bearer token
 
 * Response: Savings account information
 * Response shape (JSON):
     ```json
     {
         "savings": {
-            amount: int,
-            company: varchar,
-            date: date,
-            savings_account_number: int,
-        }
-    }
-    ```
-
-
-## Deposit Money
-
-* Endpoint path: /deposit/
-* Endpoint method: POST
-
-* Request shape (form):
-    * routing_number: int,
-    * account_number: int,
-    * institution: varchar,
-    * check_number: int,
-    * amount: int,
-
-* Response: Deposit information
-* Response shape (JSON):
-    ```json
-    {
-        "deposit": {
+            id:,
+            total_amount: int,
+            interest_rate: int,
             routing_number: int,
-            account_number: int,
-            institution: varchar,
-            check_number: int,
-            amount: int,
+
         }
     }
     ```
 
+## Update Savings Account
 
-## Transfer Funds
-
-* Endpoint path: /transfer/
+* Endpoint path: /savings_account
 * Endpoint method: PUT
 
-* Request shape (form):
-    * savings_account_number: int, | OPTIONAL**
-    * checkings_account_number: int, | OPTIONAL**
-    * amount: int,
-    * date: int,
+* Headers:
+  * Authorization: Bearer token
 
-* Response: Transfer information
+* Response: Update Savings account
 * Response shape (JSON):
     ```json
     {
-        "transfer": {
+        "savings": {
+
+            date: string,
             amount: int,
-            (FROM)account: int,
-            (TO)account: int,
-            date: date,
+            institution: int,
+
+        }
+    }
+    ```
+
+## Create Savings Account
+
+* Endpoint path: /savings_account
+* Endpoint method: POST
+
+* Headers:
+  * Authorization: Bearer token
+
+* Response: Create Savings account
+* Response shape (JSON):
+    ```json
+    {
+        "savings": {
+
+            total_amount: int
+
+        }
+    }
+    ```
+
+## Get one Savings Account
+
+* Endpoint path: /savings_account/owner_id
+* Endpoint method: POST
+
+* Headers:
+  * Authorization: Bearer token
+
+* Response: Get one Savings account
+* Response shape (JSON):
+    ```json
+    {
+        "savings": {
+
+            id: int,
+            total_amount: int,
+            interest_rate: int,
+            routing_numbeR: int,
+            owner_id: int
+
+        }
+    }
+    ```
+
+## Delete Savings Account
+
+* Endpoint path: /savings_account/{id}}
+* Endpoint method: DELETE
+
+* Headers:
+  * Authorization: Bearer token
+
+* Response: Delete one Savings account
+* Response shape (JSON):
+    ```json
+    {
+        "savings": {
 
 
         }
     }
-
     ```
 
 
-## Investment Account
+## Get All Investment Account
 
 * Endpoint path: /investment_account
 * Endpoint method: GET
 
-* Response: All investment accounts
-* Response shape (JSON):
-    ```json
-    [
-    {
-        id: int,
-        total_amount: int,
-        investment_value: int,
-        owner_id: int
-    }
-    ]
 
-    ```
+## Update Investment Account
 
 * Endpoint path: /investment_account
 * Endpoint method: PUT
 
 * Response: Update Investment Account
+* Headers:
+  * Authorization: Bearer token
 * Request Shape (JSON):
     ```json
     {
@@ -265,10 +414,14 @@
     }
     ```
 
+## Create Investment Account
+
 * Endpoint path: /investment_account
 * Endpoint method: POST
 
 * Response: Create Investment Account
+* Headers:
+  * Authorization: Bearer token
 * Request Shape (JSON):
     ```json
     {
@@ -276,10 +429,14 @@
     }
     ```
 
+## Get Investment Account
+
 * Endpoint path: /investment_account/{owner_id}
 * Endpoint method: GET
 
 * Response: Get Investment Account
+* Headers:
+  * Authorization: Bearer token
 * Response Shape (JSON):
     ```json
     {
@@ -289,3 +446,97 @@
     owner_id: int
     }
     ```
+## Delete Investment Account
+* Endpoint path: /investment_account/{id}
+* Endpoint method: Delete
+* Headers:
+  * Authorization: Bearer token
+
+## Get All Transactions
+
+* Endpoint path: /transactions
+* Endpoint method: GET
+
+* Response: All Transactions accounts
+* Headers:
+  * Authorization: Bearer token
+* Response shape (JSON):
+    ```json
+    [
+        {
+        id: int,
+        date: date,
+        amount: int,
+        institution: string,
+        checking_account_id: int,
+        savings_account_id: int,
+        investment_account_id: int,
+        owner_id: int
+        }
+    ]
+
+    ```
+## Create Transaction
+
+* Endpoint path: /transactions
+* Endpoint method: POST
+
+* Response: Create Savings account
+* Headers:
+  * Authorization: Bearer token
+* Response shape (JSON):
+    ```json
+    {
+    date: date,
+    amount: int,
+    institution: string,
+    checking_account_id: int,
+    savings_account_id: int,
+    investment_account_id: int,
+    }
+    ```
+## Get One Transaction
+
+* Endpoint path: /transaction/{id}
+* Endpoint method: GET
+
+* Response: Get One Transaction
+* Headers:
+  * Authorization: Bearer token
+* Response Shape (JSON):
+    ```json
+    {
+    id: int,
+    date: date,
+    amount: int,
+    institution: string,
+    checking_account_id: int,
+    savings_account_id: int,
+    investment_account_id: int,
+    owner_id: int
+    }
+    ```
+## Update Transaction
+
+* Endpoint path: /transactions
+* Endpoint method: PUT
+
+* Response: Update Transaction
+* Headers:
+  * Authorization: Bearer token
+* Request Shape (JSON):
+    ```json
+    {
+    date: date,
+    amount: int,
+    institution: string,
+    checking_account_id: int,
+    savings_account_id: int,
+    investment_account_id: int,
+    }
+    ```
+## Delete Transaction
+* Endpoint path: /transactions/{id}
+* Endpoint method: Delete
+* Headers:
+  * Authorization: Bearer token
