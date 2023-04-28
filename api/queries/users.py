@@ -25,8 +25,8 @@ class UserRepository:
                     ]
                 )
                 conn.commit()
-                return {"email": user.email, "full_name": user.full_name, "address": user.address, "phone": user.phone,  "id": account_data['id']}
-
+                return {"email": user.email, "full_name": user.full_name,
+                        "address": user.address, "phone": user.phone, "id": account_data['id']}
 
     def delete_user(self, user_id: int) -> bool:
         with pool.connection() as conn:
@@ -40,12 +40,11 @@ class UserRepository:
                 )
                 return True
 
+    def create_user(self, user: UserIn, hashed_password):
 
-    def create_user(self, user:UserIn, hashed_password):
-        # connect the DB
         with pool.connection() as conn:
             with conn.cursor() as db:
-                # Run our INSERT
+
                 result = db.execute(
                     """
                     INSERT INTO users
@@ -55,25 +54,24 @@ class UserRepository:
                     RETURNING id;
                     """,
                     [
-                    user.full_name,
-                    user.username,
-                    hashed_password,
-                    user.email,
-                    user.address,
-                    user.phone,
-                    user.dob,
+                        user.full_name,
+                        user.username,
+                        hashed_password,
+                        user.email,
+                        user.address,
+                        user.phone,
+                        user.dob,
                     ]
                 )
                 id = result.fetchone()[0]
-                old_data=user.dict()
+                old_data = user.dict()
                 return UserOut(id=id, **old_data)
 
-
     def get_one_user(self, username: str) -> UserOutWithPassword:
-    #connect the DB
+
         with pool.connection() as conn:
             with conn.cursor() as db:
-                #Run our SELECT
+
                 result = db.execute(
                     """
                     SELECT id, username, hashed_password, email, address, phone, dob
@@ -93,31 +91,31 @@ class UserRepository:
                     address=[4],
                     phone=record[5],
                     dob=record[6]
-                    )
+                )
 
     def get_all_user_accounts(self) -> List[UserOutWithDetails]:
-            with pool.connection() as conn:
-                with conn.cursor() as db:
-                    result = db.execute(
-                        """
+        with pool.connection() as conn:
+            with conn.cursor() as db:
+                result = db.execute(
+                    """
                         SELECT id, email, full_name, username, hashed_password, address, phone, dob
                         FROM users;
                         """
+                )
+                result = []
+                for record in db:
+                    user = UserOutWithDetails(
+                        id=record[0],
+                        email=record[1],
+                        full_name=record[2],
+                        username=record[3],
+                        hashed_password=record[4],
+                        address=record[5],
+                        phone=record[6],
+                        dob=record[7]
                     )
-                    result = []
-                    for record in db:
-                        user = UserOutWithDetails(
-                            id=record[0],
-                            email=record[1],
-                            full_name=record[2],
-                            username=record[3],
-                            hashed_password=record[4],
-                            address=record[5],
-                            phone=record[6],
-                            dob=record[7]
-                        )
-                        result.append(user)
-                    return result
+                    result.append(user)
+                return result
 
     def get_all_users(self, account_data) -> List[UserOutWithDetails]:
         with pool.connection() as conn:
@@ -143,7 +141,6 @@ class UserRepository:
                     )
                     result.append(user)
                 return result
-
 
     def user_in_to_out(self, id: int, user: UserIn):
         old_data = user.dict()

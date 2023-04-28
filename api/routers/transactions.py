@@ -25,7 +25,8 @@ def create_transaction(
     return transaction
 
 
-@router.get('/api/transactions', response_model=List[TransactionsOutWithDetails])
+@router.get('/api/transactions',
+            response_model=List[TransactionsOutWithDetails])
 def get_all_transactions(
     repo: TransactionsRepository = Depends(),
     account_data: dict = Depends(authenticator.get_current_account_data),
@@ -33,7 +34,8 @@ def get_all_transactions(
     return repo.get_all_transactions(account_data)
 
 
-@router.get('/api/transactions/{id}', response_model=TransactionsOutWithDetails)
+@router.get('/api/transactions/{id}',
+            response_model=TransactionsOutWithDetails)
 def get_one_transaction(
     id: int,
     response: Response,
@@ -55,7 +57,8 @@ def delete_transaction(
     return repo.delete_transaction(id)
 
 
-@router.put('/api/transactions/{id}', response_model=TransactionsOutWithDetails)
+@router.put('/api/transactions/{id}',
+            response_model=TransactionsOutWithDetails)
 def update_transaction(
     id: int,
     transaction: TransactionsIn,

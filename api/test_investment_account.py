@@ -5,8 +5,9 @@ from authenticator import authenticator
 
 client = TestClient(app)
 
+
 class FakeInvestmentQueries:
-     def get_all_investment_accounts(self, account_data):
+    def get_all_investment_accounts(self, account_data):
         return [
             {
                 "id": 1,
@@ -16,20 +17,22 @@ class FakeInvestmentQueries:
             }
         ]
 
+
 def fake_get_current_account_data():
-        return {
-            "id": 2
-        }
+    return {
+        "id": 2
+    }
+
 
 def test_get_all_investment_accounts():
-    # Arrange
+
     app.dependency_overrides[InvestmentAccountRepository] = FakeInvestmentQueries
     app.dependency_overrides[authenticator.get_current_account_data] = fake_get_current_account_data
-    # Act
+
     res = client.get('/api/investment_account')
     data = res.json()
-    # Assert
+
     assert res.status_code == 200
     assert len(data) == 1
-    # A Cleanup
+
     app.dependency_overrides = {}

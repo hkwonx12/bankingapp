@@ -10,6 +10,7 @@ from typing import List
 
 router = APIRouter()
 
+
 @router.post('/api/savings_account', response_model=SavingsAccountOut)
 def create_savings_account(
     info: SavingsAccountIn,
@@ -27,7 +28,8 @@ def create_savings_account(
     return savings_account
 
 
-@router.get('/api/savings_account', response_model=List[SavingsAccountOutWithDetails])
+@router.get('/api/savings_account',
+            response_model=List[SavingsAccountOutWithDetails])
 def get_all_savings_account(
     repo: SavingsRepository = Depends(),
     account_data: dict = Depends(authenticator.get_current_account_data),
@@ -35,7 +37,8 @@ def get_all_savings_account(
     return repo.get_all_savings_accounts(account_data)
 
 
-@router.get('/api/savings_account/{owner_id}', response_model=SavingsAccountOutWithDetails)
+@router.get('/api/savings_account/{owner_id}',
+            response_model=SavingsAccountOutWithDetails)
 def get_one_savings_account(
     owner_id: int,
     response: Response,
@@ -63,7 +66,8 @@ def update_savings_account(
     repo: SavingsRepository = Depends(),
     account_data: dict = Depends(authenticator.get_current_account_data),
 ):
-    savings_account_response = repo.update_savings_account(transaction, account_data)
+    savings_account_response = repo.update_savings_account(
+        transaction, account_data)
     instance = TransactionsTestRepository()
     if savings_account_response:
         instance.create_savings_transaction(transaction, account_data)

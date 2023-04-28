@@ -4,10 +4,10 @@ from typing import List
 
 
 class TransactionsRepository:
-    def transactions_in_to_out(self, id: int, transaction: TransactionsOutWithDetails):
+    def transactions_in_to_out(
+            self, id: int, transaction: TransactionsOutWithDetails):
         old_data = transaction.dict()
         return TransactionsOutWithDetails(id=id, **old_data)
-
 
     def create_transaction(self, transaction: TransactionsIn, account_data):
         with pool.connection() as conn:
@@ -21,20 +21,18 @@ class TransactionsRepository:
                     RETURNING id;
                     """,
                     [
-                    transaction.date,
-                    transaction.amount,
-                    transaction.institution,
-                    transaction.checking_account_id,
-                    transaction.savings_account_id,
-                    transaction.investment_account_id,
-                    account_data['id']
+                        transaction.date,
+                        transaction.amount,
+                        transaction.institution,
+                        transaction.checking_account_id,
+                        transaction.savings_account_id,
+                        transaction.investment_account_id,
+                        account_data['id']
                     ]
                 )
                 id = result.fetchone()[0]
                 old_data = transaction.dict()
                 return TransactionsOut(id=id, **old_data)
-
-
 
     def get_one_transaction(self, id: int) -> TransactionsOutWithDetails:
         with pool.connection() as conn:
@@ -60,8 +58,8 @@ class TransactionsRepository:
                     investment_account_id=record[6]
                 )
 
-
-    def get_all_transactions(self, account_data) -> List[TransactionsOutWithDetails]:
+    def get_all_transactions(
+            self, account_data) -> List[TransactionsOutWithDetails]:
         with pool.connection() as conn:
             with conn.cursor() as db:
                 result = db.execute(
@@ -86,8 +84,8 @@ class TransactionsRepository:
                     result.append(output)
                 return result
 
-
-    def update_transaction(self, id: int, transaction: TransactionsIn) -> TransactionsOutWithDetails:
+    def update_transaction(
+            self, id: int, transaction: TransactionsIn) -> TransactionsOutWithDetails:
         with pool.connection() as conn:
             with conn.cursor() as db:
                 db.execute(
@@ -113,7 +111,6 @@ class TransactionsRepository:
                     ]
                 )
                 return self.transactions_in_to_out(id, transaction)
-
 
     def delete_transaction(self, id: int) -> bool:
         with pool.connection() as conn:
