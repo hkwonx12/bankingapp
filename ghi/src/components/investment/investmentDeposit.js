@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useAuthContext } from '@galvanize-inc/jwtdown-for-react';
 
 
-function CreateInvestmentDepositForm() {
+function CreateInvestmentDepositForm({getStatementData}) {
     const {token} = useAuthContext();
     const [formData, setFormData] = useState({
         date: '',
@@ -38,6 +38,7 @@ function CreateInvestmentDepositForm() {
 
         const response = await fetch(url, fetchConfig);
         if (token && response.ok) {
+            getStatementData();
             setFormData({
                 date: '',
                 amount: '',

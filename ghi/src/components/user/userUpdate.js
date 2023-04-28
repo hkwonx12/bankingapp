@@ -8,8 +8,7 @@ function UpdateUserForm() {
         email: '',
         full_name: '',
         address: '',
-        phone: '',
-        dob: ''
+        phone: ''
     })
 
     const fetchData = async () => {
@@ -43,8 +42,7 @@ function UpdateUserForm() {
             email: '',
             full_name: '',
             address: '',
-            phone: '',
-            dob: ''
+            phone: ''
         }, [token]);
       }
     };
@@ -78,10 +76,6 @@ function UpdateUserForm() {
               <div className="form-floating mb-3">
                 <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="phone">Phone number:</label>
                 <input value={formData.phone} onChange={handleChange} placeholder="xxx-xxx-xxxx" required type="text" name="phone" id="phone" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
-                <div className="form-floating mb-3">
-                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="phone">DOB:</label>
-                <input value={formData.dob} onChange={handleChange} placeholder="Date of birth" required type="date" name="dob" id="dob" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
-              </div>
               </div>
               <button className="py-2 px-4  bg-purple-600 hover:bg-purple-700 focus:ring-purple-500 focus:ring-offset-purple-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg">Update</button>
             </form>
