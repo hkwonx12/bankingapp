@@ -61,7 +61,7 @@ function InvestmentAccountDetail() {
             console.log("accounts", accounts)
             const interval = setInterval(() => {
                 accounts && accounts.map(account => handleInvestmentTotalUpdate(account, stock.dp))
-            }, 330000)
+            }, 30000)
             return () => clearInterval(interval)
             }
     }, [token],[accounts]);

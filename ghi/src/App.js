@@ -20,14 +20,12 @@ import CreateSavingsAccountForm from './components/savings/createSavingsAccount'
 import CreateSavingsDepositForm from './components/savings/createSavingsDeposit';
 import CreateAccountsPage from './CreateAccountsPage';
 import InvestmentDayChangeHistory from './components/investment/previousDayData';
-import PrivateRoute from './PrivateRoute/private';
 
 function App() {
 
     return (
       <BrowserRouter>
         <AuthProvider>
-          {/* <Nav /> */}
           <div>
             <Routes>
               <Route path="/" element={<LandingPage />} />
