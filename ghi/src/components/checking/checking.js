@@ -14,15 +14,13 @@ function CheckingStatements() {
         if (response.ok){
             const data = await response.json();
             setStatements(data)
-            console.log('initial fetch', data)
         }
 
     };
 
     useEffect(() => {
         if (token) getData();
-        console.log(statements)
-    }, [token], statements);
+    }, [token]);
 
     const getStatementsFiltered = () => {
 
