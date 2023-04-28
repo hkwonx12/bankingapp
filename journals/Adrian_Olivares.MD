@@ -86,7 +86,7 @@
 
 04/27/2023 >
 
-    - Today I build a chart to show the last 10 'total_amounts' for investment_account. It displays each intervals value before change. I imported chart.js and react-chartsjs2 to help me create the element on the site.
+    - Today I built a chart to show the last 10 'total_amounts' for investment_account. It displays each intervals value before change. I imported chart.js and react-chartsjs2 to help me create the element on the site.
 
 04/28/2023 >
 
