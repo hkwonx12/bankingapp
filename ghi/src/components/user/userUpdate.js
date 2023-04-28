@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useAuthContext } from '@galvanize-inc/jwtdown-for-react';
 
 
-function UpdateUserForm() {
+function UpdateUserForm({getUserData}) {
     const {token} = useAuthContext();
     const [formData, setFormData] = useState({
         email: '',
@@ -38,6 +38,7 @@ function UpdateUserForm() {
 
       const response = await fetch(url, fetchConfig);
       if (token && response.ok) {
+        getUserData();
         setFormData({
             email: '',
             full_name: '',
