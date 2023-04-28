@@ -1,8 +1,7 @@
 from fastapi import APIRouter, Response, Depends, HTTPException, status
-from models import CheckingAccountIn, CheckingAccountOut, CheckingAccountOutWithDetails, TransactionsIn, CheckingAccountUpdate, TransactionCheckingIn, TransactionsTestIn
+from models import CheckingAccountIn, CheckingAccountOut, CheckingAccountOutWithDetails, TransactionsTestIn
 from queries.accounts import DuplicateAccountError
 from queries.checking_account import CheckingAccountRepository
-from queries.transactions import TransactionsRepository
 from queries.testTransactions import TransactionsTestRepository
 from authenticator import authenticator
 from typing import List

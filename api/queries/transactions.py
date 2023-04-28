@@ -1,4 +1,4 @@
-from models import TransactionsIn, TransactionsOut, TransactionsOutWithDetails, TransactionCheckingIn
+from models import TransactionsIn, TransactionsOut, TransactionsOutWithDetails
 from queries.pool import pool
 from typing import List
 

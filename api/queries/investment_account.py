@@ -1,4 +1,4 @@
-from models import InvestmentAccountIn, InvestmentAccountOut, InvestmentAccountOutWithDetails, TransactionsIn, TransactionsTestIn
+from models import InvestmentAccountIn, InvestmentAccountOut, InvestmentAccountOutWithDetails, TransactionsTestIn
 from queries.pool import pool
 from typing import List
 

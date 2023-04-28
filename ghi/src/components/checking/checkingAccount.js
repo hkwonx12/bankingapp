@@ -14,7 +14,6 @@ function CheckingAccount() {
         if (response.ok){
             const data = await response.json();
             setAccounts(data)
-            console.log(data)
         }
     };
 

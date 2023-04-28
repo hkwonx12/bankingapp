@@ -1,8 +1,7 @@
 from fastapi import APIRouter, Response, Depends, HTTPException, status
-from models import InvestmentAccountIn, InvestmentAccountOut, InvestmentAccountOutWithDetails, TransactionsIn, TransactionsTestIn
+from models import InvestmentAccountIn, InvestmentAccountOut, InvestmentAccountOutWithDetails, TransactionsTestIn
 from queries.accounts import DuplicateAccountError
 from queries.investment_account import InvestmentAccountRepository
-from queries.transactions import TransactionsRepository
 from queries.testTransactions import TransactionsTestRepository
 from authenticator import authenticator
 from typing import List

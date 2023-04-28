@@ -1,4 +1,4 @@
-from models import UserIn, UserOut, UserOutWithPassword, UserUpdateIn, UserUpdateOut, UserOutWithDetails
+from models import UserIn, UserOut, UserOutWithPassword, UserUpdateIn, UserOutWithDetails
 from queries.pool import pool
 from typing import List
 

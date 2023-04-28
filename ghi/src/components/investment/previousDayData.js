@@ -14,28 +14,22 @@ function InvestmentDayChangeHistory() {
     const getData = async () => {
         const response = await fetch('http://localhost:8000/api/investment_account',
         {headers: {Authorization: `Bearer ${token}`}});
-        console.log('response', response)
         if (response.ok){
             const Data = await response.json();
-            console.log('investment', Data)
             setInvestmentData(Data)
         }
 
     };
     const getTransactionData = async () => {
-        console.log('transaction data call')
         const response = await fetch('http://localhost:8000/api/transactions',
         {headers: {Authorization: `Bearer ${token}`}})
-        console.log('response', response)
         if (response.ok){
             const Data = await response.json()
-            console.log('Transaction',Data)
             setTransactionData(Data)
         }
     }
 
     useEffect(() => {
-        console.log(token)
         if (token){
             getData();
             getTransactionData();
@@ -45,13 +39,11 @@ function InvestmentDayChangeHistory() {
     useEffect(() => {
         if (investmentData && transactionData) {
             const currentTotalAmount = investmentData[0].total_amount
-            console.log(investmentData[0].total_amount)
             const oldValues = [currentTotalAmount]
             for (let i = transactionData.length - 1; i>= 0 && oldValues.length < 10; i--){
                 const previousValue = oldValues[oldValues.length - 1] - transactionData[i].amount
                 oldValues.push(previousValue)
             }
-            console.log(oldValues)
             setChartData({
                 labels: oldValues.reverse().map((_, i) => `MoneyToday-${oldValues.length -i - 1}`),
                 datasets: [{
@@ -71,7 +63,6 @@ function InvestmentDayChangeHistory() {
     return (
         <div>
             {chartData && <Line data={chartData} />}
-            {/* for some reason the chart data would not load fast enough so has to have conditional */}
         </div>
     )
 }

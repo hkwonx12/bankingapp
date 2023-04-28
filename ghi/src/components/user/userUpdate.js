@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useAuthContext } from '@galvanize-inc/jwtdown-for-react';
 
 
-function UpdateUserForm() {
+function UpdateUserForm({getUserData}) {
     const {token} = useAuthContext();
     const [formData, setFormData] = useState({
         email: '',
@@ -38,6 +38,7 @@ function UpdateUserForm() {
 
       const response = await fetch(url, fetchConfig);
       if (token && response.ok) {
+        getUserData();
         setFormData({
             email: '',
             full_name: '',
@@ -63,19 +64,19 @@ function UpdateUserForm() {
             <form onSubmit={handleSubmit} id="create-manufacturer-form" className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
               <div className="form-floating mb-3">
                 <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="full_name">Full Name:</label>
-                <input value={formData.full_name} onChange={handleChange} placeholder="Croissant Doe" required type="text" name="full_name" id="full_name" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
+                <input value={formData.full_name || ''} onChange={handleChange} placeholder="Croissant Doe" required type="text" name="full_name" id="full_name" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
               </div>
               <div className="form-floating mb-3">
                 <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">Email:</label>
-                <input value={formData.email} onChange={handleChange} placeholder="example@example.com" required type="text" name="email" id="email" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
+                <input value={formData.email || ''} onChange={handleChange} placeholder="example@example.com" required type="text" name="email" id="email" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
               </div>
               <div className="form-floating mb-3">
                 <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="address">Address:</label>
-                <input value={formData.address} onChange={handleChange} placeholder="221B Baker Street" required type="text" name="address" id="address" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
+                <input value={formData.address || ''} onChange={handleChange} placeholder="221B Baker Street" required type="text" name="address" id="address" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
               </div>
               <div className="form-floating mb-3">
                 <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="phone">Phone number:</label>
-                <input value={formData.phone} onChange={handleChange} placeholder="xxx-xxx-xxxx" required type="text" name="phone" id="phone" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
+                <input value={formData.phone || ''} onChange={handleChange} placeholder="xxx-xxx-xxxx" required type="text" name="phone" id="phone" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
               </div>
               <button className="py-2 px-4  bg-purple-600 hover:bg-purple-700 focus:ring-purple-500 focus:ring-offset-purple-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg">Update</button>
             </form>

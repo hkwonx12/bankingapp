@@ -1,8 +1,6 @@
-from fastapi import FastAPI, WebSocket, WebSocketDisconnect
-from fastapi.responses import HTMLResponse
+from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from authenticator import authenticator
-from queries.users import UserRepository
 from routers import users, savings_account, checking_account, investment_account, transactions, stock_info
 import os
 
