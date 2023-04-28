@@ -93,7 +93,7 @@ function SignUpForm() {
               </div>
               <div className="form-floating mb-3">
                 <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="color">Password</label>
-                <input value={formData.password} onChange={handleChange} placeholder="password" required type="text" name="password" id="password" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
+                <input value={formData.password} onChange={handleChange} placeholder="password" required type="password" name="password" id="password" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
               </div>
               <div className="form-floating mb-3">
                 <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="color">address</label>
