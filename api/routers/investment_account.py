@@ -8,8 +8,8 @@ from authenticator import authenticator
 from typing import List
 
 
-
 router = APIRouter()
+
 
 @router.post('/api/investment_account', response_model=InvestmentAccountOut)
 def create_investment_account(
@@ -19,7 +19,7 @@ def create_investment_account(
 
 ):
     try:
-        user_id =account_data['id']
+        user_id = account_data['id']
         investment_account = repo.create_investment_account(info, user_id)
     except DuplicateAccountError:
         raise HTTPException(
@@ -29,14 +29,17 @@ def create_investment_account(
     return investment_account
 
 
-@router.get('/api/investment_account', response_model=List[InvestmentAccountOutWithDetails])
+@router.get('/api/investment_account',
+            response_model=List[InvestmentAccountOutWithDetails])
 def get_all_investment_account(
     repo: InvestmentAccountRepository = Depends(),
     account_data: dict = Depends(authenticator.get_current_account_data),
 ):
     return repo.get_all_investment_accounts(account_data)
 
-@router.get('/api/investment_account/{owner_id}', response_model=InvestmentAccountOutWithDetails)
+
+@router.get('/api/investment_account/{owner_id}',
+            response_model=InvestmentAccountOutWithDetails)
 def get_one_investment_account(
     owner_id: int,
     response: Response,
@@ -48,18 +51,19 @@ def get_one_investment_account(
         response.status_code = 404
     return investment_account
 
+
 @router.put('/api/investment_account')
 def update_investment_account(
     transaction: TransactionsTestIn,
     repo: InvestmentAccountRepository = Depends(),
     account_data: dict = Depends(authenticator.get_current_account_data),
 ):
-    investment_account_response=repo.update_investment_account(transaction, account_data)
+    investment_account_response = repo.update_investment_account(
+        transaction, account_data)
     instance = TransactionsTestRepository()
     if investment_account_response:
         instance.create_test_investment_transaction(transaction, account_data)
     return investment_account_response
-
 
 
 @router.delete('/api/investment_account/{id}', response_model=bool)

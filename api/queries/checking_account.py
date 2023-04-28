@@ -4,7 +4,8 @@ from typing import List
 
 
 class CheckingAccountRepository:
-    def update_checking_account(self, deposit: TransactionsTestIn, account_data):
+    def update_checking_account(
+            self, deposit: TransactionsTestIn, account_data):
         with pool.connection() as conn:
             with conn.cursor() as db:
                 db.execute(
@@ -18,12 +19,11 @@ class CheckingAccountRepository:
                         account_data['id']
                     ]
                 )
-                # data = db.fetchone()
+
                 conn.commit()
                 print(deposit.amount)
                 print(account_data['id'])
                 return {"amount": deposit.amount, "id": account_data['id']}
-                # return data
 
     def delete_checking_account(self, id: int) -> bool:
         with pool.connection() as conn:
@@ -37,12 +37,12 @@ class CheckingAccountRepository:
                 )
                 return True
 
+    def create_checking_account(
+            self, checking_account: CheckingAccountIn, account_data):
 
-    def create_checking_account(self, checking_account: CheckingAccountIn, account_data):
-        # connect the DB
         with pool.connection() as conn:
             with conn.cursor() as db:
-                # Run our INSERT
+
                 result = db.execute(
                     """
                     INSERT INTO checking_account
@@ -57,15 +57,15 @@ class CheckingAccountRepository:
                     ]
                 )
                 id = result.fetchone()[0]
-                old_data=checking_account.dict()
+                old_data = checking_account.dict()
                 return CheckingAccountOut(id=id, **old_data)
 
+    def get_one_checking_account(
+            self, account_data) -> CheckingAccountOutWithDetails:
 
-    def get_one_checking_account(self, account_data) -> CheckingAccountOutWithDetails:
-    #connect the DB
         with pool.connection() as conn:
             with conn.cursor() as db:
-                #Run our SELECT
+
                 result = db.execute(
                     """
                     SELECT id, total_amount, account_number, routing_number, owner_id
@@ -83,10 +83,10 @@ class CheckingAccountRepository:
                     account_number=record[2],
                     routing_number=record[3],
                     owner_id=record[4]
-                    )
+                )
 
-
-    def get_all_checking_accounts(self, account_data) -> List[CheckingAccountOutWithDetails]:
+    def get_all_checking_accounts(
+            self, account_data) -> List[CheckingAccountOutWithDetails]:
         with pool.connection() as conn:
             with conn.cursor() as db:
                 result = db.execute(
@@ -94,7 +94,7 @@ class CheckingAccountRepository:
                     SELECT id, total_amount, account_number, routing_number, owner_id
                     FROM checking_account
                     WHERE owner_id = %s;
-                    """,[account_data['id']]
+                    """, [account_data['id']]
                 )
                 result = []
                 for record in db:
@@ -108,7 +108,7 @@ class CheckingAccountRepository:
                     result.append(id)
                 return result
 
-
-    def checking_account_in_to_out(self, id: int, checking_account: CheckingAccountUpdate):
+    def checking_account_in_to_out(
+            self, id: int, checking_account: CheckingAccountUpdate):
         old_data = checking_account.dict()
         return CheckingAccountUpdate(id=id, **old_data)

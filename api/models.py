@@ -6,6 +6,8 @@ import typing
 from typing import Optional
 
 app = FastAPI()
+
+
 class UserIn(BaseModel):
     email: str
     full_name: str
@@ -30,6 +32,7 @@ class UserUpdateOut(BaseModel):
     address: str
     phone: str
 
+
 class AccountForm(BaseModel):
     username: str
     password: str
@@ -38,6 +41,7 @@ class AccountForm(BaseModel):
 class UserOut(BaseModel):
     id: int
     username: str
+
 
 class UserOutWithDetails(BaseModel):
     id: int
@@ -48,6 +52,7 @@ class UserOutWithDetails(BaseModel):
     address: str
     phone: str
     dob: date
+
 
 class AccountToken(Token):
     user: UserOut
@@ -64,9 +69,9 @@ class CheckingAccountIn(BaseModel):
 class CheckingAccountUpdate(BaseModel):
     total_amount: int
 
+
 class CheckingAccountOut(BaseModel):
     id: int
-
 
 
 class CheckingAccountOutWithDetails(CheckingAccountOut):
@@ -75,19 +80,12 @@ class CheckingAccountOutWithDetails(CheckingAccountOut):
     owner_id: int
 
 
-
 class SavingsAccountIn(BaseModel):
     total_amount: int
-    # interest_rate: int 4/25
-    # account_number: int 4/25
-    # routing_number: int 4/25
-    # owner_id: int 4/25
 
 
 class SavingsAccountOut(BaseModel):
     id: int
-    # account_number: int
-    # owner_id: int
 
 
 class SavingsAccountOutWithDetails(SavingsAccountOut):
@@ -99,16 +97,10 @@ class SavingsAccountOutWithDetails(SavingsAccountOut):
 
 class InvestmentAccountIn(BaseModel):
     total_amount: int
-    # account_number: int
-    # routing_number: int
-    # investment_value: int
-    # owner_id: int
 
 
 class InvestmentAccountOut(BaseModel):
     id: int
-    # account_number: int
-
 
 
 class InvestmentAccountOutWithDetails(InvestmentAccountOut):
@@ -121,22 +113,21 @@ class TransactionsIn(BaseModel):
     date: date
     amount: int
     institution: str
-    checking_account_id : Optional[int] = 'null'
-    savings_account_id : Optional[int] = 'null'
-    investment_account_id : Optional[int] = 'null'
+    checking_account_id: Optional[int] = 'null'
+    savings_account_id: Optional[int] = 'null'
+    investment_account_id: Optional[int] = 'null'
 
 
 class TransactionsTestIn(BaseModel):
     date: date
     amount: int
     institution: str
-    # checking_account_id : Optional[int] = 'null'
-    # savings_account_id : Optional[int] = 'null'
-    # investment_account_id : Optional[int] = 'null'
+
 
 class TransactionCheckingIn(BaseModel):
     amount: int
-    checking_account_id : int
+    checking_account_id: int
+
 
 class TransactionsOut(BaseModel):
     id: int
@@ -146,10 +137,11 @@ class TransactionsOutWithDetails(TransactionsOut):
     date: date
     amount: int
     institution: str
-    checking_account_id : Optional[int] = 'null'
-    savings_account_id : Optional[int] = 'null'
-    investment_account_id : Optional[int] = 'null'
+    checking_account_id: Optional[int] = 'null'
+    savings_account_id: Optional[int] = 'null'
+    investment_account_id: Optional[int] = 'null'
     owner_id: int
+
 
 class Stockout(BaseModel):
     c: float
@@ -162,18 +154,18 @@ class Stockout(BaseModel):
 
 
 class TransactionOutForChecking(TransactionsIn):
-    checking_account_id : Optional[int] = 'null'
-    savings_account_id : str = 'null'
-    investment_account_id : str = 'null'
+    checking_account_id: Optional[int] = 'null'
+    savings_account_id: str = 'null'
+    investment_account_id: str = 'null'
 
 
 class TransactionOutForSaving(TransactionsIn):
-    checking_account_id : str = 'null'
-    savings_account_id : Optional[int] = 'null'
-    investment_account_id : str = 'null'
+    checking_account_id: str = 'null'
+    savings_account_id: Optional[int] = 'null'
+    investment_account_id: str = 'null'
 
 
 class TransactionOutForInvestment(TransactionsIn):
-    checking_account_id : str = 'null'
-    savings_account_id : str = 'null'
-    investment_account_id : Optional[int] = 'null'
+    checking_account_id: str = 'null'
+    savings_account_id: str = 'null'
+    investment_account_id: Optional[int] = 'null'

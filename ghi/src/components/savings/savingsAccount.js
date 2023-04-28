@@ -7,8 +7,7 @@ function SavingsAccount() {
   const [accounts, setAccounts] = useState([]);
 
   const getData = async () => {
-    const response = await fetch(
-      'http://localhost:8000/api/savings_account',
+    const response = await fetch('http://localhost:8000/api/savings_account/',
       { headers: { Authorization: `Bearer ${token}` } }
     );
 

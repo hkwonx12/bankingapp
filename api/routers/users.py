@@ -8,6 +8,7 @@ from typing import List
 
 router = APIRouter()
 
+
 @router.post('/api/users', response_model=AccountToken)
 async def create_user(
     info: UserIn,
@@ -28,6 +29,7 @@ async def create_user(
     token = await authenticator.login(response, request, form, repo)
     print(token)
     return AccountToken(user=user, **token.dict())
+
 
 @router.get('/api/all_users', response_model=List[UserOutWithDetails])
 def get_all_user_accounts(
