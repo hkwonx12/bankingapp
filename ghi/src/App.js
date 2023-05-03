@@ -21,6 +21,8 @@ import CreateSavingsDepositForm from './components/savings/createSavingsDeposit'
 import CreateAccountsPage from './CreateAccountsPage';
 import InvestmentDayChangeHistory from './components/investment/previousDayData';
 import CreateInvestmentWithdrawForm from './components/investment/investmentWithdraw';
+import CreateSavingsWithdrawForm from './components/savings/savingsWithdrawForm';
+import CreateCheckingWithdrawForm from './components/checking/checkingWithdraw';
 
 function App() {
 
@@ -53,6 +55,7 @@ function App() {
                 <Route path="/checkingaccount" element={<CheckingAccount/>}/>
                 <Route path="/createchecking" element={<CreateCheckingAccountForm />} />
                 <Route path="/checkingdeposit" element={<CreateDepositForm/>}/>
+                <Route path='/checkingwithdraw' element={<CreateCheckingWithdrawForm/>}/>
               </Route>
 
               <Route>
@@ -60,6 +63,7 @@ function App() {
                 <Route path="/savingsaccount" element={<SavingsAccount/>}/>
                 <Route path="/createsavings" element={<CreateSavingsAccountForm/>}/>
                 <Route path="/savingsdeposit" element={<CreateSavingsDepositForm/>}/>
+                <Route path='/savingswithdraw' element={<CreateSavingsWithdrawForm/>}/>
               </Route>
 
               <Route path='/investment'>
