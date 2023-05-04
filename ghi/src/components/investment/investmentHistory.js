@@ -67,6 +67,7 @@ function InvestmentStatements() {
                         <div className="">
                             <InvestmentDayChangeHistory/>
                         </div>
+
                     </div>
                 </div>
         </section>

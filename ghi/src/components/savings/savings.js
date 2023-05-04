@@ -1,6 +1,7 @@
 import { useAuthContext } from "@galvanize-inc/jwtdown-for-react";
 import { useEffect, useState } from "react";
 import CreateSavingsDepositForm from "./createSavingsDeposit";
+import CreateSavingsWithdrawForm from "./savingsWithdrawForm";
 import {Link} from "react-router-dom"
 
 function SavingsStatements() {
@@ -61,6 +62,9 @@ function SavingsStatements() {
                         </div>
                         <div className="md:w-8/12 lg:ml-6 lg:w-3/12">
                             <CreateSavingsDepositForm getStatementData={getData} />
+                        </div>
+                        <div className="md:w-8/12 lg:ml-6 lg:w-3/12">
+                            <CreateSavingsWithdrawForm getStatementData={getData} />
                         </div>
                     </div>
                 </div>

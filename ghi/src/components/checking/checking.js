@@ -1,6 +1,7 @@
 import { useAuthContext } from '@galvanize-inc/jwtdown-for-react';
 import { useEffect, useState } from 'react';
 import CreateDepositForm from './createDeposit';
+import CreateCheckingWithdrawForm from './checkingWithdraw';
 import {Link} from "react-router-dom"
 
 function CheckingStatements() {
@@ -67,6 +68,9 @@ function CheckingStatements() {
                         </div>
                         <div className="md:w-8/12 lg:ml-6 lg:w-3/12">
                             <CreateDepositForm getStatementData={getData}/>
+                        </div>
+                        <div className="md:w-8/12 lg:ml-6 lg:w-3/12">
+                            <CreateCheckingWithdrawForm getStatementData={getData}/>
                         </div>
                     </div>
                 </div>
