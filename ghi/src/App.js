@@ -23,6 +23,7 @@ import InvestmentDayChangeHistory from './components/investment/previousDayData'
 import CreateInvestmentWithdrawForm from './components/investment/investmentWithdraw';
 import CreateSavingsWithdrawForm from './components/savings/savingsWithdrawForm';
 import CreateCheckingWithdrawForm from './components/checking/checkingWithdraw';
+import Navbar from './Navbar';
 
 function App() {
 
@@ -77,6 +78,9 @@ function App() {
 
               <Route>
                 <Route path="/createaccounts" element={<CreateAccountsPage />} />
+              </Route>
+              <Route>
+                <Route path='/nav' element={<Navbar/>}/>
               </Route>
 
             </Routes>
