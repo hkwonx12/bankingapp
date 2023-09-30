@@ -16,10 +16,15 @@ Croissant United Bank - Let us butter you up with unbeatable investments at Croi
 ## Design
 
 - [API design](docs/api.md)
+- React Front End
+- PostgreSQL Back End
+
+  This project does not use real money to deposit into accounts. It is solely used to simulate some aspects of online banking experience. 
 
 ## Intended market
 
-We are targeting general consumers in the banking market who are looking for a secured tailored banking experience. Consumers of the economy can enjoy checking, saving, and investing their hard-earned money.
+We are targeting general consumers in the banking market looking for a secure tailored banking experience. Consumers of the economy can enjoy checking, saving, and investing their hard-earned money.
+
 
 ## Functionality
 
@@ -38,7 +43,7 @@ We are targeting general consumers in the banking market who are looking for a s
     - View current balance
     - View real-time daily percent change in stock (QQQ)
 
-
+One area where improvements can be made for a more seamless user experience is automatically re-directing the user to the deposit page when signing up so that when the page re-renders, it does not look as if their login or information has been lost. Another improvement that can be made is to show the initial deposits in the account transaction history. Stretch goals can include a withdrawal feature, having the username in the top right-hand corner to show that one is logged in, and making the investment page graph more viewable. 
 
 ## Project Initialization
 
